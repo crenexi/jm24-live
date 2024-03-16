@@ -49,5 +49,6 @@ export const buildApiUrl = (endpoint: string): string => {
 };
 
 export const dataSyncDelay = (ms = 5000) => {
+  // eslint-disable-next-line no-promise-executor-return
   return new Promise((resolve) => setTimeout(resolve, ms));
 };

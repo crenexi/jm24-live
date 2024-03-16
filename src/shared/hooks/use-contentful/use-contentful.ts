@@ -83,6 +83,7 @@ const useContentful = <T extends ItemMeta>(
       ]);
       return { previousItems };
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (err, newItem, context: any) => {
       if (context?.previousItems) {
         queryClient.setQueryData([endpoint], context.previousItems);
@@ -114,6 +115,7 @@ const useContentful = <T extends ItemMeta>(
 
       return { previousItems, id };
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (err, context: any) => {
       if (context?.previousItems) {
         queryClient.setQueryData([endpoint], context.previousItems);

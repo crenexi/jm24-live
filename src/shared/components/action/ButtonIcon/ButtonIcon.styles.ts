@@ -4,8 +4,6 @@ import { svar } from '@helpers/helpers';
 type SxVariant = SxProps<Theme>;
 
 const coPrimaryDarker = svar('co_primary_darker');
-const coPrimaryBase = svar('co_primary_base');
-const coPrimaryLightest = svar('co_primary_lightest');
 const coDangerBase = svar('co_danger_base');
 const coDangerDarker = svar('co_danger_darker');
 const coSuccessBase = svar('co_success_base');

@@ -49,6 +49,7 @@ const buildLibrary = (): void => {
     // Lights
     faArrowLeft,
     faArrowRight,
+    faCakeSlice,
     faCalendarHeart,
     faCameraWeb,
     faCastle,
