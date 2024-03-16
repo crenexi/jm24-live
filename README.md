@@ -1,10 +1,6 @@
-# [TITLE]
+# M&J Live
 
-![][urlCrenexiFav]
-
-**[www.EXAMPLE.com][urlEXAMPLEProd]** | [stage.EXAMPLE.com][urlEXAMPLEStage]
-
-[DESCRIPTION]
+Live View for Michelle & James 2024 wedding.
 
 # Setup
 
@@ -56,4 +52,3 @@
 
 * **James Blume** - [Crenexi](https://github.com/crenexi)
 
-[urlCrenexiFav]: https://www.crenexi.com/assets/brand/fav_48x48.png

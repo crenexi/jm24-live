@@ -3,7 +3,6 @@ import appTheme from '@config/app-theme';
 import logger from '@services/logger';
 import { capitalize } from '@helpers/index';
 import { PaletteRows } from '@stypes/app-theme.types';
-import { ButtonCopy } from '@components/action';
 import { Block, BlockSet } from '../index';
 import sy from './Palette.scss';
 
@@ -41,11 +40,7 @@ const Palette: FC = () => {
                 <div
                   className={sy.color_box}
                   style={{ backgroundColor: value }}
-                >
-                  <div className={sy.color_copy}>
-                    <ButtonCopy text={value} />
-                  </div>
-                </div>
+                />
                 <div className={sy.color_label}>{label}</div>
               </div>
             ))}
