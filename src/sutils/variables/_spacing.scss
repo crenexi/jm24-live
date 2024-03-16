@@ -1,0 +1,26 @@
+// sm has seven increments of 0.3rem
+// md has seven increments of 1rem
+// lg has seven increments of 2rem
+$spacing: (
+  "sm1": 0.2rem,
+  "sm2": 0.5rem,
+  "sm3": 0.8rem,
+  "sm4": 1.1rem,
+  "sm5": 1.4rem,
+  "sm6": 1.7rem,
+  "sm7": 2rem,
+  "md1": 3rem,
+  "md2": 4rem,
+  "md3": 5rem,
+  "md4": 6rem,
+  "md5": 7rem,
+  "md6": 8rem,
+  "md7": 9rem,
+  "lg1": 10rem,
+  "lg2": 12rem,
+  "lg3": 14rem,
+  "lg4": 16rem,
+  "lg5": 18rem,
+  "lg6": 20rem,
+  "lg7": 22rem,
+);

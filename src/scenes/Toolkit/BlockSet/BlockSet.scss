@@ -1,0 +1,13 @@
+@use '@sutils' as *;
+
+.edge {
+  padding: sp(sm7);
+}
+
+.heading {
+  @include text-preset(headline-lg);
+}
+
+.main {
+  margin-top: sp(sm5);
+}

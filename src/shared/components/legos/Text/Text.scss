@@ -1,0 +1,25 @@
+@use '@sutils' as *;
+
+.display__sm { @include text-preset('display-sm'); }
+.display__md { @include text-preset('display-md'); }
+.display__lg { @include text-preset('display-lg'); }
+
+.headline__sm { @include text-preset('headline-sm'); }
+.headline__md { @include text-preset('headline-md'); }
+.headline__lg { @include text-preset('headline-lg'); }
+
+.title__sm { @include text-preset('title-sm'); }
+.title__md { @include text-preset('title-md'); }
+.title__lg { @include text-preset('title-lg'); }
+
+.body__sm { @include text-preset('body-sm'); }
+.body__md { @include text-preset('body-md'); }
+.body__lg { @include text-preset('body-lg'); }
+
+.label__sm { @include text-preset('label-sm'); }
+.label__md { @include text-preset('label-md'); }
+.label__lg { @include text-preset('label-lg'); }
+
+.truncate {
+  @include truncate();
+}

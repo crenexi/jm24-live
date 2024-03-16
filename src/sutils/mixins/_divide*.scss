@@ -1,0 +1,32 @@
+$divider-color: rgba(0, 0, 0, .15);
+$divider-widths: (1, 2, 3, 4, 5);
+
+@mixin divide($width, $color, $style) {
+  @if not index($divider-widths, $width) {
+    @warn 'Divider `width` must be (1, 2, 3, 4, 5)!';
+  } @else {
+    > :not([hidden]) ~ :not([hidden]) {
+      border-color: $color;
+      border-style: $style;
+      @content;
+    }
+  }
+}
+
+@mixin divide-x($width: 1, $color: $divider-color, $style: solid) {
+  @include divide($width, $color, $style) {
+    border-top: none;
+    border-bottom: none;
+    border-right-width: 0;
+    border-left-width: 1px * $width;
+  }
+}
+
+@mixin divide-y($width: 1, $color: $divider-color, $style: solid) {
+  @include divide($width, $color, $style) {
+    border-top-width: 1px * $width;
+    border-bottom-width: 0;
+    border-left: none;
+    border-right: none;
+  }
+}

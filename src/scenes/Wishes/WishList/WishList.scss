@@ -1,0 +1,141 @@
+@use '@sutils' as *;
+
+@mixin truncate-comment($line-height: 1.4em, $lines: 3) {
+  // Fallback styling
+  display: block;
+  overflow: hidden;
+  position: relative;
+  line-height: $line-height;
+  max-height: $line-height * $lines;
+  padding-right: .5em;
+
+  &:after {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: $line-height;
+    background: inherit;
+  }
+
+  // Use @supports to override for browsers that support modern features
+  // Assumes browsers that support CSS Grid or Flexbox also support -webkit-line-clamp
+  @supports (display: flex) or (display: grid) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: none; // Remove max-height restriction
+    padding-right: 0; // Reset padding-right
+
+    &:after, &:before {
+      display: none; // Hide pseudo-elements
+    }
+  }
+}
+
+.edge {
+  margin-top: sp(md1);
+  color: co(neutral, n100);
+};
+
+// Header
+
+.header {
+  @include flexy(row, start, center);
+  flex-wrap: nowrap;
+}
+
+.header_title {
+  flex: 1 1 0%;
+}
+
+.header_count {
+  text-align: right;
+  font-size: 1rem;
+  color: co(bright, lightest);
+}
+
+// Wish layout
+
+.list {
+  margin-top: sp(sm3);
+}
+
+.wish {
+  @include flexy(row, start, start);
+  flex-wrap: nowrap;
+  padding: sp(sm3);
+  background-color: co(background, lighter);
+  @include gradient-x(co(background, lighter), co(primary, darker));
+  border-radius: radius(r4);
+  box-shadow: shadow(s3);
+  color: #fff;
+  @include fade('in', 1, 2, both);
+
+  &:not(:first-child) {
+    margin-top: sp(sm2);
+  }
+}
+
+// Wish aside
+
+.wish_aside {
+  margin-right: sp(sm2);
+}
+
+.wish_avatar {
+  @include flexy(column, center, center);
+  @include size(2.8rem);
+  padding-bottom: 2px;
+  background-color: co(primary, base);
+  border-radius: radius('full');
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+
+// Wish main
+
+.wish_main {
+  padding-right: sp(sm2);
+  overflow: hidden;
+}
+
+.wish_header {
+  width: 100%;
+  @include flexy(row, start, center);
+  flex-wrap: nowrap;
+  font-size: 1.1rem;
+}
+
+.wish_sender {
+  flex: 1 1 auto;
+  font-weight: 700;
+  line-height: 1em;
+  @include truncate();
+}
+
+.wish_created {
+  flex: 0 0 content;
+  min-width: fit-content;
+  font-size: .9rem;
+  margin-left: sp(sm2);
+  white-space: nowrap;
+  opacity: .5;
+}
+
+.wish_message {
+  margin-top: sp(sm1);
+  @include truncate-comment();
+  margin-bottom: 1px;
+  font-size: 1rem;
+}

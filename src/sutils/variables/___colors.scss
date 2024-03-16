@@ -1,0 +1,79 @@
+$danger: #ea5c4f;
+$warn: #f4be46;
+$success: #4ea658;
+$info: #6695FF;
+
+// Combined color map
+$colors: (
+  "info": (
+    "lighter": lighten($info, 7%),
+    "base": $info,
+    "darker": darken($info, 7%),
+  ),
+  "success": (
+    "lighter": lighten($success, 7%),
+    "base": $success,
+    "darker": darken($success, 7%),
+  ),
+  "warn": (
+    "lighter": lighten($warn, 7%),
+    "base": $warn,
+    "darker": darken($warn, 7%),
+  ),
+  "danger": (
+    "lighter": lighten($danger, 7%),
+    "base": $danger,
+    "darker": darken($danger, 7%),
+  ),
+  "content": (
+    "base": rgba(0, 0, 0, .9),
+    "subtle": rgba(0, 0, 0, .65),
+  ),
+  "background": (
+    "lightest": #3e3345,
+    "lighter": #342b3a,
+    "base": #2a232f,
+    "darker": #201a23,
+    "darkest": #161218,
+  ),
+  "primary": (
+    "lightest": #846e94,
+    "lighter": #705d7e,
+    "base": #5c4c67,
+    "darker": #483c51,
+    "darkest": #342b3a,
+    "icon": #c7bdce,
+  ),
+  "bright": (
+    "lightest": #ac8dc3,
+    "lighter": #9973b5,
+    "base": #8659a7,
+    "darker": #724b8e,
+    "darkest": #5d3e75,
+  ),
+  "gold": (
+    "lightest": #f8d894,
+    "lighter": #f5cb6f,
+    "base": #f3be4a,
+    "darker": #f1b125,
+    "darkest": #e8a206,
+  ),
+  "neutral": (
+    "n10": #f7f6f7,
+    "n20": #edebee,
+    "n30": #e4e1e5,
+    "n40": #dad6dc,
+    "n50": #d0ccd3,
+    "n70": #bdb7c1,
+    "n80": #a097a6,
+    "n90": #8d8294,
+    "n100": #796e81,
+    "n200": #655c6b,
+    "n300": #514a56,
+    "n500": #3d3841,
+    "n600": #332f37,
+    "n700": #29252c,
+    "n800": #1f1c21,
+    "n900": #151317,
+  ),
+);

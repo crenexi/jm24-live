@@ -1,0 +1,50 @@
+@use '@sutils' as *;
+
+.edge {
+  padding: sp(sm2) sp(sm3) sp(sm3);
+  border: 1px solid co(neutral, n20);
+  border-left-width: 3px;
+  background-color: #fff;
+  border-radius: 5px;
+
+  &:not(:first-child) {
+    margin-top: sp(sm7);
+  }
+}
+
+.label {
+  @include text-preset(label-md);
+  color: co(neutral, n100);
+}
+
+.main {
+  @include flexy(column, start, start);
+  margin-top: sp(sm3);
+}
+
+.main code {
+  display: inline-block;
+  padding: sp(sm2) sp(sm4);
+  background-color: co(neutral, n20);
+  border-radius: 4px;
+  font-family: font-family(mono);
+  font-size: .8rem;
+  color: co(neutral, n300);
+
+  &:not(:first-child) {
+    margin-top: sp(sm5);
+  }
+}
+
+// Dark blocks
+
+.edge {
+  background-color: co(neutral, n700);
+  border-color: transparent;
+  color: co(neutral, n40);
+
+  .main code {
+    background-color: co(neutral, n500);
+    color: co(neutral, n30);
+  }
+}

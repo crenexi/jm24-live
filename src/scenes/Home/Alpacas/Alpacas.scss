@@ -1,0 +1,49 @@
+@use '@sutils' as *;
+
+@keyframes hop {
+  0% { transform: translateX(500px) translateY(0); }
+  7% { transform: translateX(400px) translateY(0); } // Walking
+  9% { transform: translateX(375px) translateY(-20px); } // Hop 1 peak
+  11% { transform: translateX(350px) translateY(0); } // End Hop 1
+  21% { transform: translateX(200px) translateY(0); } // Walking
+  23% { transform: translateX(175px) translateY(-20px); } // Hop 2 peak
+  25% { transform: translateX(150px) translateY(0); } // End Hop 2
+  35% { transform: translateX(0) translateY(0); } // Walking
+  37% { transform: translateX(-25px) translateY(-20px); } // Hop 3 peak
+  40% { transform: translateX(-50px) translateY(0); } // End Hop 3 and start stationary phase
+  100% { transform: translateX(-50px) translateY(0); } // Remain stationary
+}
+
+.edge {
+  pointer-events: none;
+  @include position(fixed, null 0 -1px 0);
+  @include size(100%, 6rem);
+}
+
+.main {
+  position: relative;
+  max-width: 100%;
+  width: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.fade, .field {
+  height: 3rem;
+}
+
+.fade {
+  @include gradient-y(rgb(42, 35, 47, 0), rgb(42, 35, 47));
+}
+
+.field {
+  background-color: rgb(42, 35, 47);
+}
+
+.alpaca {
+  position: absolute;
+  bottom: 15px;
+  width: 2.5rem;
+  height: auto;
+  animation: hop 10s linear infinite;
+}

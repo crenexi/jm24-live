@@ -1,0 +1,21 @@
+@use '@sutils' as *;
+
+.edge {
+  width: 6rem;
+}
+
+.img {
+  width: 100%;
+}
+
+@include breakpoint('m2+') {
+  .edge {
+    width: 7rem;
+  }
+}
+
+@include breakpoint('d1+') {
+  .edge {
+    width: 8rem;
+  }
+}

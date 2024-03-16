@@ -1,0 +1,36 @@
+@use '@sutils' as *;
+
+.edge {
+  visibility: visible;
+}
+
+
+
+.main {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.spItems {
+  padding: sp(sm2) sp(sm6) sp(sm5);
+}
+
+.spItem {
+  height: 1.5rem;
+  @include flexy(row, start, center);
+  padding: sp(sm1);
+}
+
+.spItem_label {
+  font-family: font-family(mono);
+  font-size: .85rem;
+  font-weight: 700;
+  line-height: 1em;
+}
+
+.spItem_bar {
+  height: .8rem;
+  min-width: 5px;
+  margin-left: sp(sm2);
+  background-color: co(neutral, n100);
+}

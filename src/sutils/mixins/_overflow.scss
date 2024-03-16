@@ -1,0 +1,7 @@
+// auto, hidden, clip, visible, scroll
+
+@mixin overflow($y: null, $x: null, $overscroll: none) {
+  overflow-y: if($y != null, $y, hidden);
+  overflow-x: if($x != null, $x, hidden);
+  overscroll-behavior: $overscroll;
+}

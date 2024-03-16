@@ -1,0 +1,52 @@
+@use '@sutils' as *;
+
+.titles {
+  text-align: center;
+}
+
+.titles > p {
+  margin: 2rem 0 0 0;
+  font-family: "IBM Plex Sans", "Roboto", "Arial", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5em;
+  letter-spacing: 0;
+  font-weight: 400;
+  padding-left: 1rem;
+  border-left: 5px solid #9973b5;
+  text-align: left;
+  @include slide('forward-in', 1, 2, both);
+}
+
+.gif, .waysList {
+  margin-top: sp(md1);
+}
+
+.callout, .cta {
+  @include fade('in', 1, 2, both);
+  margin-top: sp(sm5);
+}
+
+.callout {
+  padding: sp(sm2) sp(sm4);
+  background-color: co(background, lightest);
+}
+
+.copy {
+  margin-top: sp(sm4);
+  padding-top: sp(sm4);
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  @include flexy(column, end, center);
+}
+
+.copy_label {
+  margin-top: sp(sm2);
+  @include text-preset('label-sm');
+}
+
+.gif {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 25rem;
+  border-radius: radius(r1);
+  overflow: hidden;
+}

@@ -1,0 +1,76 @@
+@use '@sutils' as *;
+
+.edge {
+  padding: sp(sm6) 6vw sp(lg2);
+}
+
+.header, .footer, .main {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+// Header
+
+.header {
+  margin-bottom: sp(sm7);
+  padding-bottom: sp(md2);
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+
+.collage {
+  @include grid-n(5);
+  @include size(100%, 5rem);
+  border: 5px solid co(primary, base);
+  border-radius: radius(r3);
+  box-shadow: shadow(s1);
+  mix-blend-mode: lighten;
+  @include fade('in', 3, 3, both);
+  overflow: hidden;
+}
+
+.collage_item {
+  visibility: visible;
+  @include bg-cover();
+}
+
+.welcome {
+  margin-top: sp(md2);
+  padding: 0 sp(sm4);
+  color: #fff;
+}
+
+.welcome_text1 {
+  text-align: center;
+  @include text-preset('display-sm');
+  @include fade('in', 1, 1, both);
+}
+
+.welcome_text2 {
+  max-width: 22rem;
+  margin: sp(sm5) auto 0;
+  @include text-preset('body-md');
+  @include slide('upward-in', 1, 1, both);
+}
+
+// Footer
+
+.footer {
+  margin-top: sp(md1);
+  padding-top: sp(md1);
+  border-top: 1px solid rgba(255, 255, 255, .07);
+  text-align: center;
+  color: #fff;
+}
+
+.enjoy_text1 {
+  @include text-type(primary, 400);
+  color: co(neutral, n100);
+  font-size: 1.7rem;
+  line-height: 1.2em;
+}
+
+.enjoy_text2 {
+  @include text-type(base, 300, uppercase);
+  font-size: 2rem;
+  line-height: 1.2em;
+}

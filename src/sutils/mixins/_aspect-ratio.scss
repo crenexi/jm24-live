@@ -1,0 +1,16 @@
+$aspect-ratios: (
+  auto: auto,
+  square: '1 / 1',
+  image: '4 / 3',
+  video: '16 / 9',
+);
+
+@mixin aspect-ratio($key) {
+  @if not $key {
+    @warn 'Must specify $key for aspect-ratio()!';
+  } @else if not map-has-key($aspect-ratios, $key) {
+    @warn 'Unknown `#{$key}` in $aspect-ratios.';
+  } @else {
+    aspect-ratio: unquote(map-get($aspect-ratios, $key));
+  }
+}

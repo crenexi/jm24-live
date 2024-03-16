@@ -1,0 +1,15 @@
+@use '@sutils' as *;
+
+.edge {
+  max-width: 100%;
+
+  &__xs { width: 2rem; }
+  &__sm { width: 3rem; }
+  &__md { width: 4rem; }
+  &__lg { width: 5rem; }
+  &__xl { width: 6rem; }
+}
+
+.fav {
+  width: 100%;
+}

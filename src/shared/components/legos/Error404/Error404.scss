@@ -1,0 +1,39 @@
+@use '@sutils' as *;
+
+.edge {
+  @include min-height-100;
+  @include flexy(column, center, center);
+  padding: sp(md2) sp(md1) sp(md3);
+}
+
+.main {
+  padding-bottom: 10vh;
+  @include flexy(column, center, center);
+  text-align: center;
+  color: #fff;
+}
+
+// 404 Content
+
+.main_404,
+.main_title,
+.main_subtitle {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, .1), 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.main_404 {
+  font-size: 8rem;
+  font-weight: 700;
+  line-height: 1em;
+  opacity: .3;
+}
+
+.main_title,
+.main_action {
+  margin-top: sp(md1);
+}
+
+.main_subtitle {
+  margin-top: sp(sm5);
+  font-weight: 700;
+}

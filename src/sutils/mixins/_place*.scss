@@ -1,0 +1,21 @@
+@mixin place($align: center, $justify: null) {
+  align-items: $align;
+
+  @if $justify == null {
+    // Use single value for both
+    justify-content: $align;
+  } @else {
+    justify-content: $justify;
+  }
+}
+
+@mixin place-tracks($align: center, $justify: null) {
+  align-content: $align;
+
+  @if $justify == null {
+    // Use single value for both
+    justify-items: $align;
+  } @else {
+    justify-items: $justify;
+  }
+}

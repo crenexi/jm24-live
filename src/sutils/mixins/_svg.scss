@@ -1,0 +1,12 @@
+@mixin svg($fill, $stroke, $stroke-width: null) {
+  @if not $fill or not $stroke {
+    @warn 'Must specify $fill and $stroke for svg()!';
+  } @else {
+    fill: $fill;
+    stroke: $stroke;
+
+    @if $stroke-width != null {
+      stroke-width: $stroke-width;
+    }
+  }
+}

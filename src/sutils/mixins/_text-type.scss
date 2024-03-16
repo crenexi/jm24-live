@@ -1,0 +1,12 @@
+@mixin text-type(
+  $family: $def-text-family,
+  $weight: $def-text-weight,
+  $transform: null,
+) {
+  font-family: font-family($family);
+  font-weight: $weight;
+
+  @if $transform != null {
+    text-transform: $transform;
+  }
+}

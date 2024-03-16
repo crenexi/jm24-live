@@ -1,0 +1,47 @@
+@import 'bourbon';
+@import 'var-get';
+
+// Utilities used only in mixins
+@import './new-animate';
+@import './new-gradient';
+@import './new-ring';
+
+// breakpoint map
+@function breakpoint($key) {
+  @return var-get('breakpoints', $breakpoints, $key);
+}
+
+// gradient map
+@function gradient($key) {
+  @return var-get('gradients', $gradients, $key);
+}
+
+// font-family map
+@function font-family($key) {
+  @return var-get('font-families', $font-families, $key, true);
+}
+
+// radius map
+@function radius($key) {
+  @return var-get('border-radii', $border-radii, $key);
+}
+
+// ring map
+@function ring($key) {
+  @return var-get('rings', $rings, $key);
+}
+
+// shadow map
+@function shadow($key) {
+  @return var-get('shadows', $shadows, $key, true);
+}
+
+// spacing map (sp)
+@function sp($key) {
+  @return var-get('spacing', $spacing, $key);
+}
+
+// z-index map
+@function z-index($key) {
+  @return var-get('z-indices', $z-indices, $key);
+}

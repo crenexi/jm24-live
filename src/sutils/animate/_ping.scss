@@ -1,0 +1,5 @@
+@mixin ping($speed: 10, $delay: null, $opts: infinite) {
+  :global {
+    animation: new-animate(ping, $speed, $delay, $opts)
+  }
+}

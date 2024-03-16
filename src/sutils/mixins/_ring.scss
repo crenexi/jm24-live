@@ -1,0 +1,20 @@
+:root {
+  --theme-ring-color: #{co(bright, darkest)};
+  --theme-ring-inset: #{co(neutral, n20)};
+}
+
+$rings: (
+ r1: new-ring(1px),
+ r2: new-ring(2px),
+ r3: new-ring(3px),
+ r4: new-ring(4px),
+ r5: new-ring(5px),
+);
+
+@mixin ring($key: r3) {
+  @if not map-has-key($rings, $key) {
+    @warn 'Unknown `#{$key}` in $rings.';
+  } @else {
+    box-shadow: map-get($rings, $key);
+  }
+}

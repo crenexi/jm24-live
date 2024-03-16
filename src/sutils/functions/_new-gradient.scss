@@ -1,0 +1,13 @@
+// Helper
+@function new-gradient($turn, $color1, $color2, $color3: null) {
+  @if not $color1 or not $color2 {
+    @warn 'Missing color props in gradient call';
+    @return null;
+  }
+
+	@if $color3 == null {
+    @return linear-gradient($turn, $color1, $color2);
+  }
+
+  @return linear-gradient($turn, $color1, $color2, $color3);
+}

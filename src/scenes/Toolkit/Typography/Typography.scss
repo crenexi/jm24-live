@@ -1,0 +1,32 @@
+@use '@sutils' as *;
+
+.edge {
+  visibility: visible;
+}
+
+.main {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+// Artificial padding
+
+.xray {
+  background-color: co(neutral, n800);
+  border: 1px dashed co(neutral, n600);
+
+  &:not(:first-child) {
+    margin-top: sp(sm2);
+  }
+}
+
+// Misc
+
+.truncate {
+  width: 100%;
+  @include truncate();
+}
+
+.underlineLinks a {
+  @include underline-link();
+}

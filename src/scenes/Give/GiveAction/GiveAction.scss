@@ -1,0 +1,35 @@
+@use '@sutils' as *;
+
+.action {
+  @include flexy(column, center, center);
+  background-color: co(background, lighter);
+  box-shadow: shadow(s1);
+  border-radius: radius(r3);
+  padding: sp(sm6) sp(sm7);
+
+  &:not(:first-child) {
+    margin-top: sp(sm5);
+  }
+}
+
+.action_icon {
+  @include rotate('in', 1, 1, both);
+  margin-top: -3px;
+  font-size: 2rem;
+}
+
+.action_heading {
+  margin-top: sp(sm2);
+  @include slide('downward-in', 1, 1, both);
+}
+
+.main {
+  margin-top: sp(sm3);
+  @include flexy(column, center, center);
+  @include text-preset('body-sm');
+
+  p {
+    line-height: 1.4em;
+    text-align: center;
+  }
+}

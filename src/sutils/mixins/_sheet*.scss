@@ -1,0 +1,50 @@
+@mixin sheet($inset: 0) {
+  position: relative;
+
+  &::after {
+    content: '';
+    @include position(absolute, $inset $inset $inset $inset);
+    z-index: 1;
+
+    @content;
+  }
+}
+
+@mixin sheet-color($color, $opacity: 0.75, $inset: 0) {
+  @if not $color {
+    @warn 'Must specify $color for sheet-color()!';
+  } @else {
+    position: relative;
+
+    &::after {
+      content: '';
+      @include position(absolute, $inset $inset $inset $inset);
+      z-index: 1;
+
+      background-color: $color;
+      opacity: $opacity;
+      @content;
+    }
+  }
+}
+
+@mixin sheet-image($url, $opacity: 0.75, $inset: 0) {
+  @if not $url {
+    @warn 'Must specify $url for sheet-image()!';
+  } @else {
+    position: relative;
+
+    &::after {
+      content: '';
+      @include position(absolute, $inset $inset $inset $inset);
+      z-index: 1;
+
+      background-image: url('#{$url}');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: $opacity;
+      @content;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@use '@sutils' as *;
+
+@keyframes invite {
+  0% {
+    transform: translateY(-7px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(7px);
+    opacity: 0;
+  }
+}
+
+.gif {
+  margin: sp(sm6) auto 0;
+  max-width: 25rem;
+  border-radius: radius(r1);
+  overflow: hidden;
+}
+
+// Header
+
+.header_icon,
+.header_invite {
+  text-align: center;
+}
+
+.header_icon {
+  margin-bottom: sp(sm1);
+  color: co(primary, base);
+  font-size: 1.8rem;
+}
+
+.header_invite {
+  margin-top: sp(sm4);
+  font-size: 1.5rem;
+  color: co(primary, darker);
+  animation: invite 1500ms infinite ease;
+}
+
+// Footer
+
+.footer .gif {
+  margin: sp(md1) auto 0;
+}

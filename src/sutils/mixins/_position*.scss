@@ -1,0 +1,26 @@
+// Note: position implemented in bourbon
+
+@mixin position-cover() {
+  @include position(absolute, 0 0 0 0);
+  @include size(100%);
+}
+
+@mixin position-center($width: null, $height: null) {
+  @include position(absolute, 50% null null 50%);
+  transform: translate(-50%, -50%);
+
+  @if $width != null {
+    width: $width;
+  }
+
+  @if $height != null {
+    height: $height;
+  }
+}
+
+@mixin position-frame($offset: 3px) {
+  @include position(absolute, (-$offset) (-$offset) (-$offset) (-$offset));
+  width: calc(100% + #{$offset * 2});
+  height: calc(100% + #{$offset * 2});
+  z-index: -1;
+}

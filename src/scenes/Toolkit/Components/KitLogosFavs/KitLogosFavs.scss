@@ -1,0 +1,13 @@
+@use '@sutils' as *;
+
+.edge {
+  visibility: visible;
+}
+
+.logo, .fav {
+  padding: sp(sm4);
+}
+
+.favs {
+  @include flexy();
+}

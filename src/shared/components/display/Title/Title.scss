@@ -1,0 +1,14 @@
+@use '@sutils' as *;
+
+.main {
+  @include flexy(column, start, center);
+  text-align: center;
+}
+
+.title {
+  @include slide('downward-in', 1, 1, both);
+}
+
+.subtitle {
+  @include slide('upward-in', 1, 1, both);
+}

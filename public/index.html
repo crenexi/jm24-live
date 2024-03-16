@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basics -->
+  <base href="/" />
+  <meta charset="utf-8" />
+  <meta name="robots" content="<%= htmlWebpackPlugin.options.props.robots %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height" />
+  <meta name="theme-color" content="<%= htmlWebpackPlugin.options.props.themeColor %>">
+
+  <!-- Title -->
+  <title><%= htmlWebpackPlugin.options.props.title %></title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Main -->
+  <link rel="stylesheet" href="keyframes.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link href="<%= htmlWebpackPlugin.options.props.hrefGoogleFonts %>" rel="stylesheet">
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.2.20171210/classList.min.js"></script>
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root" class="root"></div>
+</body>
+</html>

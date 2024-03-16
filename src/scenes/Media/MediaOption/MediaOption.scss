@@ -1,0 +1,89 @@
+@use '@sutils' as *;
+
+.main {
+  margin-top: sp(md1);
+}
+
+.header {
+  position: relative;
+  padding-top: sp(sm5);
+
+  &::after {
+    content: '';
+    @include position(absolute, 0 null null 0);
+    width: 4rem;
+    border-bottom: 7px solid co(bright, base);
+  }
+}
+
+.header_title {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.header_subtitle {
+  margin-top: sp(sm2);
+  color: co(primary, lightest);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.pretext {
+  margin-top: sp(sm4);
+  font-size: .9rem;
+  opacity: .9;
+}
+
+// Steps
+
+.content {
+  margin-top: sp(sm4);
+}
+
+.toggle {
+  margin-top: sp(sm4);
+}
+
+.steps {
+  margin-top: sp(sm2);
+  padding-left: sp(sm2);
+  border-left: 3px solid co(background, lightest);
+}
+
+.step {
+  margin-top: sp(sm2);
+  padding: sp(sm2) sp(sm4) sp(sm3);
+  background-color: co(background, lighter);
+  border-radius: radius(r1);
+}
+
+.step_num {
+  margin-bottom: 1px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+  font-weight: 600;
+  font-size: .8rem;
+  letter-spacing: .7px;
+}
+
+.step_header {
+  margin-top: sp(sm2);
+  @include flexy(row, start, center);
+  flex-wrap: nowrap;
+}
+
+.step_icon {
+  font-size: 1.5rem;
+}
+
+.step_heading {
+  margin-left: sp(sm2);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.step_text {
+  margin-top: sp(sm1);
+}

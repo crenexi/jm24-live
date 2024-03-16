@@ -1,0 +1,23 @@
+// Note: margin implemented in bourbon
+
+@mixin margin-x($val) {
+  @if not $val {
+    @warn 'Must specify $val for margin-x()!';
+  } @else {
+    $left: nth($val, 1);
+    $right: if (length($val) > 1, nth($val, 2), $left);
+
+    @include margin(null $right null $left);
+  }
+}
+
+@mixin margin-y($val) {
+  @if not $val {
+    @warn 'Must specify $val for margin-y()!';
+  } @else {
+    $top: nth($val, 1);
+    $bottom: if (length($val) > 1, nth($val, 2), $top);
+
+    @include margin($top null $bottom null);
+  }
+}

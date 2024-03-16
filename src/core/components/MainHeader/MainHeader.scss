@@ -1,0 +1,48 @@
+@use '@sutils' as *;
+
+.gap, .header, .header_main {
+  height: $header-height_m1;
+}
+
+.header {
+  @include position(fixed, 0 0 null 0);
+  z-index: z-index(header);
+  background-color: co(background, lighter);
+  box-shadow: shadow(s1);
+  color: #fff;
+}
+
+.header_main {
+  width: 100%;
+  max-width: $header-max-width;
+  margin: 0 auto;
+  padding: 0 sp(sm5);
+  @include flexy(row, start, center);
+}
+
+.header_start, .header_end, .alpacas {
+  width: 3rem;
+}
+
+.header_start {
+  @include flexy(column, center, center);
+}
+
+.header_center {
+  flex: auto;
+  @include flexy(column, center, center);
+  font-family: font-family('primary');
+  font-size: 1.8rem;
+  color: co(bright, lightest);
+
+}
+
+.logo {
+  cursor: pointer;
+  @include size(4rem);
+  @include zoom('in', 1, 1, both);
+}
+
+.header_end {
+  padding: sp(sm1);
+}

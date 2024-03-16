@@ -1,0 +1,55 @@
+@use '@sutils' as *;
+
+.edge {
+  visibility: visible;
+}
+
+.main {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.icons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  grid-row-gap: sp(sm7);
+  padding: sp(sm4) sp(sm2);
+  color: #fff;
+}
+
+.icon {
+  position: relative;
+  padding: sp(sm1) sp(sm2);
+  font-size: 1.8rem;
+  @include flexy(column, center, center);
+}
+
+.icon_name {
+  width: 100%;
+  margin-top: sp(sm2);
+  @include text-preset('label-sm');
+  letter-spacing: -.1px;
+  text-align: center;
+  @include truncate();
+}
+
+.icon_nameFull {
+  display: none;
+  z-index: 1;
+  @include position(absolute, 93% null null 50%);
+  width: auto;
+  transform: translateX(-50%);
+  padding: sp(sm1) sp(sm2);
+  background-color: #fff;
+  border-radius: radius(r1);
+  box-shadow: shadow(s1);
+  @include text-preset('label-md');
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.icon_nameFull:hover,
+.icon_name:hover + .icon_nameFull {
+  display: block;
+}

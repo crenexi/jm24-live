@@ -1,0 +1,27 @@
+$container-sizes: (
+  s1: 600px,
+  s2: 900px,
+  s3: 1200px,
+  s4: 1500px,
+  s5: 1800px,
+  full: 100%,
+);
+
+@mixin container($key: s3, $justify: center, $padding: null) {
+  // Ensure map has the key and justify is valid
+  @if not map-has-key($container-sizes, $key) {
+    @warn 'Unknown `#{$key}` in $container-sizes.';
+  } @else if not index(start center end, $justify) {
+    @warn 'Invalid $justify param. Must be (start, center, end)';
+  } @else {
+    width: 100%;
+    max-width: map-get($container-sizes, $key);
+
+    @if $justify == center {
+      margin-left: auto;
+      margin-right: auto;
+    } @else if ($justify == end) {
+      margin-left: auto;
+    }
+  }
+}

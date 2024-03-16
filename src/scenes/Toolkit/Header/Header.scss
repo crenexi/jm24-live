@@ -1,0 +1,35 @@
+@use '@sutils' as *;
+
+$border: 1px solid rgba(0, 0, 0, .1);
+
+.header {
+  height: 5rem;
+  @include flexy(row, start, center);
+  padding: 0 sp(sm5);
+  background: co(background, base);
+  border-bottom: $border;
+  color: #fff;
+}
+
+.heading {
+  margin-left: sp(sm3);
+  padding-left: sp(sm3);
+  border-left: $border;
+  @include text-preset(headline-sm);
+  text-transform: uppercase;
+  flex: auto;
+}
+
+.nav {
+  @include flexy();
+}
+
+.nav_item:not(:first-child) {
+  margin-left: sp(sm1);
+}
+
+.codeToggle {
+  margin-left: sp(sm3);
+  padding-left: sp(sm4);
+  border-left: $border;
+}

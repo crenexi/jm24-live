@@ -1,0 +1,128 @@
+@use '@sutils' as *;
+
+// Universal properties
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: unset;
+}
+
+.google-map * {
+  border-style: none;
+}
+
+*:focus {
+  outline: 0;
+}
+
+// Top-level elements
+
+html,
+html body {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: co(background, base);
+  -webkit-overflow-scrolling: touch;
+}
+
+// Images are block-level
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+}
+
+// Constrain images to parent
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+// Pseudo selection
+
+::selection {
+  background-color: co(bright, darkest);
+  color: #fff;
+}
+
+// Pseudo scrollbar
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e6eaf3;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9dadcf;
+  border: 2px solid #e6eaf3;
+  border-radius: 10px;
+}
+
+// MUI fixes
+
+:global {
+  .MuiButton-startIcon,
+  .MuiButton-endIcon {
+    margin-top: -1px;
+  }
+
+  .MuiTextField-root {
+    .MuiInputBase-root.Mui-disabled,
+    .MuiInputBase-input.Mui-disabled,
+    .MuiInputLabel-root.Mui-disabled,
+    .MuiFilledInput-root.Mui-disabled,
+    .MuiFormHelperText-root.Mui-disabled {
+      color: co(neutral, n300);
+      -webkit-text-fill-color: co(neutral, n300);
+    };
+
+    .MuiInputBase-root,
+    .MuiInputBase-input {
+      color: #fff;
+    }
+
+    .MuiInputLabel-root {
+      color: rgba(255, 255, 255, 0.65);
+
+      &.Mui-focused {
+        color: co(bright, lighter);
+      }
+    }
+
+    .MuiInputBase-root.MuiFilledInput-root,
+    .MuiInputBase-root.MuiFilledInput-root:hover {
+      background-color: co(background, darker);
+
+      &::before,
+      &:hover:not(.Mui-disabled, .Mui-error):before {
+        border-bottom: 3px solid co(primary, darker);
+      }
+
+      &::after {
+        border-bottom: 3px solid co(bright, lighter);
+      }
+    }
+
+    .MuiFormHelperText-root {
+      color: co(neutral, n90);
+      margin: sp(sm2) sp(sm3);
+    }
+  }
+}
+
+// FA fixes
+
+:global {
+  .fa-memo-circle-check {
+    margin-right: -.7rem;
+  }
+}

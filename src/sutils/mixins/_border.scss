@@ -1,0 +1,13 @@
+@mixin border($width: null, $color: null,	$radius: null, $style: solid) {
+  @if not $width or not $color {
+    @warn 'Must specify $width and $color for border()!';
+  } @else {
+    border-width: $width;
+    border-color: $color;
+    border-style: $style;
+
+    @if $radius != null {
+      border-radius: radius($radius); // key, not value
+    }
+  }
+}

@@ -1,0 +1,36 @@
+$bp-m1-max: (breakpoint(m2) - 1) * 1px;
+$bp-m2-min: (breakpoint(m2)) * 1px;
+$bp-m2-max: (breakpoint(m3) - 1) * 1px;
+$bp-m3-min: breakpoint(m3) * 1px;
+$bp-m3-max: (breakpoint(d1) - 1) * 1px;
+$bp-d1-min: breakpoint(d1) * 1px;
+$bp-d1-max: (breakpoint(d2) - 1) * 1px;
+$bp-d2-min: breakpoint(d2) * 1px;
+$bp-d2-max: (breakpoint(d3) - 1) * 1px;
+$bp-d3-min: breakpoint(d3) * 1px;
+
+@mixin breakpoint($key) {
+  @if not $key {
+    @warn 'Must specify $key for breakpoint()!';
+  } @else if $key == 'm2+' {
+    @media (min-width: $bp-m2-min) { @content; }
+  } @else if $key == 'm3+' {
+    @media (min-width: $bp-m3-min) { @content; }
+  } @else if $key == 'd1+' {
+    @media (min-width: $bp-d1-min) { @content; }
+  } @else if $key == 'd2+' {
+    @media (min-width: $bp-d2-min) { @content; }
+  } @else if $key == 'd3+' {
+    @media (min-width: $bp-d3-min) { @content; }
+  } @else if $key == 'm1' {
+    @media (max-width: $bp-m1-max) { @content; }
+  } @else if $key == 'm2' {
+    @media (min-width: $bp-m2-min) and (max-width: $bp-m2-max) { @content; }
+  } @else if $key == 'm3' {
+    @media (min-width: $bp-m3-min) and (max-width: $bp-m3-max) { @content; }
+  } @else if $key == 'd1' {
+    @media (min-width: $bp-d1-min) and (max-width: $bp-d1-max) { @content; }
+  } @else if $key == 'd2' {
+    @media (min-width: $bp-d2-min) and (max-width: $bp-d2-max) { @content; }
+  }
+}

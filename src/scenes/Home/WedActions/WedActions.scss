@@ -1,0 +1,97 @@
+@use '@sutils' as *;
+
+.edge {
+  width: 100%;
+  max-width: 27rem;
+  margin: 0 auto;
+}
+
+// Action item
+
+.list {
+  @include fade('in', 1, 2, both);
+}
+
+.item {
+  position: relative;
+  border-radius: radius(r3);
+  overflow: hidden;
+
+  &:not(:first-child) {
+    margin-top: sp(sm6);
+  }
+}
+
+.coming {
+  @include position-cover();
+  @include flexy(column, center, center);
+  background-color: rgba(co(background, base), .8);
+  color: #fff;
+  z-index: 99;
+  @include text-preset('label-sm');
+  text-transform: uppercase;
+  text-shadow: 0 2px 5px #000;
+}
+
+.item_main {
+  padding: sp(sm5) sp(sm4);
+  background-color: co(background, lighter);
+  box-shadow: shadow(s6);
+
+  &__disabled {
+    pointer-events: none;
+    background-color: co(background, darkest);
+    box-shadow: none;
+  }
+}
+
+// Action header
+
+.item_header {
+  @include flexy(column, start, center);
+  flex-wrap: nowrap;
+  color: #fff;
+}
+
+.item_icon {
+  margin-top: -3px;
+  font-size: 2.2rem;
+  @include rotate('in', 1, 2, both);
+}
+
+.item_headings {
+  margin-top: sp(sm2);
+  text-align: center;
+}
+
+.item_heading {
+  visibility: visible;
+  @include text-type('primary', 400);
+  line-height: 1.1em;
+  font-size: 1.7rem;
+  @include slide('forward-in', 1, 3, both);
+}
+
+.item_subtext {
+  margin-top: sp(sm1);
+  @include text-preset('label-md');
+  opacity: .5;
+  @include slide('backward-in', 1, 3, both);
+}
+
+// Action button
+
+.item_button {
+  margin-top: sp(sm5);
+  padding: 0 sp(sm3);
+  @include flexy(column, center, center);
+  @include fade('in', 1, 2, both);
+}
+
+// Desktop
+
+@include breakpoint('d1+') {
+  .item_main {
+    padding: sp(sm6) sp(md1);
+  }
+}

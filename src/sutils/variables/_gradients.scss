@@ -1,0 +1,66 @@
+$gradients: (
+  info: linear-gradient(135deg,
+    co(info, darker),
+    co(info, lighter)
+  ),
+  success: linear-gradient(135deg,
+    co(success, darker),
+    co(success, lighter)
+  ),
+  warn: linear-gradient(135deg,
+    co(warn, darker),
+    co(warn, lighter)
+  ),
+  danger: linear-gradient(135deg,
+    co(danger, darker),
+    co(danger, lighter)
+  ),
+  primary-lighter: linear-gradient(135deg,
+    co(primary, base),
+    co(primary, lightest)
+  ),
+  primary-base: linear-gradient(135deg,
+    co(primary, darker),
+    co(primary, lighter)
+  ),
+  primary-darker: linear-gradient(135deg,
+    co(primary, darkest),
+    co(primary, base)
+  ),
+  bright-lighter: linear-gradient(135deg,
+    co(bright, base),
+    co(bright, lightest)
+  ),
+  bright-base: linear-gradient(135deg,
+    co(bright, darker),
+    co(bright, lighter)
+  ),
+  bright-darker: linear-gradient(135deg,
+    co(bright, darkest),
+    co(bright, base)
+  ),
+  neutral-lighter: linear-gradient(135deg,
+    co(neutral, n40),
+    co(neutral, n10)
+  ),
+  neutral-base: linear-gradient(135deg,
+    co(neutral, n200),
+    co(neutral, n80)
+  ),
+  neutral-darker: linear-gradient(135deg,
+    co(neutral, n900),
+    co(neutral, n600)
+  ),
+  radial-primary: radial-gradient(circle at center,
+    co(primary, lighter),
+    co(primary, darker)
+  ),
+  radial-bright: radial-gradient(circle at center,
+    co(bright, lighter),
+    co(bright, darker)
+  ),
+  radial-dark: radial-gradient(circle at center,
+    co(neutral, n600),
+    co(neutral, n800)
+  ),
+);

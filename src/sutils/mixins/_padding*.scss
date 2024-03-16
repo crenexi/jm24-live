@@ -1,0 +1,23 @@
+// Note: padding implemented in bourbon
+
+@mixin padding-x($val) {
+  @if not $val {
+    @warn 'Must specify $val for padding-x()!';
+  } @else {
+    $left: nth($val, 1);
+    $right: if (length($val) > 1, nth($val, 2), $left);
+
+    @include padding(null $right null $left);
+  }
+}
+
+@mixin padding-y($val) {
+  @if not $val {
+    @warn 'Must specify $val for padding-y()!';
+  } @else {
+    $top: nth($val, 1);
+    $bottom: if (length($val) > 1, nth($val, 2), $top);
+
+    @include padding($top null $bottom null);
+  }
+}

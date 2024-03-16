@@ -1,0 +1,8 @@
+@mixin object($fit, $position) {
+  @if not $fit or not $position {
+    @warn 'Must specify $fit and $position for object()!';
+  } @else {
+    object-fit: $fit;
+    object-position: $position;
+  }
+}

@@ -1,0 +1,9 @@
+@mixin min-height-100() {
+  min-height: -webkit-fill-available;
+  min-height: calc(100vh - #{$header-height_m1});
+
+  @include breakpoint('d1+') {
+    min-height: -webkit-fill-available;
+    min-height: calc(100vh - #{$header-height_d1});
+  }
+}

@@ -1,0 +1,12 @@
+@mixin text-size(
+  $font-size: $def-text-size,
+  $leading: $def-text-leading,
+  $tracking: null
+) {
+  font-size: $font-size;
+  line-height: $leading;
+
+  @if $tracking != null {
+    letter-spacing: null;
+  }
+}

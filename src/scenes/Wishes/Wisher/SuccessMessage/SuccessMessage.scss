@@ -1,0 +1,22 @@
+@use '@sutils' as *;
+
+.edge {
+  margin-top: sp(sm4);
+  padding: sp(sm6);
+  background: co(success, darker);
+  @include gradient-d(co(success, darker), co(success, lighter));
+  border-radius: radius(r5);
+  @include flexy(column, center, center);
+  flex-wrap: nowrap;
+  @include slide('backward-in', 1, 1, both);
+}
+
+.reset {
+  margin-top: sp(sm6);
+}
+
+.gif {
+  @include flexy(column, center, center);
+  margin-top: sp(sm6);
+  @include fade('in', 2, 2, both);
+}

@@ -1,0 +1,6 @@
+@use '@sutils' as *;
+
+.edge {
+  margin-top: sp(sm3);
+  @include flexy(row, end, start);
+}

@@ -1,0 +1,34 @@
+$def-underline-color: co(bright, lighter);
+$def-underline-hover-color: co(bright, lightest);
+
+@mixin underline(
+  $color: $def-underline-color,
+  $thickness: 2px,
+  $offset: 0.2em
+) {
+  text-decoration-line: underline;
+  text-decoration-color: $color;
+  text-decoration-thickness: $thickness;
+  text-underline-offset: $offset;
+}
+
+@mixin underline-hover(
+  $color: $def-underline-hover-color,
+  $thickness: 3px,
+  $offset: 0.2em
+) {
+  &:hover {
+    @include underline($color, $thickness, $offset);
+  }
+}
+
+// Basic implementation for links
+@mixin underline-link() {
+  color: inherit;
+  @include underline();
+
+  &:hover, &:focus, &:active {
+    color: inherit;
+    @include underline-hover();
+  }
+}

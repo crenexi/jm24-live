@@ -1,0 +1,29 @@
+@use '@sutils' as *;
+
+.edge {
+  margin-top: sp(md1);
+}
+
+.title {
+  @include text-preset('headline-md');
+}
+
+// Error
+
+.error {
+  margin: sp(sm3) 0;
+  padding: sp(sm3);
+  background-color: co(background, darkest);
+  border: 2px solid co(danger, darker);
+  border-radius: radius(r1);
+}
+
+.error_message {
+  margin-top: sp(sm1);
+  color: co(danger, base);
+  font-weight: 700;
+}
+
+.error_reset {
+  margin-top: sp(sm3);
+}

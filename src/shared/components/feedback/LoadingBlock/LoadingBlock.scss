@@ -1,0 +1,11 @@
+@use '@sutils' as *;
+
+.edge {
+  @include size(100%);
+  @include flexy(column, center, center);
+  padding: sp(sm5);
+
+  &__padSm { padding: sp(sm5) }
+  &__padMd { padding: sp(md3) }
+  &__padLg { padding: sp(lg1) }
+}

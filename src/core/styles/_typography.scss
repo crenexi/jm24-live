@@ -1,0 +1,99 @@
+@use '@sutils' as *;
+
+// Note: base font size and line height in vars
+// Root typography
+
+body {
+  font-family: font-family(base);
+  font-size: $base-font-size_m1_px * 1px;
+  line-height: $base-line-height_em;
+  color: co(content);
+
+  @include breakpoint('d1+') {
+    font-size: $base-font-size_d1_px * 1px;
+  }
+}
+
+// Link typography
+
+a {
+  text-decoration: none;
+  color: co(bright, lighter);
+
+  &:hover {
+    color: co(primary, lighter);
+  }
+
+  &:active {
+    opacity: .66;
+  }
+
+  &:focus {
+    color: co(primary, base);
+  }
+}
+
+// Heading typography
+
+@mixin set-heading-type($font-size, $line-height, $letter-spacing) {
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+}
+
+h1 { @include set-heading-type(3.4rem, .9, -.1px); }
+h2 { @include set-heading-type(2.7rem, 1, -.5px); }
+h3 { @include set-heading-type(2.1rem, 1.1, 0); }
+h4 { @include set-heading-type(1.6rem, 1.2, .3px); }
+h5 { @include set-heading-type(1.2rem, 1.3, 0); }
+h6 { @include set-heading-type(1rem, 1.4, 2px); }
+
+@include breakpoint('m2+') {
+  h1 { @include set-heading-type(4rem, .9, -.1px); }
+  h2 { @include set-heading-type(3rem, 1, -.5px); }
+  h3 { @include set-heading-type(2.3rem, 1.1, 0); }
+  h4 { @include set-heading-type(1.8rem, 1.2, .3px); }
+  h5 { @include set-heading-type(1.3rem, 1.3, 0); }
+  h6 { @include set-heading-type(1rem, 1.4, 2px); }
+}
+
+h1, h2, h3, h4 {
+  font-family: font-family(primary);
+  font-weight: 400;
+}
+
+h5 {
+  font-family: font-family(base);
+  font-weight: 700;
+}
+
+h6 {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+// Paragraphs
+
+p {
+  line-height: 1.6;
+
+  &:not(:first-child) {
+    margin-top: .8rem;
+  }
+}
+
+// Bold, italic, and small
+
+b, strong {
+  font-weight: 700;
+}
+
+i, em {
+  font-style: italic;
+}
+
+small, caption {
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  font-size: .9rem;
+}

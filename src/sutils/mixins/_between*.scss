@@ -1,0 +1,19 @@
+@mixin between-x($val) {
+  @if not $val {
+    @warn 'Must specify $val for between-x()!';
+  } @else {
+    >:not([hidden])~:not([hidden]) {
+      margin-left: $val;
+    }
+  }
+}
+
+@mixin between-y($val) {
+  @if not $val {
+    @warn 'Must specify $val for between-y()!';
+  } @else {
+    >:not([hidden])~:not([hidden]) {
+      margin-top: $val;
+    }
+  }
+}

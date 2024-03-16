@@ -1,0 +1,94 @@
+@use '@sutils' as *;
+
+.main {
+  min-height: 66vh;
+}
+
+// Actions
+
+.actions_pages,
+.actions_item:not(:first-child) {
+  margin-left: sp(sm2);
+}
+
+.actions {
+  @include flexy(row, start, center);
+  flex-wrap: nowrap;
+  margin-top: sp(sm6);
+  padding: sp(sm2);
+  background-color: co(background, base);
+  border: 1px solid co(background, lighter);
+  border-radius: radius(r2);
+
+  &_item {
+    @include flexy(column, start, center);
+    flex: 1 1 0%;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+.actions_pages {
+  padding: 0 sp(sm4);
+  opacity: .5;
+  font-size: .9rem;
+  letter-spacing: -1.5px;
+  white-space: nowrap;
+}
+
+// Question and answer text
+
+.question,
+.answer {
+  padding: sp(sm5) sp(sm7) sp(sm6) sp(sm5);
+}
+
+.question {
+  min-height: 6rem;
+  margin-top: sp(sm5);
+  background-color: co(primary, darkest);
+  @include border-top-radius(radius(r2));
+  @include text-preset('body-lg');
+  font-weight: 600;
+  text-align: center;
+  overflow: hidden;
+
+  > span {
+    display: inline-block;
+    @include slide('forward-in', 1, 1, both);
+  }
+}
+
+.answer {
+  background-color: co(primary, darker);
+  @include border-bottom-radius(radius(r2));
+  overflow: hidden;
+}
+
+.answer_num {
+  margin-top: -5px;
+  @include flexy(column, center, center);
+  font-family: font-family('mono');
+  font-size: 3.5rem;
+  line-height: 1.1em;
+  @include rotate('in', 1, 1, both);
+}
+
+.answer_pic {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  @include bg-cover();
+  margin-top: sp(sm4);
+  border-radius: radius(r1);
+  @include fade('in', 1, 3, both);
+}
+
+.answer_text {
+  margin-top: sp(sm4);
+  padding-left: sp(sm3);
+  border-left: 5px solid co(primary, lightest);
+  @include text-preset('body-md');
+  @include slide('upward-in', 1, 3, both);
+}

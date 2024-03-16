@@ -1,0 +1,36 @@
+@function new-animate($name, $speed: 1, $delay: null, $opts: null) {
+  $interval: 250ms;
+  $max-speed: 10;
+  $max-delay: 10;
+
+  // Ensure animation is explicitly supported
+  @if not index($animations, $name) {
+    @error 'Invalid animation `#{$name}` referenced!';
+    @return null;
+  }
+
+  // Ensure valid speed factor
+  @if $speed < 1 or $speed > $max-speed {
+    @error 'Invalid speed factor. Must be 1-#{$max-speed}!';
+    @return null;
+  }
+
+  // Ensure valid delay factor
+  @if $delay != null and ($delay < 0 or $delay > $max-delay) {
+    @error 'Invalid delay factor. Must be 1-#{$max-delay}!';
+    @return null;
+  }
+
+  // Name, speed, delay, and more options
+  $val: $name + " " + ($speed * $interval);
+
+  @if $delay != null {
+    $val: $val + " " + ($delay * $interval);
+  }
+
+  @if $opts != null {
+    $val: $val + " " + $opts;
+  }
+
+  @return $val;
+}

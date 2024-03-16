@@ -1,0 +1,10 @@
+@mixin outline($width, $color,	$offset: 3px, $style: solid) {
+  @if not $width or not $color {
+    @warn 'Must specify $width and $color for outline()!';
+  } @else {
+    outline-width: $width;
+    outline-color: $color;
+    outline-offset: $offset;
+    outline-style: $style;
+  }
+}

@@ -1,0 +1,38 @@
+@use '@sutils' as *;
+
+$border: 1px solid rgba(255, 255, 255, .08);
+
+.edge {
+  padding: sp(sm7) 6vw sp(md5);
+}
+
+.edge_inner {
+  max-width: 33rem;
+  margin: 0 auto;
+}
+
+.return {
+  position: relative;
+  text-align: center;
+  opacity: .5;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(50%);
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, .15);
+    z-index: -1;
+  }
+}
+
+.main {
+  padding: sp(md1) 0;
+  color: #fff;
+}
+
+.buttonBox {
+  display: inline-block;
+  background-color: co(background, base);
+}

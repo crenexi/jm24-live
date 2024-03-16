@@ -1,0 +1,15 @@
+@mixin clamp($lines: 2, $fallback-width: 100%) {
+  overflow: hidden;
+
+  @supports (display: -webkit-box) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+  }
+
+  @supports not (display: -webkit-box) {
+    width: $fallback-width;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

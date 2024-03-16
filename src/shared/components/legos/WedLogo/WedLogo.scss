@@ -1,0 +1,15 @@
+@use '@sutils' as *;
+
+.edge {
+  max-width: 100%;
+
+  &__xs { width: 10rem; }
+  &__sm { width: 15rem; }
+  &__md { width: 20rem; }
+  &__lg { width: 25rem; }
+  &__xl { width: 30rem; }
+}
+
+.logo {
+  width: 100%;
+}

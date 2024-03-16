@@ -1,0 +1,20 @@
+// Helper to get from maps
+@function var-get($name, $map, $key: null, $unquote: false) {
+  // Ensure key argument supplied
+  @if not ($key) {
+    @warn 'Key not specified while accessing `#{$name}`';
+    @return null;
+  }
+
+  // Ensure map has the key
+  @if not map-has-key($map, $key) {
+    @warn 'Unknown `#{$key}` in `#{$name}`.';
+    @return null;
+  }
+
+  @if $unquote {
+    @return unquote(map-get($map, $key));
+  }
+
+  @return map-get($map, $key);
+}

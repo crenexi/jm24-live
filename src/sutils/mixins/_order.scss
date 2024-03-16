@@ -1,0 +1,9 @@
+@mixin order($where: 'first') {
+  @if not index(('first', 'last'), $where) {
+    @warn 'Order must be either \'first\' or \'last\'!';
+  } @else if $where == 'first' {
+    order: -9999;
+  } @else if $where == 'last' {
+    order: 9999;
+  }
+}

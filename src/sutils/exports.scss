@@ -1,0 +1,72 @@
+// This file sets up an export of all variables (that is, whatever
+// variable maps are iterated upon and exported here)
+@import './variables';
+@import './variables/__colors';
+@import './functions/__color';
+
+// Utility to check if variable is a map
+@function is-map($key){
+  @return type-of($key) == 'map';
+}
+
+:export {
+  // vars base
+  base_font_size_m1_px: $base-font-size_m1_px;
+  base_font_size_d1_px: $base-font-size_d1_px;
+
+  // vars core
+  header_height_m1_px: $header-height_m1_px;
+  header_height_d1_px: $header-height_d1_px;
+  header_max_width: $header-max-width;
+
+  // vars misc
+
+  // border-radii
+  @each $key, $value in $border-radii {
+    #{'border_radius_' + $key}: $value;
+  }
+
+  // breakpoints
+  @each $key, $value in $breakpoints {
+    #{'breakpoint_' + $key}: $value;
+  }
+
+  // colors (co)
+  // single arg: color(primary)
+  // two args: color(primary, lighter)
+  @each $k1, $v1 in $colors {
+    @if not is-map($v1) {
+      #{'co_' + $k1}: $v1;
+    } @else {
+      @if map-has-key($v1, 'base') {
+        #{'co_' + $k1}: co($k1, 'base');
+      }
+
+      @each $k2, $v2 in $v1 {
+        @if $v2 != 'base' {
+          #{'co_'+ $k1 + '_' + $k2}: $v2;
+        }
+      }
+    }
+  }
+
+  // font-families
+  @each $key, $value in $font-families {
+    #{'font_family_' + $key}: unquote($value);
+  }
+
+  // shadows
+  @each $key, $value in $shadows {
+    #{'shadow_' + $key}: unquote($value);
+  }
+
+  // spacing (sp)
+  @each $key, $value in $spacing {
+    #{'sp_' + $key}: $value;
+  }
+
+  // z-indices
+  @each $key, $value in $z-indices {
+    #{'z_index_' + $key}: $value;
+  }
+}

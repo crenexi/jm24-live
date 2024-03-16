@@ -1,0 +1,53 @@
+@use '@sutils' as *;
+
+.edge {
+  width: auto;
+
+  &__center {
+    @include position(absolute, 0 0 0 0);
+    @include flexy(column, center, center);
+    @include size(100%);
+  }
+}
+
+.loading {
+  position: relative;
+  @include size(2rem);
+  line-height: 1em;
+}
+
+.loading__spinner {
+  @include position(absolute, 0 null null 0);
+  @include flexy(column, center, center);
+  @include size(100%);
+}
+
+// Small spinner
+
+.loading__sm {
+  @include size(1.2rem);
+
+  .loading__spinner {
+    font-size: .9rem;
+  }
+}
+
+// Medium spinner
+
+.loading__md {
+  @include size(2.5rem);
+
+  .loading__spinner {
+    font-size: 1.5rem;
+  }
+}
+
+// Large spinner
+
+.loading__lg {
+  @include size(3.5rem);
+
+  .loading__spinner {
+    font-size: 2.5rem;
+  }
+}

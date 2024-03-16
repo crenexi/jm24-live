@@ -1,0 +1,5 @@
+@mixin bounce($variant: 'y', $speed: 1, $delay: null, $opts: null) {
+  :global {
+    animation: new-animate(bounce-#{$variant}, $speed, $delay, $opts)
+  }
+}

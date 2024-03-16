@@ -1,0 +1,5 @@
+@mixin spin($variant: 'cw', $speed: 5, $delay: null, $opts: linear infinite) {
+  :global {
+    animation: new-animate(rotate-#{$variant}, $speed, $delay, $opts)
+  }
+}

@@ -1,0 +1,20 @@
+$space-values: (between, around, evenly, normal);
+
+@mixin space($align-space: between, $justify-space: null) {
+  // align-content
+  @if not index($space-values, $align-space) {
+    @error "Invalid space value. Only [#{$space-values}] allowed.";
+  } @else if $align-space != null {
+    align-content: space-#{$align-space};
+  }
+
+  // justify-content
+  @if $justify-space == null {
+    // Use single value for both
+    justify-content: space-#{$align-space};
+  } @else if not index($space-values, $justify-space) {
+    @error "Invalid space value. Only [#{$space-values}] allowed.";
+  } @else {
+    justify-content: space-#{$justify-space};
+  }
+}

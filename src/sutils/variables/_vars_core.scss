@@ -1,0 +1,14 @@
+/* Variables intended for use by core components */
+
+// Header height on mobile
+$header-height_m1_rem: 7;
+$header-height_m1_px: $header-height_m1_rem * $base-font-size_m1_px;
+$header-height_m1: $header-height_m1_px * 1px;
+
+// Header height on desktop
+$header-height_d1_rem: 7;
+$header-height_d1_px: $header-height_d1_rem * $base-font-size_d1_px;
+$header-height_d1: $header-height_d1_px * 1px;
+
+// Header constraints
+$header-max-width: 50rem;

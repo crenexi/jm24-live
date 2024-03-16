@@ -1,0 +1,11 @@
+@function new-ring($width) {
+  $offset: 3px;
+  $inset: var(--theme-ring-inset);
+  $color: var(--theme-ring-color);
+  $shadow: rgba(0, 0, 0, 0.05);
+
+  $bs1: $inset 0px 0px 0px $offset;
+  $bs2: $color 0px 0px 0px calc($width + $offset);
+  $bs3: $shadow 0px 1px 2px 0px;
+  @return $bs1, $bs2, $bs3;
+}

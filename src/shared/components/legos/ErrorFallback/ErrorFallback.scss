@@ -1,0 +1,45 @@
+@use '@sutils' as *;
+
+$errorBase: #e63c2c;
+$errorLight: #e84c3d;
+
+.edge {
+  min-height: 100vh;
+  background-color: #fff;
+  padding: sp(sm4);
+  text-align: left;
+  font-size: 1rem;
+}
+
+.edge_inner {
+  padding: sp(sm4);
+  border: 2px solid co(danger);
+  overflow-x: scroll;
+}
+
+.title {
+  margin-bottom: sp(sm4);
+  color: $errorLight;
+}
+
+.message,
+.stack {
+  font-family: 'Courier New', monospace;
+}
+
+.message {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $errorBase;
+}
+
+.stack, .button {
+  margin-top: sp(sm4);
+  font-size: 1rem;
+  color: #000;
+}
+
+.button {
+  padding: sp(sm2) sp(sm3);
+  border-radius: 5px;
+}

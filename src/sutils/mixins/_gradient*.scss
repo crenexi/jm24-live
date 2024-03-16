@@ -1,0 +1,71 @@
+// Presets
+@mixin gradient($key) {
+  @if not $key {
+    @warn 'Must specify $key for gradient()!';
+  } @else if not map-has-key($gradients, $key) {
+    @warn 'Unknown `#{$key}` in $gradients.';
+  } @else {
+    background: map-get($gradients, $key);
+  }
+}
+
+// Custom left-to-right
+@mixin gradient-x($color1, $color2, $color3: null) {
+  @if not $color1 or not $color2 {
+    @warn 'Must specify $color1 and $color2 for gradient-x()!';
+  } @else if $color3 == null {
+    background: $color1;
+    background: new-gradient(90deg, $color1, $color2);
+  } @else {
+    background: $color2;
+    background: new-gradient(90deg, $color1, $color2, $color3);
+  }
+}
+
+// Custom top-to-bottom
+@mixin gradient-y($color1: null, $color2: null, $color3: null) {
+  @if not $color1 or not $color2 {
+    @warn 'Must specify $color1 and $color2 for gradient-y()!';
+  } @else if $color3 == null {
+    background: $color1;
+    background: new-gradient(180deg, $color1, $color2);
+  } @else {
+    background: $color2;
+    background: new-gradient(180deg, $color1, $color2, $color3);
+  }
+}
+
+// Custom diagonal
+@mixin gradient-d($color1, $color2, $color3: null) {
+  @if not $color1 or not $color2 {
+    @warn 'Must specify $color1 and $color2 for gradient-d()!';
+  } @else if $color3 == null {
+    background: $color1;
+    background: new-gradient(135deg, $color1, $color2);
+  } @else {
+    background: $color2;
+    background: new-gradient(135deg, $color1, $color2, $color3);
+  }
+}
+
+// Text gradient
+@mixin gradient-clip($fallback-color, $gradient) {
+  @if not $fallback-color or not $gradient {
+    @warn 'Must specify $fallback-color and $gradient for gradient-clip()!';
+  } @else {
+    color: $fallback-color;
+
+    @supports (
+      ((-webkit-background-clip: text) or (background-clip: text)) and
+      ((-webkit-text-fill-color: transparent) or (text-fill-color: transparent))
+    ) {
+      background-image: $gradient;
+      background-size: cover;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
+      @content;
+    }
+  }
+}

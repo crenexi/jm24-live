@@ -1,0 +1,33 @@
+@mixin cell($column, $row) {
+  grid-column: $column;
+  grid-row: $column;
+}
+
+@mixin grid($columns, $gap: null) {
+  display: grid;
+  grid-template-columns: $columns;
+  grid-gap: $gap;
+}
+
+// n-column equal-widths grid
+@mixin grid-n($columns, $gap: null) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  grid-gap: $gap;
+}
+
+// set grid auto-row and gaps
+@mixin grid-tracks($auto-rows: null, $gap1: null, $gap2: null) {
+  @if $gap1 == null and $gap2 == null {
+    grid-auto-rows: $auto-rows;
+  }
+  @else if $gap2 == null {
+    grid-auto-rows: $auto-rows;
+    grid-gap: $gap1;
+  }
+  @else {
+    grid-auto-rows: $auto-rows;
+    grid-column-gap: $gap1;
+    grid-row-gap: $gap2;
+  }
+}

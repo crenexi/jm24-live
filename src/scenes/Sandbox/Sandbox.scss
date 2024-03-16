@@ -1,0 +1,18 @@
+@use '@sutils' as *;
+
+.edge {
+  padding: 2rem;
+}
+
+.container {
+  position: relative;
+  border: 2px solid blue;
+  margin: 2rem;
+  padding: 2rem;
+  @include size(50rem);
+}
+
+.box {
+  height: 8rem;
+  background-color: blue;
+}

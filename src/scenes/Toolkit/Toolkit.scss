@@ -1,0 +1,20 @@
+@use '@sutils' as *;
+
+.edge {
+  height: calc(100vh - #{$header-height_d1});
+  overflow: hidden;
+  color: #fff;
+}
+
+
+.main {
+  height: calc(100vh - #{$header-height_d1} - 5rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.hideCode code {
+  display: none;
+  opacity: 0;
+  height: 0;
+}

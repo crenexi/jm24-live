@@ -1,0 +1,46 @@
+@use '@sutils' as *;
+
+.edge {
+  visibility: visible;
+}
+
+.main {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.colors {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+}
+
+.color {
+  padding: sp(sm2);
+}
+
+.color_box {
+  @include size(100%, 5rem);
+  border-radius: radius(r2);
+  @include flexy(column, center, center);
+}
+
+.color_label {
+  margin-top: sp(sm1);
+  @include text-preset('label-md');
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.color_copy {
+  padding: sp(sm1);
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: shadow(s1);
+  transition-duration: 100ms;
+  opacity: 0;
+}
+
+.color:hover .color_copy {
+  opacity: 1;
+}

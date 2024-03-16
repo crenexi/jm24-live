@@ -1,0 +1,5 @@
+@mixin flash($speed: 10, $delay: null, $opts: infinite) {
+  :global {
+    animation: new-animate(flash, $speed, $delay, $opts)
+  }
+}

@@ -1,0 +1,104 @@
+$prefixes: ('display', 'headline', 'title', 'body', 'label');
+
+$presets: (
+  'display': (
+    font-family: font-family(primary),
+    font-size: 3rem,
+    line-height: 1.1em,
+    letter-spacing: 0,
+    font-weight: 400,
+  ),
+  'headline': (
+    font-family: font-family(primary),
+    font-size: 2rem,
+    line-height: 1.2em,
+    letter-spacing: 0,
+    font-weight: 400,
+  ),
+  'title': (
+    font-family: font-family(base),
+    font-size: 1.3rem,
+    line-height: 1.5em,
+    letter-spacing: 0,
+    font-weight: 600,
+  ),
+  'body': (
+    font-family: font-family(base),
+    font-size: 1.1rem,
+    line-height: 1.6em,
+    letter-spacing: 0,
+    font-weight: 400,
+  ),
+  'label': (
+    font-family: font-family(base),
+    font-size: 0.9rem,
+    line-height: 1.7em,
+    letter-spacing: 0,
+    font-weight: 600,
+  ),
+);
+
+// Helper to extract preset
+@function preset-meta($key) {
+  $prefix_end: str-index($key, '-');
+  @if not $prefix_end {
+    @error 'Invalid prefix for text-preset($key)! No hyphen found.';
+    @return null;
+  }
+
+  $prefix: str-slice($key, 1, $prefix_end - 1);
+  $suffix: str-slice($key, -2);
+
+  @if not index($prefixes, $prefix) {
+    // Ensure key prefix is valid
+    @error 'Invalid key prefix for text-preset($key)!';
+    @return null;
+  }
+
+  @if not index(('sm', 'md', 'lg'), $suffix) {
+    // Ensure key suffix is valid
+    @error 'Invalid key suffix for text-preset($key)!';
+    @return null;
+  }
+
+  $preset: map-get($presets, $prefix);
+  @if not map-has-key($preset, 'font-size') or
+      not map-has-key($preset, 'line-height') or
+      not map-has-key($preset, 'letter-spacing') {
+    // Ensure preset contains required properties
+    @error 'Invalid preset properties for text-preset($key)!';
+    @return null;
+  }
+
+  @return ($preset, $suffix);
+}
+
+// Helper for preset font-size
+@function preset-font-size($md-size, $suffix) {
+  @if $suffix == 'sm' {
+    @return $md-size * 0.85;
+  } @else if $suffix == 'md' {
+    @return $md-size;
+  } @else if $suffix == 'lg' {
+    @return $md-size * 1.15;
+  }
+}
+
+// Typography presets
+@mixin text-preset($key, $color: null) {
+  $meta: preset-meta($key);
+  $preset: nth($meta, 1);
+  $suffix: nth($meta, 2);
+
+  // Set preset values; note size based on suffix
+  font-family: map-get($preset, 'font-family');
+  font-size: preset-font-size(map-get($preset, 'font-size'), $suffix);
+  line-height: map-get($preset, 'line-height');
+  letter-spacing: map-get($preset, 'letter-spacing');
+  font-weight: map-get($preset, 'font-weight');
+
+  // Set color if defined
+  @if $color != null {
+    color: $color;
+  }
+}

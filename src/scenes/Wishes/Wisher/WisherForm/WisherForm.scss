@@ -1,0 +1,10 @@
+@use '@sutils' as *;
+
+.form {
+  margin-top: sp(sm5);
+  @include fade('in', 1, 1, both);
+}
+
+.form_field:not(:first-child) {
+  margin-top: sp(sm3);
+}
