@@ -11,19 +11,23 @@ verify_env_vars() {
 
 target_env=$1
 
-# Attempt to source .env file if it exists and re-check env vars
-if [ -f .env ]; then
-  echo "Sourcing environment variables from .env file..."
-  source .env
-else
-  echo ".env file not found."
-  exit 1
-fi
-
-# Verify environment variables are set
+# Try loading .env file if required env vars are not already set
 if ! verify_env_vars; then
-  echo "Error: S3_BUCKET_URI and/or S3_ASSETS_URI are not set."
-  exit 1
+  if [ -f .env ]; then
+    echo "Sourcing environment variables from .env file..."
+    source .env
+
+    # Re-check if the necessary variables are set after sourcing .env
+    if ! verify_env_vars; then
+      echo "Error: S3_BUCKET_URI and/or S3_ASSETS_URI are not set."
+      exit 1
+    fi
+  else
+    echo ".env file not found and environment variables not set."
+    exit 1
+  fi
+else
+  echo "S3 environment variables already set."
 fi
 
 # Determine assets source and destination based on the target environment
