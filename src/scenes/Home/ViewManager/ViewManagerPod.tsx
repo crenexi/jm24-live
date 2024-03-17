@@ -1,39 +1,29 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-// import useDataStatic from '@hooks/use-data-static';
-// import useDataFirebase from '@hooks/use-data-firebase';
-import logger from '@services/logger';
-import ViewManager from './ViewManager';
+import { FC, useState, useEffect } from 'react';
 
-type Params = {
-  param1?: string;
-};
+// import logger from '@services/logger';
+import useQueryParam from '@hooks/use-query-param';
+import ViewManager, { VIEWS } from './ViewManager';
 
 const ViewManagerPod: FC = () => {
-  logger.debug('TODO: ViewManager');
-
-  // const dStatic = useDataStatic();
-  // const dFire = useDataFirebase();
-
-  // URL params
-  const { param1 } = useParams<Params>();
+  const [view, setView] = useQueryParam('view');
 
   // State
   const [isReady, setIsReady] = useState<boolean>(false);
 
   // URL param effects
   useEffect(() => {
-    if (param1) {
-      logger.debug(`Param1: ${param1}`);
+    if (!view) {
+      setView(VIEWS.HELLO);
     }
-  }, [param1]);
+  }, [view, setView]);
 
-  // Loading
+  // Loading simulation
   useEffect(() => {
-    setIsReady(true);
-  }, [])
+    const timer = setTimeout(() => setIsReady(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
-  return <ViewManager isReady={isReady} />;
+  return <ViewManager isReady={isReady} view={view} />;
 };
 
 export default ViewManagerPod;

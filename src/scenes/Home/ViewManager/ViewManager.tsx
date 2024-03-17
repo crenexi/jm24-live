@@ -1,20 +1,44 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
+import { Navigate } from 'react-router-dom';
+import { LoadingBlock } from '@components/feedback';
+import HelloView from '../HelloView';
+import WishesView from '../WishesView';
+import SlidesView from '../SlidesView';
 import sy from './ViewManager.scss';
 
 type ViewManagerProps = {
-  children?: ReactNode;
   isReady: boolean;
+  view: string | null;
+};
+
+export const VIEWS = {
+  HELLO: 'hello',
+  WISHES: 'wishes',
+  SLIDES: 'slides',
 };
 
 const ViewManager: FC<ViewManagerProps> = (props) => {
-  const { children = 'TODO', isReady } = props;
+  const { isReady, view } = props;
 
   // Loading
-  if (!isReady) return null;
+  if (!isReady) return <LoadingBlock />;
+
+  const jsxView = (() => {
+    switch (view) {
+      case VIEWS.HELLO:
+        return <HelloView />;
+      case VIEWS.WISHES:
+        return <WishesView />;
+      case VIEWS.SLIDES:
+        return <SlidesView />;
+      default:
+        return <Navigate to="/?view=slides" replace />;
+    }
+  })();
 
   return (
     <div className={sy.edge}>
-      <div className={sy.main}>{children}</div>
+      <div className={sy.view}>{jsxView}</div>
     </div>
   );
 };
