@@ -2,13 +2,11 @@ type Constants = {
   assetsUrl: string;
 };
 
-// export const assetsUrl = (() => {
-//   const isDev = process.env.NODE_ENV === 'development';
-//   const testDomain = process.env.DOMAIN_TEST;
-//   return !isDev ? '/assets' : `https://${testDomain}/assets`;
-// })();
-
-export const assetsUrl = 'https://stage.crenexi.com/assets/wedding';
+export const assetsUrl = (() => {
+  const isDev = process.env.NODE_ENV === 'development';
+  const testDomain = process.env.DOMAIN_TEST;
+  return !isDev ? '/assets' : `https://${testDomain}/assets`;
+})();
 
 const constants: Constants = {
   assetsUrl,

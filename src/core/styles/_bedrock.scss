@@ -22,6 +22,7 @@ html,
 html body {
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden; // temp for this project
 }
 
 html {
@@ -29,7 +30,7 @@ html {
 }
 
 body {
-  background-color: co(background, base);
+  background-color: #1f1c21;
   -webkit-overflow-scrolling: touch;
 }
 
