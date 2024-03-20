@@ -1,5 +1,30 @@
 @use '@sutils' as *;
 
 .edge {
-  visibility: visible;
+  @include fade('in', 3, 0, both);
+  @include size(100%);
+}
+
+// Main area
+
+.main {
+  position: relative;
+  z-index: 99;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+}
+
+// Aside pics
+
+.aside {
+  padding: sp(md1) 0;
+
+  &:first-child {
+    margin-right: sp(md1);
+  }
+
+  &:last-child {
+    margin-left: sp(md1);
+  }
 }

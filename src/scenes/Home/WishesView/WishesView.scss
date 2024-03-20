@@ -1,5 +1,14 @@
 @use '@sutils' as *;
 
 .edge {
-  visibility: visible;
+  @include size(100%);
+  @include grid-n(3, sp(md1));
+  @include fade('in', 3, 0, both);
+  grid-template-rows: auto auto;
+  @include padding(sp(md1) null);
+}
+
+.wishes {
+  grid-column: 2;
+  grid-row: 1 / span 2;
 }

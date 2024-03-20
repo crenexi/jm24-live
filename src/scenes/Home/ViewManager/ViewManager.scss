@@ -1,5 +1,7 @@
 @use '@sutils' as *;
 
-.edge {
-  visibility: visible;
+.view {
+  @include gradient-d(co(neutral, n900), co(neutral, n700));
+  @include size(100%, 100vh);
+  padding: 0 sp(md2);
 }

@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import sy from './HelloView.scss';
 
 type HelloViewProps = {
@@ -14,24 +14,13 @@ const HelloView: FC<HelloViewProps> = (props) => {
 
   return (
     <div className={sy.edge}>
-      <div className={sy.row1}>
-        <div className={sy.main}>
-          <div className={sy.col}>
-            <div className={sy.welcome}>Welcome Message</div>
-          </div>
-          <div className={sy.col}>
-            <div className={sy.brand}>
-              <img src={urlLogo} alt="Logo GIF" />
-            </div>
-          </div>
-          <div className={sy.col}>
-            <div className={sy.clock}>Clock</div>
-          </div>
+      <div className={sy.main}>
+        <div className={sy.welcome}>&nbsp;</div>
+        <div className={sy.brand}>
+          <img src={urlLogo} alt="Logo GIF" />
         </div>
-      </div>
-      <div className={sy.row2}>
-        <div className={sy.events}>Event Timeline</div>
-        <div className={sy.prompt}>go.jm2024.com</div>
+        <div className={sy.clock}>&nbsp;</div>
+        <div className={sy.events}>&nbsp;</div>
       </div>
     </div>
   );

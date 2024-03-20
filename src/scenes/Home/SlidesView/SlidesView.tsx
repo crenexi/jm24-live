@@ -1,4 +1,6 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
+import { Overline } from '@components/display';
+import SlideDeck from './SlideDeck';
 import sy from './SlidesView.scss';
 
 type SlidesViewProps = {
@@ -13,7 +15,15 @@ const SlidesView: FC<SlidesViewProps> = (props) => {
 
   return (
     <div className={sy.edge}>
-      <div className={sy.main}>Slides View</div>
+      <div className={sy.main}>
+        <div className={sy.aside}>
+          <Overline icon="house-building" />
+        </div>
+        <SlideDeck />
+        <div className={sy.aside}>
+          <Overline icon="trees" />
+        </div>
+      </div>
     </div>
   );
 };

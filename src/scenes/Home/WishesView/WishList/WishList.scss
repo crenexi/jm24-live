@@ -1,6 +1,6 @@
 @use '@sutils' as *;
 
-@mixin truncate-comment($line-height: 1.4em, $lines: 3) {
+@mixin truncate-comment($line-height: 1.4em, $lines: 5) {
   // Fallback styling
   display: block;
   overflow: hidden;
@@ -43,32 +43,24 @@
 }
 
 .edge {
-  margin-top: sp(md1);
   color: co(neutral, n100);
 };
 
-// Header
+// Footer
 
-.header {
-  @include flexy(row, start, center);
+.footer {
+  @include flexy(row, center, center);
   flex-wrap: nowrap;
 }
 
-.header_title {
-  flex: 1 1 0%;
-}
-
-.header_count {
-  text-align: right;
+.footer_count {
+  margin-top: sp(sm3);
+  text-align: center;
   font-size: 1rem;
   color: co(bright, lightest);
 }
 
 // Wish layout
-
-.list {
-  margin-top: sp(sm3);
-}
 
 .wish {
   @include flexy(row, start, start);

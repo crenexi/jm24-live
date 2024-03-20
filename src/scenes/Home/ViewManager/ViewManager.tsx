@@ -36,11 +36,7 @@ const ViewManager: FC<ViewManagerProps> = (props) => {
     }
   })();
 
-  return (
-    <div className={sy.edge}>
-      <div className={sy.view}>{jsxView}</div>
-    </div>
-  );
+  return <div className={sy.view}>{jsxView}</div>;
 };
 
 export default ViewManager;

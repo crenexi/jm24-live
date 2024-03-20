@@ -1,0 +1,19 @@
+@use '@sutils' as *;
+
+.edge {
+  @include flexy(row, center, center);
+  margin-bottom: sp(sm3);
+  padding-bottom: sp(sm2);
+  border-bottom: 1px solid co(background, lighter);
+  font-size: 1.7rem;
+}
+
+.label {
+  margin: 1px sp(sm3) -3px 0;
+  font-family: font-family(primary);
+  text-align: right;
+}
+
+.icon {
+  color: co(neutral, n100);
+}

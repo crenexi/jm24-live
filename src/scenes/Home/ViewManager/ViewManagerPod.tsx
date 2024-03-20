@@ -19,7 +19,7 @@ const ViewManagerPod: FC = () => {
 
   // Loading simulation
   useEffect(() => {
-    const timer = setTimeout(() => setIsReady(true), 1000);
+    const timer = setTimeout(() => setIsReady(true), 500);
     return () => clearTimeout(timer);
   }, []);
 

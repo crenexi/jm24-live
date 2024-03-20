@@ -32,6 +32,7 @@ const AppPod = () => {
 
   // Splash state
   const [isSplash, setIsSplash] = useState<boolean>(true);
+  const urlCover = dataStatic.urlCoverGateway;
 
   // Application is ready
   useEffect(() => {
@@ -50,7 +51,7 @@ const AppPod = () => {
       <DataStaticProvider value={dataStatic}>
         <ThemeProvider theme={theme}>
           <QueryClientProvider client={queryClient}>
-            <App isSplash={isSplash} />
+            <App isSplash={isSplash} urlCover={urlCover} />
           </QueryClientProvider>
         </ThemeProvider>
       </DataStaticProvider>

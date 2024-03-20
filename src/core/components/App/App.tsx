@@ -9,28 +9,31 @@ import sy from './App.scss';
 
 type AppViewProps = {
   isSplash: boolean;
+  urlCover: string;
 };
 
-const AppView: FC<AppViewProps> = ({ isSplash }) => (
-  <Router>
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      {isSplash ? (
-        <div className={sy.splash}>
-          <div className={sy.splash_main}>
-            <Loading size="lg" />
+const AppView: FC<AppViewProps> = ({ isSplash, urlCover }) => {
+  const sxSplash = {
+    backgroundImage: `url('${urlCover}')`,
+  };
+
+  return (
+    <Router>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        {isSplash ? (
+          <div className={sy.splash} style={sxSplash} />
+        ) : (
+          <div className={sy.app}>
+            <ScrollToTop>
+              <main className={sy.main}>
+                <AppRoutes />
+              </main>
+            </ScrollToTop>
           </div>
-        </div>
-      ) : (
-        <div className={sy.app}>
-          <ScrollToTop>
-            <main className={sy.main}>
-              <AppRoutes />
-            </main>
-          </ScrollToTop>
-        </div>
-      )}
-    </ErrorBoundary>
-  </Router>
-);
+        )}
+      </ErrorBoundary>
+    </Router>
+  );
+};
 
 export default AppView;
