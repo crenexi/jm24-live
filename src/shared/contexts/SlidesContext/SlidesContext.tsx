@@ -1,6 +1,10 @@
 import { ReactNode as Node, FC, Reducer } from 'react';
 import { createContext, useReducer } from 'react';
-import { SlidesContextState, SlidesContextValue, SlidesAction } from './types';
+import {
+  SlidesContextState,
+  SlidesContextValue,
+  SlidesAction,
+} from '@stypes/Slide.types';
 import slidesReducer from './slides-reducer';
 
 // Default state

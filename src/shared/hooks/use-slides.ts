@@ -1,17 +1,38 @@
 import { useContext } from 'react';
+import { Mode, UseSlidesReturn } from '@stypes/Slide.types';
 import SlidesContext from '@contexts/SlidesContext';
-import { SlidesContextValue } from '@contexts/SlidesContext/types';
 
-type UseSlidesContext = () => SlidesContextValue;
+import {
+  toNextAction,
+  toPrevAction,
+  toSlideAction,
+  setModeAction,
+  restartAction,
+  setErrorAction,
+} from '@contexts/SlidesContext/actions';
 
-const useSlidesContext: UseSlidesContext = () => {
+type UseSlides = () => UseSlidesReturn;
+
+const useSlides: UseSlides = () => {
   const context = useContext(SlidesContext);
 
-  if (context === undefined) {
-    throw new Error('useSlidesContext must be used within a SlidesProvider');
+  if (!context?.state || !context?.dispatch) {
+    throw new Error('useSlides must be used within a SlidesProvider');
   }
 
-  return context;
+  const { state, dispatch } = context;
+
+  const toNext = () => dispatch(toNextAction());
+  const toPrev = () => dispatch(toPrevAction());
+  const toSlide = (index: number) => dispatch(toSlideAction(index));
+  const setMode = (mode: Mode) => dispatch(setModeAction(mode));
+  const restart = () => dispatch(restartAction());
+  const setError = (error: string) => dispatch(setErrorAction(error));
+
+  return {
+    ...state, // error, status, deck
+    actions: { toNext, toPrev, toSlide, setMode, restart, setError },
+  };
 };
 
-export default useSlidesContext;
+export default useSlides;

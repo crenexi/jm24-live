@@ -1,6 +1,6 @@
 import logger from '@services/logger';
 import { ActionTypes } from './actions';
-import { SlidesAction, SlidesContextState } from './types';
+import { SlidesAction, SlidesContextState } from '@stypes/Slide.types';
 
 type SlidesReducer = (
   state: SlidesContextState,
@@ -20,7 +20,14 @@ const slidesReducer: SlidesReducer = (state, action) => {
       return state;
     case ActionTypes.SET_MODE:
       logger.log('Slides: Set Mode');
-      return state;
+
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isPlaying: action.payload === 'play',
+        },
+      };
     case ActionTypes.SET_ERROR:
       logger.log('Slides: Set Error');
       return state;

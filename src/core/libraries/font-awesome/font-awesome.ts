@@ -7,6 +7,11 @@ import { faDropbox } from '@fortawesome/free-brands-svg-icons';
 import {
   faGear,
   faArrowLeft,
+  faPlay,
+  faPause,
+  faForwardStep,
+  faBackwardStep,
+  faRotateLeft,
   faArrowRight,
   faCakeSlice,
   faCalendarHeart,
@@ -55,6 +60,11 @@ const buildLibrary = (): void => {
     // Lights
     faGear,
     faArrowLeft,
+    faPlay,
+    faPause,
+    faForwardStep,
+    faBackwardStep,
+    faRotateLeft,
     faArrowRight,
     faCakeSlice,
     faCalendarHeart,

@@ -1,5 +1,44 @@
 @use '@sutils' as *;
 
 .edge {
-  visibility: visible;
+  padding: sp(md1);
+}
+
+.nav {
+  max-width: 25rem;
+  margin: 0 auto;
+  @include grid(repeat(4, 1fr), sp(sm4));
+}
+
+// Information
+
+.info {
+  font-weight: 600;
+  font-size: 1rem;
+
+  h6 {
+    margin: sp(sm3) 0 sp(sm1);
+    padding-top: sp(sm3);
+    border-top: 1px solid rgba(255, 255, 255, .15);
+  }
+}
+
+.info_error,
+.info_status,
+.info_deck {
+  @include flexy(row, start, center);
+
+  > .info_item {
+    flex: 1 1 0%;
+
+    &:not(:first-child) {
+      margin-left: sp(sm3);
+      padding-left: sp(sm3);
+      border-left: 1px solid rgba(255, 255, 255, .15);
+    }
+  }
+}
+
+.info_item {
+  font-family: font-family(mono);
 }
