@@ -1,5 +1,8 @@
 export type Slide = {
-  description: string;
-  date: string;
+  id: string;
   url: string;
+  description: string;
+  creationTime: string;
+  width: string;
+  height: string;
 };

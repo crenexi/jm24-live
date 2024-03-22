@@ -1,7 +1,7 @@
 @use '@sutils' as *;
 
 .view {
-  @include gradient-d(co(neutral, n900), co(neutral, n700));
+  @include gradient-d(co(neutral, n900), co(primary, darkest));
   @include size(100%, 100vh);
   padding: 0 sp(md2);
 }
