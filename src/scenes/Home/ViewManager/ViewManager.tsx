@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Navigate } from 'react-router-dom';
 import { LoadingBlock } from '@components/feedback';
+import { SlidesProvider } from '@contexts/SlidesContext';
 import HelloView from '../HelloView';
 import WishesView from '../WishesView';
 import SlidesView from '../SlidesView';
@@ -36,7 +37,11 @@ const ViewManager: FC<ViewManagerProps> = (props) => {
     }
   })();
 
-  return <div className={sy.view}>{jsxView}</div>;
+  return (
+    <SlidesProvider>
+      <div className={sy.view}>{jsxView}</div>
+    </SlidesProvider>
+  );
 };
 
 export default ViewManager;

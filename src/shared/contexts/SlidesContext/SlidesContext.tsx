@@ -4,7 +4,7 @@ import { SlidesContextState, SlidesContextValue, SlidesAction } from './types';
 import slidesReducer from './slides-reducer';
 
 // Default state
-const defaultState: SlidesContextState = {
+export const defaultState: SlidesContextState = {
   error: null,
   status: {
     isFetching: false,

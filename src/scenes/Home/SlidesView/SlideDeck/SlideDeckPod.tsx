@@ -7,10 +7,15 @@ const SlideDeckPod: FC = () => {
   const fakeIndex = 0;
   const fakeTotal = 400;
   const fakeImage = { width: 1920, height: 1080 };
+
+  // prettier-ignore
   const fakeSlide: Slide = {
-    description: 'Description',
-    date: 'May 10, 2024',
+    id: '1234',
     url: 'https://stage-live.jm2024.com/assets/test.jpg',
+    description: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio',
+    creationTime: '2024-12-31T00:00:00',
+    width: '1920',
+    height: '1080',
   };
 
   // Default slide state

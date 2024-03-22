@@ -27,7 +27,7 @@ const SlideDeck: FC<SlideDeckProps> = (props) => {
       </div>
       <div className={sy.main}>
         <div className={sy.image} style={sxImage}>
-          <div className={sy.main_date}>{slide.date}</div>
+          <div className={sy.main_date}>{slide.creationTime}</div>
         </div>
       </div>
       <div className={sy.footer}>

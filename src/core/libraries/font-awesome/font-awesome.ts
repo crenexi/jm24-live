@@ -5,6 +5,7 @@ import { faDropbox } from '@fortawesome/free-brands-svg-icons';
 
 // prettier-ignore
 import {
+  faGear,
   faArrowLeft,
   faArrowRight,
   faCakeSlice,
@@ -52,6 +53,7 @@ const buildLibrary = (): void => {
     // Brands
     faDropbox,
     // Lights
+    faGear,
     faArrowLeft,
     faArrowRight,
     faCakeSlice,

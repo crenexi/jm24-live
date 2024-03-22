@@ -1,14 +1,18 @@
 import { FC } from 'react';
 import { Overline } from '@components/display';
+import { ButtonIcon } from '@components/action';
+import SlideControl from './SlideControl';
 import SlideDeck from './SlideDeck';
 import sy from './SlidesView.scss';
 
 type SlidesViewProps = {
   isReady: boolean;
+  hasControl: boolean;
+  toggleControl: () => void;
 };
 
 const SlidesView: FC<SlidesViewProps> = (props) => {
-  const { isReady } = props;
+  const { isReady, hasControl, toggleControl } = props;
 
   // Loading
   if (!isReady) return null;
@@ -23,6 +27,14 @@ const SlidesView: FC<SlidesViewProps> = (props) => {
         <div className={sy.aside}>
           <Overline icon="trees" />
         </div>
+        <div className={sy.controlToggle}>
+          <ButtonIcon name="gear" click={toggleControl} />
+        </div>
+        {hasControl && (
+          <div className={sy.controlFrame}>
+            <SlideControl />
+          </div>
+        )}
       </div>
     </div>
   );
