@@ -37,6 +37,7 @@ export type SlidesStatus = {
 
 // State: deck
 export type SlidesDeck = {
+  total: number;
   currIndex: number;
   prev: Slide | null;
   curr: Slide | null;
@@ -45,6 +46,7 @@ export type SlidesDeck = {
 
 // Context state
 export type SlidesContextState = {
+  slides: Slide[];
   error: SlidesError;
   status: SlidesStatus;
   deck: SlidesDeck;

@@ -45,4 +45,5 @@
 
 .info_item {
   font-family: font-family(mono);
+  @include truncate();
 }

@@ -1,51 +1,38 @@
-import { FC, useState, useEffect } from 'react';
-import { Slide } from '@stypes/Slide.types';
-// import logger from '@services/logger';
+import { FC } from 'react';
+import useSlides from '@hooks/use-slides';
+import useSliderval from '@hooks/use-sliderval';
 import SlideDeck from './SlideDeck';
 
 const SlideDeckPod: FC = () => {
-  const fakeIndex = 0;
-  const fakeTotal = 400;
-  const fakeImage = { width: 1920, height: 1080 };
+  const { status, deck, actions } = useSlides();
 
-  // prettier-ignore
-  const fakeSlide: Slide = {
-    id: '1234',
-    url: 'https://stage-live.jm2024.com/assets/test.jpg',
-    description: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio',
-    creationTime: '2024-12-31T00:00:00',
-    width: '1920',
-    height: '1080',
-  };
+  // Custom interval hook
+  useSliderval({
+    callback: actions.toNext,
+    interval: status.isPlaying ? 5000 : null,
+    onError: (err) => {
+      console.error(err);
+      actions.setError('Interval error');
+    },
+  });
 
-  // Default slide state
-  const defaultState = {
-    isReady: false,
-    counts: '',
-  };
+  // No slide data
+  if (!deck.curr) return null;
 
-  // Slide state
-  const [slideState, setSlideState] = useState(defaultState);
-
-  // Image orientation
-  const isVertical = fakeImage.height > fakeImage.width;
+  // Prepare UI data
+  const currSlide = deck.curr;
+  const countLabel = `${deck.currIndex + 1} / ${deck.total}`;
+  const isVertical = currSlide.height > currSlide.width;
 
   // Image style properties
   const sxImage = {
-    backgroundImage: `url('${fakeSlide.url}')`,
+    backgroundImage: `url('${currSlide.url}')`,
     backgroundSize: isVertical ? 'contain' : 'cover',
   };
 
-  // Loading
-  useEffect(() => {
-    setSlideState((prevState) => ({
-      ...prevState,
-      isReady: true,
-      counts: `${fakeIndex + 1} / ${fakeTotal}`,
-    }));
-  }, []);
-
-  return <SlideDeck slide={fakeSlide} sxImage={sxImage} state={slideState} />;
+  return (
+    <SlideDeck slide={currSlide} sxImage={sxImage} countLabel={countLabel} />
+  );
 };
 
 export default SlideDeckPod;

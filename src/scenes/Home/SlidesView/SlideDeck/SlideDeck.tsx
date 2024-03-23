@@ -8,17 +8,11 @@ type SlideDeckProps = {
     backgroundImage: string;
     backgroundSize: string;
   };
-  state: {
-    isReady: boolean;
-    counts: string;
-  };
+  countLabel: string;
 };
 
 const SlideDeck: FC<SlideDeckProps> = (props) => {
-  const { slide, sxImage, state } = props;
-
-  // Loading
-  if (!state.isReady) return null;
+  const { slide, sxImage, countLabel } = props;
 
   return (
     <div className={sy.edge}>
@@ -31,7 +25,7 @@ const SlideDeck: FC<SlideDeckProps> = (props) => {
         </div>
       </div>
       <div className={sy.footer}>
-        <div className={sy.footer_counts}>{state.counts}</div>
+        <div className={sy.footer_counts}>{countLabel}</div>
         <div className={sy.footer_prompt}>
           <span>
             Share at <strong>go.jm2024.com</strong>
