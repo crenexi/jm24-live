@@ -1,4 +1,4 @@
-import { SlidesAction, Mode } from '@stypes/Slide.types';
+import { SlidesAction, Slide, Mode } from '@stypes/Slide.types';
 import ActionTypes from './action-types';
 
 // Creator: TO_NEXT
@@ -15,6 +15,18 @@ export const toPrevAction = (): SlidesAction => ({
 export const toSlideAction = (index: number): SlidesAction => ({
   type: ActionTypes.TO_SLIDE,
   payload: index,
+});
+
+// Creator: SET_SLIDES
+export const setSlidesAction = (slides: Slide[]): SlidesAction => ({
+  type: ActionTypes.SET_SLIDES,
+  payload: slides,
+});
+
+// Creator: SET_LOADING
+export const setLoadingAction = (isLoading: boolean): SlidesAction => ({
+  type: ActionTypes.SET_LOADING,
+  payload: isLoading,
 });
 
 // Creator: SET_MODE

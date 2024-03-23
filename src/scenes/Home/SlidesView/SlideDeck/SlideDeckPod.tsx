@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import useSlides from '@hooks/use-slides';
 import useSliderval from '@hooks/use-sliderval';
 import SlideDeck from './SlideDeck';
@@ -16,8 +16,13 @@ const SlideDeckPod: FC = () => {
     },
   });
 
+  // Advance slide on unmount
+  useEffect(() => {
+    return () => actions.toNext();
+  }, []);
+
   // No slide data
-  if (!deck.curr) return null;
+  if (!deck.curr) return <div />;
 
   // Prepare UI data
   const currSlide = deck.curr;
@@ -31,7 +36,12 @@ const SlideDeckPod: FC = () => {
   };
 
   return (
-    <SlideDeck slide={currSlide} sxImage={sxImage} countLabel={countLabel} />
+    <SlideDeck
+      isLoading={status.isLoading}
+      slide={currSlide}
+      sxImage={sxImage}
+      countLabel={countLabel}
+    />
   );
 };
 

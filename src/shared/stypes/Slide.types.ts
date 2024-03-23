@@ -9,6 +9,8 @@ export type SlidesAction =
   | { type: ActionTypes.TO_NEXT }
   | { type: ActionTypes.TO_PREV }
   | { type: ActionTypes.TO_SLIDE; payload: number }
+  | { type: ActionTypes.SET_SLIDES; payload: Slide[] }
+  | { type: ActionTypes.SET_LOADING; payload: boolean }
   | { type: ActionTypes.SET_MODE; payload: Mode }
   | { type: ActionTypes.SET_ERROR; payload: string }
   | { type: ActionTypes.RESTART };

@@ -6,6 +6,7 @@ import {
   toNextAction,
   toPrevAction,
   toSlideAction,
+  setLoadingAction,
   setModeAction,
   restartAction,
   setErrorAction,
@@ -23,15 +24,32 @@ const useSlides: UseSlides = () => {
   const { state, dispatch } = context;
 
   const toNext = () => dispatch(toNextAction());
+
   const toPrev = () => dispatch(toPrevAction());
+
   const toSlide = (index: number) => dispatch(toSlideAction(index));
+
   const setMode = (mode: Mode) => dispatch(setModeAction(mode));
-  const restart = () => dispatch(restartAction());
+
   const setError = (error: string) => dispatch(setErrorAction(error));
 
+  const setLoading = (isLoading: boolean) => {
+    dispatch(setLoadingAction(isLoading));
+  };
+
+  const restart = () => dispatch(restartAction());
+
   return {
-    ...state, // error, status, deck
-    actions: { toNext, toPrev, toSlide, setMode, restart, setError },
+    ...state,
+    actions: {
+      toNext,
+      toPrev,
+      toSlide,
+      setLoading,
+      setMode,
+      restart,
+      setError,
+    },
   };
 };
 

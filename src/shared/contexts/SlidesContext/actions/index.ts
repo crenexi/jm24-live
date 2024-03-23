@@ -4,6 +4,8 @@ export {
   toNextAction,
   toPrevAction,
   toSlideAction,
+  setSlidesAction,
+  setLoadingAction,
   setModeAction,
   setErrorAction,
   restartAction,
