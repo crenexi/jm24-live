@@ -1,17 +1,20 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
+import appSettings from '@config/app-settings';
+import logger from '@services/logger';
 import useSlides from '@hooks/use-slides';
 import useSliderval from '@hooks/use-sliderval';
 import SlideDeck from './SlideDeck';
 
 const SlideDeckPod: FC = () => {
   const { status, deck, actions } = useSlides();
+  const interval = appSettings.slideDuration;
 
   // Custom interval hook
   useSliderval({
     callback: actions.toNext,
-    interval: status.isPlaying ? 5000 : null,
+    interval: status.isPlaying ? interval : null,
     onError: (err) => {
-      console.error(err);
+      logger.error(err);
       actions.setError('Interval error');
     },
   });
@@ -37,10 +40,12 @@ const SlideDeckPod: FC = () => {
 
   return (
     <SlideDeck
-      isLoading={status.isLoading}
       slide={currSlide}
       sxImage={sxImage}
       countLabel={countLabel}
+      currIndex={deck.currIndex}
+      isLoading={status.isLoading}
+      isPlaying={status.isPlaying}
     />
   );
 };

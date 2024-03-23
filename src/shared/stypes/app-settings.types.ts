@@ -5,6 +5,7 @@ type AppSettings = {
   language: string;
   logLevel: LogLevel;
   splashDuration: number;
+  slideDuration: number;
   debug: boolean;
 };
 

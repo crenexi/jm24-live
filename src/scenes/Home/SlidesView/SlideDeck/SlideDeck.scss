@@ -63,14 +63,18 @@
 
 .image {
   @include size(100%);
-  @include flexy(column, end, center);
+  @include flexy(column, stretch, center);
   padding: sp(sm5);
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
 }
 
-.main_date {
+.image_gap {
+  flex: 1 1 0%;
+}
+
+.image_date {
   font-size: 1rem;
   font-weight: 600;
   text-shadow: 0 0 5px rgba(0,0,0,0.8), 1px 1px 5px rgba(0,0,0,0.5), -1px -1px 5px rgba(0,0,0,0.5);

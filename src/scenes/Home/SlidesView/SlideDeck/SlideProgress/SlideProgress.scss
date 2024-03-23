@@ -1,0 +1,25 @@
+@use '@sutils' as *;
+
+@keyframes fillBar {
+  to { transform: scaleX(1); }
+}
+
+.edge {
+  position: relative;
+  overflow: hidden;
+  @include size(5rem, 3px);
+  background-color: rgba(255, 255, 255, .3);
+}
+
+.bar {
+  @include position(absolute, 0 null null 0);
+  @include size(100%);
+  background-color: rgba(255, 255, 255, .7);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+
+  &__animate {
+    animation: fillBar linear forwards;
+  }
+}

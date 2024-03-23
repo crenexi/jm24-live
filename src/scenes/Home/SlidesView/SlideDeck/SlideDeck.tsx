@@ -1,20 +1,24 @@
 import { FC, Fragment } from 'react';
 import { Slide } from '@stypes/Slide.types';
 import { LoadingBlock } from '@components/feedback';
+import SlideProgress from './SlideProgress';
 import sy from './SlideDeck.scss';
 
 type SlideDeckProps = {
-  isLoading: boolean;
   slide: Slide;
   sxImage: {
     backgroundImage: string;
     backgroundSize: string;
   };
   countLabel: string;
+  currIndex: number;
+  isLoading: boolean;
+  isPlaying: boolean;
 };
 
 const SlideDeck: FC<SlideDeckProps> = (props) => {
-  const { isLoading, slide, sxImage, countLabel } = props;
+  const { slide, sxImage, countLabel, currIndex } = props;
+  const { isLoading, isPlaying } = props;
 
   return (
     <div className={sy.edge}>
@@ -27,7 +31,9 @@ const SlideDeck: FC<SlideDeckProps> = (props) => {
           </div>
           <div className={sy.main}>
             <div className={sy.image} style={sxImage}>
-              <div className={sy.main_date}>{slide.creationTime}</div>
+              {isPlaying && <SlideProgress currIndex={currIndex} />}
+              <div className={sy.image_gap} />
+              <div className={sy.image_date}>{slide.creationTime}</div>
             </div>
           </div>
           <div className={sy.footer}>

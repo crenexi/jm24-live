@@ -15,6 +15,7 @@ const defaultSettings: AppSettings = {
   theme: 'light',
   language: 'en',
   splashDuration: 3000,
+  slideDuration: 10000,
   logLevel: environment.logLevel,
   debug: environment.debug,
 };
