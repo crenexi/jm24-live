@@ -4,7 +4,11 @@
   padding: sp(md1);
 }
 
-.nav {
+.header {
+  @include flexy(row, stretch, stretch);
+}
+
+.header_nav {
   max-width: 25rem;
   margin: 0 auto;
   @include grid(repeat(4, 1fr), sp(sm4));

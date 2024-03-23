@@ -1,36 +1,30 @@
 import { FC } from 'react';
 import { Navigate } from 'react-router-dom';
-import { LoadingBlock } from '@components/feedback';
 import { SlidesProvider } from '@contexts/SlidesContext';
+import { ButtonIcon } from '@components/action';
+import { Views } from './ViewManagerPod';
 import HelloView from '../HelloView';
 import WishesView from '../WishesView';
 import SlidesView from '../SlidesView';
 import sy from './ViewManager.scss';
 
 type ViewManagerProps = {
-  isReady: boolean;
   view: string | null;
-};
-
-export const VIEWS = {
-  HELLO: 'hello',
-  WISHES: 'wishes',
-  SLIDES: 'slides',
+  isPlaying: boolean;
+  togglePlay: () => void;
 };
 
 const ViewManager: FC<ViewManagerProps> = (props) => {
-  const { isReady, view } = props;
-
-  // Loading
-  if (!isReady) return <LoadingBlock />;
+  const { view, isPlaying, togglePlay } = props;
+  const modeIcon = isPlaying ? 'pause' : 'play';
 
   const jsxView = (() => {
     switch (view) {
-      case VIEWS.HELLO:
+      case Views.HELLO:
         return <HelloView />;
-      case VIEWS.WISHES:
+      case Views.WISHES:
         return <WishesView />;
-      case VIEWS.SLIDES:
+      case Views.SLIDES:
         return <SlidesView />;
       default:
         return <Navigate to="/?view=slides" replace />;
@@ -39,7 +33,12 @@ const ViewManager: FC<ViewManagerProps> = (props) => {
 
   return (
     <SlidesProvider>
-      <div className={sy.view}>{jsxView}</div>
+      <div className={sy.view}>
+        {jsxView}
+        <div className={sy.modeToggle}>
+          <ButtonIcon name={modeIcon} click={togglePlay} />
+        </div>
+      </div>
     </SlidesProvider>
   );
 };

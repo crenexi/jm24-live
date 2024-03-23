@@ -28,11 +28,11 @@ const SlidesView: FC<SlidesViewProps> = (props) => {
           <Overline icon="trees" />
         </div>
         <div className={sy.controlToggle}>
-          <ButtonIcon name="gear" click={toggleControl} />
+          <ButtonIcon name="code" click={toggleControl} />
         </div>
         {hasControl && (
           <div className={sy.controlFrame}>
-            <SlideControl />
+            <SlideControl onClose={toggleControl} />
           </div>
         )}
       </div>

@@ -4,17 +4,12 @@ import useSlides from '@hooks/use-slides';
 import { ButtonIcon } from '@components/action';
 import sy from './SlideControl.scss';
 
-const SlideControl: FC = () => {
+type SlideControlProps = {
+  onClose: () => void;
+};
+
+const SlideControl: FC<SlideControlProps> = ({ onClose }) => {
   const { error, status, deck, actions } = useSlides();
-
-  // nav
-  // toPrevAction
-
-  // error
-
-  // deck
-  // currIndex
-  // prev, curr, next
 
   const handleToggleMode = () => {
     actions.setMode(status.isPlaying ? 'pause' : 'play');
@@ -31,11 +26,32 @@ const SlideControl: FC = () => {
 
   return (
     <div className={sy.edge}>
-      <div className={sy.nav}>
-        <ButtonIcon name="rotate-left" size="lg" click={actions.restart} />
-        <ButtonIcon name="backward-step" size="lg" click={actions.toPrev} />
-        <ButtonIcon name={modeIcon} size="lg" click={handleToggleMode} />
-        <ButtonIcon name="forward-step" size="lg" click={actions.toNext} />
+      <div className={sy.header}>
+        <div className={sy.header_nav}>
+          <ButtonIcon
+            variant="primary"
+            name={modeIcon}
+            click={handleToggleMode}
+          />
+          <ButtonIcon
+            variant="secondary"
+            name="backward-step"
+            click={actions.toPrev}
+          />
+          <ButtonIcon
+            variant="secondary"
+            name="forward-step"
+            click={actions.toNext}
+          />
+          <ButtonIcon
+            variant="secondary"
+            name="rotate-left"
+            click={actions.restart}
+          />
+        </div>
+        <div className={sy.header_close}>
+          <ButtonIcon name="times" click={onClose} />
+        </div>
       </div>
       <div className={sy.info}>
         <h6>Error</h6>

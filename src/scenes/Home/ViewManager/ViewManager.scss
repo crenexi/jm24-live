@@ -1,7 +1,20 @@
 @use '@sutils' as *;
 
 .view {
-  @include gradient-d(co(neutral, n900), co(primary, darkest));
+  position: relative;
+  @include gradient-d(co(neutral, n900), co(neutral, n700));
   @include size(100%, 100vh);
   padding: 0 sp(md2);
+}
+
+// Toggle
+
+.modeToggle {
+  z-index: z-index(controlFrame);
+  @include position(absolute, null 1rem 1rem null);
+  opacity: .07;
+
+  &:hover {
+    opacity: 1;
+  }
 }

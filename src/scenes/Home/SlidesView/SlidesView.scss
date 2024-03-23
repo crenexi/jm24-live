@@ -24,7 +24,7 @@
     margin-right: sp(md1);
   }
 
-  &:last-child {
+  &:nth-child(3) {
     margin-left: sp(md1);
   }
 }
