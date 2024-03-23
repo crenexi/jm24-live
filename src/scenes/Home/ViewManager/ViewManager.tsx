@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { SlidesProvider } from '@contexts/SlidesContext';
 import { ButtonIcon } from '@components/action';
@@ -6,6 +6,7 @@ import { Views } from './ViewManagerPod';
 import HelloView from '../HelloView';
 import WishesView from '../WishesView';
 import SlidesView from '../SlidesView';
+import ViewProgress from './ViewProgress';
 import sy from './ViewManager.scss';
 
 type ViewManagerProps = {
@@ -31,10 +32,13 @@ const ViewManager: FC<ViewManagerProps> = (props) => {
     }
   })();
 
+  if (!view) return null;
+
   return (
     <SlidesProvider>
       <div className={sy.view}>
         {jsxView}
+        {isPlaying && <ViewProgress view={view} />}
         <div className={sy.modeToggle}>
           <ButtonIcon name={modeIcon} click={togglePlay} />
         </div>

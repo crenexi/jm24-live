@@ -18,7 +18,6 @@ const useSliderval: UseSliderval = (params) => {
 
   // Set up the interval
   useEffect(() => {
-    logger.log(`Interval: ${String(interval)}`);
     if (interval === null) return;
 
     function tick() {

@@ -6,7 +6,8 @@
 }
 
 .edge {
-  @include padding(sp(md1) null);
+  padding-top: calc(sp(md1) + 5px);
+  padding-bottom: sp(md1);
 }
 
 .main {

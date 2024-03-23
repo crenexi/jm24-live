@@ -10,10 +10,10 @@ export enum Views {
   SLIDES = 'slides',
 }
 
-const viewDurations = {
-  [Views.HELLO]: 10_000,
-  [Views.WISHES]: 10_000,
-  [Views.SLIDES]: 10_000,
+export const viewDurations = {
+  [Views.HELLO]: 60_000, // one minute
+  [Views.WISHES]: 60_000, // one minute
+  [Views.SLIDES]: 60_000 * 3, // three minutes
 };
 
 const ViewManagerPod: FC = () => {
