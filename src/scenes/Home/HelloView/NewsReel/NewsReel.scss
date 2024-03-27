@@ -1,0 +1,71 @@
+@use '@sutils' as *;
+
+.reel {
+  @include flexy(column);
+  min-width: 0;
+  max-width: 70rem;
+  margin: 0 auto;
+  @include fade('in', 7, 5, both);
+}
+
+.reel,
+.breaking_box,
+.headline,
+.subtext {
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.breaking_box,
+.headline,
+.subtext {
+  @include padding(null sp(sm4));
+  border-left: 7px solid co(bright, base);
+  text-transform: uppercase;
+  font-family: font-family(base);
+  line-height: 1rem;
+}
+
+// Headlines
+
+.headline,
+.subtext {
+  flex: 1 1 0%;
+  width: 100%;
+  box-shadow: shadow(s5);
+}
+
+.headline {
+  @include padding(sp(sm4) null);
+  background-color: co(neutral, n30);
+  color: co(neutral, n800);
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.subtext {
+  @include padding(sp(sm3) null);
+  background-color: co(neutral, n700);
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+
+
+// Breaking news
+
+.breaking {
+  position: relative;
+  align-self: start;
+  height: 2.7rem;
+}
+
+.breaking_box {
+  height: 100%;
+  @include flexy(column, center, center);
+  background-color: co(bright, base);
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 1.6krem;
+}

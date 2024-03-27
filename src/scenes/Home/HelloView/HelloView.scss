@@ -11,10 +11,10 @@
 }
 
 .main {
-  height: 100%;
+  @include size(100%);
   display: grid;
   grid-template-columns: 25% auto 25%;
-  grid-template-rows: 70vh auto;
+  grid-template-rows: 67vh auto;
   grid-gap: sp(md1);
   background-color: #1f1c21;
   border-radius: radius(r4);
@@ -47,5 +47,8 @@
 
 .events {
   grid-column: 1 / span 3;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0 sp(md1);
 }
-

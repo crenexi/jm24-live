@@ -1,16 +1,23 @@
 import { FC } from 'react';
+import { Loading } from '@components/feedback';
+import { News } from './HelloViewPod';
+import NewsReel from './NewsReel';
 import sy from './HelloView.scss';
 
 type HelloViewProps = {
-  isReady: boolean;
   urlLogo: string;
+  news: News | null;
 };
 
 const HelloView: FC<HelloViewProps> = (props) => {
-  const { isReady, urlLogo } = props;
+  const { urlLogo, news } = props;
 
-  // Loading
-  if (!isReady) return null;
+  const jsxNewsReel = (() => {
+    if (!news) return 'No story';
+    if (news.error) return news.error.message;
+    if (news.isLoading) return <Loading />;
+    return <NewsReel story={news.story} />;
+  })();
 
   return (
     <div className={sy.edge}>
@@ -20,7 +27,7 @@ const HelloView: FC<HelloViewProps> = (props) => {
           <img src={urlLogo} alt="Logo GIF" />
         </div>
         <div className={sy.clock}>&nbsp;</div>
-        <div className={sy.events}>&nbsp;</div>
+        <div className={sy.events}>{jsxNewsReel}</div>
       </div>
     </div>
   );
