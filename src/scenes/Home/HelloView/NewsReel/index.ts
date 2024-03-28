@@ -1,1 +1,1 @@
-export { default } from './NewsReel';
+export { default } from './NewsReelPod';

@@ -4,12 +4,10 @@
   @include flexy(column);
   min-width: 0;
   max-width: 70rem;
-  margin: 0 auto;
-  @include fade('in', 7, 5, both);
 }
 
 .reel,
-.breaking_box,
+.breaking,
 .headline,
 .subtext {
   overflow: hidden;
@@ -17,7 +15,7 @@
   white-space: nowrap;
 }
 
-.breaking_box,
+.breaking,
 .headline,
 .subtext {
   @include padding(null sp(sm4));
@@ -51,19 +49,14 @@
   font-size: 1.4rem;
 }
 
-
-
 // Breaking news
 
 .breaking {
   position: relative;
   align-self: start;
-  height: 2.7rem;
-}
-
-.breaking_box {
-  height: 100%;
   @include flexy(column, center, center);
+  height: 2.5rem;
+  margin-top: -7px;
   background-color: co(bright, base);
   font-weight: 600;
   letter-spacing: 1px;

@@ -1,1 +1,1 @@
-export { default } from './HelloViewPod';
+export { default } from './HelloView';

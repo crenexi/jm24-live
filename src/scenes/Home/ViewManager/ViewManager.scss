@@ -2,7 +2,7 @@
 
 .view {
   position: relative;
-  @include gradient-d(co(neutral, n900), co(neutral, n700));
+  background-color: co(neutral, n900);
   @include size(100%, 100vh);
   padding: 0 sp(md2);
 }
