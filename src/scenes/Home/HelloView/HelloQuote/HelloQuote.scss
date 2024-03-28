@@ -1,0 +1,33 @@
+@use '@sutils' as *;
+
+.edge {
+  margin-bottom: -10px;
+  padding: 0 sp(sm2);
+  @include flexy(column, center, center);
+}
+
+.main {
+  max-width: 25rem;
+  margin: sp(sm2) auto;
+  text-align: center;
+}
+
+.icon {
+  font-size: 3rem;
+  line-height: 1em;
+  color: co(neutral, n600);
+
+  &:first-child { align-self: start; }
+  &:last-child { align-self: end; }
+}
+
+.text {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.author {
+  margin-top: sp(sm3);
+  font-size: 1rem;
+  text-transform: uppercase;
+}

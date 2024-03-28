@@ -12,7 +12,6 @@ const NewsReelPod: FC = () => {
     if (!data || data.length < 1) {
       setStory(null);
     } else {
-      console.log(data);
       const ranIndex = Math.floor(Math.random() * data.length);
       setStory(data[ranIndex]);
     }
