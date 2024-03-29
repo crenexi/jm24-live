@@ -1,7 +1,7 @@
 import { FC, useState, useRef, useEffect } from 'react';
 import sy from './StorySubtext.scss';
 
-const SUBTEXT_SPEED = 100;
+const SUBTEXT_SPEED = 150;
 
 type StorySubtextProps = {
   children: string;
