@@ -1,6 +1,6 @@
 @use '@sutils' as *;
 
-@mixin truncate-comment($line-height: 1.4em, $lines: 5) {
+@mixin truncate-comment($line-height: 1.4em, $lines: 4) {
   // Fallback styling
   display: block;
   overflow: hidden;
@@ -65,7 +65,7 @@
 .wish {
   @include flexy(row, start, start);
   flex-wrap: nowrap;
-  padding: sp(sm3);
+  padding: sp(sm4);
   background-color: co(background, lighter);
   @include gradient-x(co(background, lighter), co(primary, darker));
   border-radius: radius(r4);
@@ -74,14 +74,14 @@
   @include fade('in', 1, 2, both);
 
   &:not(:first-child) {
-    margin-top: sp(sm2);
+    margin-top: sp(sm3);
   }
 }
 
 // Wish aside
 
 .wish_aside {
-  margin-right: sp(sm2);
+  margin-right: sp(sm3);
 }
 
 .wish_avatar {
@@ -106,7 +106,7 @@
   width: 100%;
   @include flexy(row, start, center);
   flex-wrap: nowrap;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .wish_sender {
@@ -129,5 +129,5 @@
   margin-top: sp(sm1);
   @include truncate-comment();
   margin-bottom: 1px;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }

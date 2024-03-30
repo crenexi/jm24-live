@@ -17,9 +17,11 @@ const NewsReel: FC<NewsReelProps> = ({ story }) => {
     <div className={sy.reel}>
       <NewsPics story={story} />
       {isBreaking && <div className={sy.breaking}>BREAKING NEWS</div>}
-      <div className={sy.headline}>{headline}</div>
-      <div className={sy.subtext}>
-        <StorySubtext>{subtext}</StorySubtext>
+      <div className={sy.main}>
+        <div className={sy.headline}>{headline}</div>
+        <div className={sy.subtext}>
+          <StorySubtext>{subtext}</StorySubtext>
+        </div>
       </div>
     </div>
   );

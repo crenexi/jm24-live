@@ -3,12 +3,11 @@
 .edge {
   margin-bottom: -10px;
   padding: 0 sp(sm2);
-  @include flexy(column, center, center);
+  @include flexy(row, center, center);
 }
 
 .main {
-  max-width: 25rem;
-  margin: sp(sm2) auto;
+  margin: 0 sp(md1);
   text-align: center;
 }
 
@@ -17,8 +16,8 @@
   line-height: 1em;
   color: co(neutral, n600);
 
-  &:first-child { align-self: start; }
-  &:last-child { align-self: end; }
+  &:first-child { transform: translateY(-1rem); }
+  &:last-child { transform: translateY(1rem); }
 }
 
 .text {
@@ -27,7 +26,7 @@
 }
 
 .author {
-  margin-top: sp(sm3);
+  margin-top: sp(sm2);
   font-size: 1rem;
   text-transform: uppercase;
 }

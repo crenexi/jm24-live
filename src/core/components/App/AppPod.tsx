@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 // Dependencies
 import { ThemeProvider } from '@mui/material';
@@ -30,15 +30,10 @@ const AppPod = () => {
   // React Query
   const queryClient = new QueryClient();
 
-  // Splash state
-  const [isSplash, setIsSplash] = useState<boolean>(true);
-  const urlCover = dataStatic.urlCoverGateway;
-
   // Application is ready
   useEffect(() => {
     const onReady = () => {
       if (!isProd) logLiftoff({ theme });
-      setIsSplash(false);
     };
 
     // Show splash first
@@ -51,7 +46,7 @@ const AppPod = () => {
       <DataStaticProvider value={dataStatic}>
         <ThemeProvider theme={theme}>
           <QueryClientProvider client={queryClient}>
-            <App isSplash={isSplash} urlCover={urlCover} />
+            <App />
           </QueryClientProvider>
         </ThemeProvider>
       </DataStaticProvider>

@@ -1,26 +1,11 @@
 @use '@sutils' as *;
 
-.edge, .frame {
-  width: 100%;
-  height: 100vh;
-  @include flexy(column, stretch, stretch);
-}
-
 .edge {
-  padding: sp(sm4);
-  padding-top: calc(sp(sm4) + 5px);
-}
-
-.main {
-  @include size(100%);
-  display: grid;
-  grid-template-columns: 27% auto 27%;
-  grid-template-rows: 60vh auto;
-  grid-gap: sp(sm7);
-  padding-top: sp(sm3);
+  @include grid(100vw, sp(md2));
+  grid-template-rows: 80% auto;
+  @include size(100vw, 100vh);
+  padding: sp(md1);
   background-color: #1f1c21;
-  border-radius: radius(r4);
-  overflow: hidden;
 }
 
 .brand {
@@ -33,81 +18,14 @@
   }
 }
 
-// Welcome
-
-.welcome {
-  width: 100%;
-  max-width: 17rem;
-  place-self: center;
-  line-height: 1.5em;
-  @include flexy(column, center, center);
-}
-
-.welcome_amp {
-  margin: sp(sm7) 0 sp(sm6);
-  padding-bottom: 7px;
-  color: co(neutral, n300);
-  font-size: 3rem;
-  line-height: 1em;
-}
-
-.welcome_nameFirst {
-  margin-bottom: -10px;
-  font-family: font-family(primary);
-  font-size: 3.7rem;
-  line-height: 1em;
-}
-
-.welcome_nameLast {
-  margin-top: sp(sm3);
-  text-transform: uppercase;
-  font-family: font-family(base);
-  font-size: 1.5rem;
-  line-height: 1em;
-  letter-spacing: 5px;
-  color: co(neutral, n50);
-}
-
 // Quotes
 
 .quotes {
   place-self: center;
-  padding-right: sp(md1);
-}
-
-.thanks {
-  padding-bottom: sp(sm4);
-  margin-bottom: sp(sm4);
-  border-bottom: 1px solid co(background, base);
-  text-align: center;
-  color: co(neutral, n500);
-  text-transform: uppercase;
-}
-
-.thanks_title {
-  font-size: 3.4rem;
-  line-height: 1em;
-  font-weight: 600;
-}
-
-.thanks_subtext {
-  font-size: 1.57rem;
-  font-weight: 700;
-}
-
-// Timeline
-
-.reel {
-  grid-column: 1 / span 3;
-  min-width: 0;
-  max-width: 100%;
-  overflow: hidden;
-  padding: 0 sp(md1) sp(sm5);
-  place-self: center;
+  padding-bottom: sp(md1);
 }
 
 // Fade in sequence
 
 .brand { @include fade('in', 7, 1, both); }
-.welcome, .quotes { @include fade('in', 7, 5, both); }
-.reel { @include fade('in', 7, 9, both); }
+.quotes { @include fade('in', 7, 5, both); }

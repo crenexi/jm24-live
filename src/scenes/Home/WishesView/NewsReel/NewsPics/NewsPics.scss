@@ -1,0 +1,18 @@
+@use '@sutils' as *;
+
+.edge {
+  @include size(100%);
+  margin-bottom: sp(sm7);
+}
+
+.main {
+  width: 100%;
+  @include grid-n(3, sp(sm7));
+}
+
+.image {
+  height: 15rem;
+  @include bg-cover();
+  border-radius: radius(r3);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.25), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+}

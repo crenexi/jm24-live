@@ -2,18 +2,16 @@
 
 .edge {
   @include flexy(row, center, center);
-  margin-bottom: sp(sm3);
-  padding-bottom: sp(sm2);
-  border-bottom: 1px solid co(background, lightest);
-  font-size: 1.7rem;
+  margin-bottom: sp(sm7);
+  font-size: 1.8rem;
 }
 
 .label {
   margin: 1px sp(sm3) -3px 0;
   font-family: font-family(primary);
-  text-align: right;
 }
 
 .icon {
-  color: co(neutral, n100);
+  color: #fff;
+  font-size: 2rem;
 }
