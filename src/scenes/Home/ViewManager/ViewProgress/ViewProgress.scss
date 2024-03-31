@@ -1,21 +1,12 @@
 @use '@sutils' as *;
 
-@keyframes fillBar {
-  to { transform: scaleX(1); }
-}
-
 .edge {
-  @include position(absolute, 0 null null 0);
-  overflow: hidden;
-  @include size(100%, 5px);
-  background-color: co(background, base);
+  width: 100%;
+  background-color: rgba(255, 255, 255, .2);
 }
 
 .bar {
-  @include size(100%);
-  background-color: co(primary, darker);
-  transform: scaleX(0);
-  transform-origin: left center;
-  animation: fillBar linear forwards;
-  will-change: transform;
+  height: 7px;
+  background-color: rgba(255, 255, 255, .5);
+  transition-duration: 300ms;
 }

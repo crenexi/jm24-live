@@ -11,9 +11,12 @@ export enum Views {
 }
 
 export const viewDurations = {
-  [Views.HELLO]: 60_000, // one minute
-  [Views.WISHES]: 60_000, // one minute
-  [Views.SLIDES]: 60_000 * 3, // three minutes
+  // [Views.HELLO]: 60_000, // one minute
+  // [Views.WISHES]: 60_000, // one minute
+  // [Views.SLIDES]: 60_000 * 3, // three minutes
+  [Views.HELLO]: 30_000,
+  [Views.WISHES]: 40_000,
+  [Views.SLIDES]: 50_000,
 };
 
 const ViewManagerPod: FC = () => {

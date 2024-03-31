@@ -39,7 +39,7 @@ const WishList: FC = () => {
   return (
     <div className={sy.edge}>
       <div className={sy.list}>
-        {feed.map((wish) => (
+        {feed.slice(0, 10).map((wish) => (
           <div key={wish.id} className={sy.wish}>
             <div className={sy.wish_aside}>
               <div className={sy.wish_avatar}>{wish.nameKey}</div>

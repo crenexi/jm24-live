@@ -7,19 +7,38 @@ type ViewProgressProps = {
 };
 
 const ViewProgress: FC<ViewProgressProps> = ({ view }) => {
+  const totalDuration = viewDurations[view as Views] / 1000;
+  const incrementAmount = 100 / (totalDuration / 10);
+
   const [key, setKey] = useState(0);
+  const [barPercent, setBarPercent] = useState(0);
 
-  // Remount to restart animation
-  useEffect(() => setKey((prevKey) => prevKey + 1), [view]);
+  // Update bar width percentage
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBarPercent((prevPercent) => {
+        // Update by 10 every 10 seconds
+        const newPercent = prevPercent + incrementAmount;
+        return newPercent > 100 ? 100 : newPercent;
+      });
+    }, 10_000);
 
-  const duration = viewDurations[view as Views];
+    return () => clearInterval(interval);
+  }, []);
+
+  // Reset on view change
+  useEffect(() => {
+    setBarPercent(0);
+    setKey((prevKey) => prevKey + 1);
+  }, [view]);
+
   const sxBar = {
-    animationDuration: `${duration}ms`,
+    width: `${barPercent}%`,
   };
 
   return (
-    <div className={sy.edge}>
-      <div key={key} className={sy.bar} style={sxBar} />
+    <div className={sy.edge} key={key}>
+      <div className={sy.bar} style={sxBar} />
     </div>
   );
 };

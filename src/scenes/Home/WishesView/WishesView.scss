@@ -1,5 +1,7 @@
 @use '@sutils' as *;
 
+$statusHeight: 2rem;
+
 .edge,
 .main,
 .main_top,
@@ -8,10 +10,16 @@
   max-width: 100%;
 }
 
+.edge,
+.main,
+.aside {
+  height: calc(100vh - #{$statusHeight});
+  overflow: hidden;
+}
+
 .edge {
   display: grid;
   grid-template-columns: calc(100vw - 35rem) 35rem;
-  height: 100vh;
   @include fade('in', 3, 0, both);
   @include bg-cover();
 }
@@ -19,14 +27,22 @@
 .main {
   @include flexy(column, end, stretch);
   position: relative;
-  height: 100vh;
 }
 
 // Wishes on right
 
-.wishes {
+.aside {
+  position: relative;
   padding: sp(md1);
   background-color: rgba(0, 0, 0, .8);
+
+  &::after {
+    content: '';
+    @include position(absolute, null 0 0 0);
+    @include size(100%, 10rem);
+    border-bottom: 2rem solid #000;
+    background: linear-gradient(0, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  }
 }
 
 .main_bottom {

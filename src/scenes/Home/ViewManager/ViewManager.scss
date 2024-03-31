@@ -1,19 +1,50 @@
 @use '@sutils' as *;
 
+$controlHeight: 6rem;
+$statusHeight: 2rem;
+$transformBy: $controlHeight - $statusHeight;
+
+.view, .controls {
+  width: 100%;
+}
+
 .view {
   position: relative;
   background-color: co(neutral, n900);
-  @include size(100%, 100vh);
+  height: calc(100vh - #{$statusHeight});
 }
 
-// Toggle
-
-.modeToggle {
-  z-index: z-index(controlFrame);
-  @include position(absolute, null 1rem 1rem null);
-  opacity: .07;
+.controls {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: z-index(controls);
+  height: $controlHeight;
+  background-color: #000;
+  transition-duration: 100ms;
+  transform: translateY(0);
+  opacity: .15;
 
   &:hover {
+    transform: translateY(-#{$transformBy});
+    background-color: co(neutral, n900);
     opacity: 1;
   }
+}
+
+.controls_col {
+  @include flexy(column, center, stretch);
+  padding: 0 sp(sm2);
+}
+
+.controls_status {
+  @include grid-n(3, sp(md1));
+  height: $statusHeight;
+}
+
+.controls_actions {
+  flex: 1 1 0%;
+  padding: 0 sp(sm3);
+  border-top: 1px solid rgba(255, 255, 255, .07);
+  @include flexy(row, center, center);
 }

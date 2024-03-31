@@ -28,7 +28,7 @@ const WishesView: FC<WishesViewProps> = (props) => {
           <NewsReel />
         </div>
       </div>
-      <div className={sy.wishes}>
+      <div className={sy.aside}>
         <Overline label="Wishes" icon="comment-lines" />
         <WishList />
       </div>
