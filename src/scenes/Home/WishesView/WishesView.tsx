@@ -23,7 +23,7 @@ const WishesView: FC<WishesViewProps> = (props) => {
   return (
     <div className={sy.edge} style={sxEdge}>
       <div className={sy.main}>
-        <div className={sy.main_top}>Top</div>
+        <div className={sy.main_top} />
         <div className={sy.main_bottom}>
           <NewsReel />
         </div>

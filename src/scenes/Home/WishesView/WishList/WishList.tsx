@@ -53,34 +53,6 @@ const WishList: FC = () => {
             </div>
           </div>
         ))}
-        {feed.map((wish) => (
-          <div key={wish.id} className={sy.wish}>
-            <div className={sy.wish_aside}>
-              <div className={sy.wish_avatar}>{wish.nameKey}</div>
-            </div>
-            <div className={sy.wish_main}>
-              <div className={sy.wish_header}>
-                <div className={sy.wish_sender}>{wish.sender}</div>
-                <div className={sy.wish_created}>{wish.relativeTime}</div>
-              </div>
-              <div className={sy.wish_message}>{wish.message}</div>
-            </div>
-          </div>
-        ))}
-        {feed.map((wish) => (
-          <div key={wish.id} className={sy.wish}>
-            <div className={sy.wish_aside}>
-              <div className={sy.wish_avatar}>{wish.nameKey}</div>
-            </div>
-            <div className={sy.wish_main}>
-              <div className={sy.wish_header}>
-                <div className={sy.wish_sender}>{wish.sender}</div>
-                <div className={sy.wish_created}>{wish.relativeTime}</div>
-              </div>
-              <div className={sy.wish_message}>{wish.message}</div>
-            </div>
-          </div>
-        ))}
       </div>
       <div className={sy.footer}>
         <div className={sy.footer_count}>{countText}</div>

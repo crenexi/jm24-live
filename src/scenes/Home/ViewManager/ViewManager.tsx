@@ -4,11 +4,15 @@ import { SlidesProvider } from '@contexts/SlidesContext';
 import { Button } from '@components/action';
 import { Icon } from '@components/legos';
 import { Views } from './ViewManagerPod';
-import HelloView from '../HelloView';
-import WishesView from '../WishesView';
-import SlidesView from '../SlidesView';
-import ViewProgress from './ViewProgress';
 import sy from './ViewManager.scss';
+import ViewProgress from './ViewProgress';
+
+import HelloView from '../HelloView';
+import StandardsView from '../StandardsView';
+import WishesView from '../WishesView';
+import VerticalsView from '../VerticalsView';
+import CalloutView from '../CalloutView';
+import FeaturesView from '../FeaturesView';
 
 type ViewManagerProps = {
   view: string | null;
@@ -24,10 +28,16 @@ const ViewManager: FC<ViewManagerProps> = (props) => {
     switch (view) {
       case Views.HELLO:
         return <HelloView />;
+      case Views.STANDARDS:
+        return <StandardsView />;
       case Views.WISHES:
         return <WishesView />;
-      case Views.SLIDES:
-        return <SlidesView />;
+      case Views.VERTICALS:
+        return <VerticalsView />;
+      case Views.CALLOUT:
+        return <CalloutView />;
+      case Views.FEATURES:
+        return <FeaturesView />;
       default:
         return <Navigate to="/?view=slides" replace />;
     }

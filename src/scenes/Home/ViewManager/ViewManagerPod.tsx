@@ -7,16 +7,19 @@ import ViewManager from './ViewManager';
 export enum Views {
   HELLO = 'hello',
   WISHES = 'wishes',
-  SLIDES = 'slides',
+  CALLOUT = 'callout',
+  STANDARDS = 'standards',
+  VERTICALS = 'verticals',
+  FEATURES = 'features',
 }
 
 export const viewDurations = {
-  // [Views.HELLO]: 60_000, // one minute
-  // [Views.WISHES]: 60_000, // one minute
-  // [Views.SLIDES]: 60_000 * 3, // three minutes
-  [Views.HELLO]: 30_000,
-  [Views.WISHES]: 40_000,
-  [Views.SLIDES]: 50_000,
+  [Views.HELLO]: 10_000, // TODO: set to 55 seconds
+  [Views.STANDARDS]: 10_000, // TODO: set to 90 seconds (30-sec swaps)
+  [Views.WISHES]: 10_000, // TODO: set to 65 seconds
+  [Views.VERTICALS]: 10_000, // TODO: set to 90 seconds (30-sec swaps)
+  [Views.CALLOUT]: 10_000, // TODO: set to 45 seconds
+  [Views.FEATURES]: 10_000, // TODO: set to 75 seconds
 };
 
 const ViewManagerPod: FC = () => {
