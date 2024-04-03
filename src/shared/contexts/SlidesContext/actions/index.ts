@@ -1,12 +1,11 @@
 export { default as ActionTypes } from './action-types';
 
 export {
+  setErrorAction,
+  setFetchingAction,
+  setLoadingAction,
+  setSlidesAction,
   toNextAction,
   toPrevAction,
-  toSlideAction,
-  setSlidesAction,
-  setLoadingAction,
-  setModeAction,
-  setErrorAction,
   restartAction,
 } from './action-creators';

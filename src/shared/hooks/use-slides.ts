@@ -1,20 +1,9 @@
 import { useContext } from 'react';
-import { Mode, UseSlidesReturn } from '@stypes/Slide.types';
+import { UseSlidesReturn, ToNextPay, ToPrevPay } from '@stypes/Slide.types';
 import SlidesContext from '@contexts/SlidesContext';
+import { setErrorAction, setLoadingAction, toNextAction, toPrevAction, restartAction } from '@contexts/SlidesContext/actions'; // prettier-ignore
 
-import {
-  toNextAction,
-  toPrevAction,
-  toSlideAction,
-  setLoadingAction,
-  setModeAction,
-  restartAction,
-  setErrorAction,
-} from '@contexts/SlidesContext/actions';
-
-type UseSlides = () => UseSlidesReturn;
-
-const useSlides: UseSlides = () => {
+const useSlides = (): UseSlidesReturn => {
   const context = useContext(SlidesContext);
 
   if (!context?.state || !context?.dispatch) {
@@ -23,32 +12,20 @@ const useSlides: UseSlides = () => {
 
   const { state, dispatch } = context;
 
-  const toNext = () => dispatch(toNextAction());
-
-  const toPrev = () => dispatch(toPrevAction());
-
-  const toSlide = (index: number) => dispatch(toSlideAction(index));
-
-  const setMode = (mode: Mode) => dispatch(setModeAction(mode));
-
-  const setError = (error: string) => dispatch(setErrorAction(error));
-
-  const setLoading = (isLoading: boolean) => {
-    dispatch(setLoadingAction(isLoading));
-  };
-
+  const setError = (p: string) => dispatch(setErrorAction(p));
+  const setLoading = (p: boolean) => dispatch(setLoadingAction(p));
+  const toNext = (p: ToNextPay) => dispatch(toNextAction(p));
+  const toPrev = (p: ToPrevPay) => dispatch(toPrevAction(p));
   const restart = () => dispatch(restartAction());
 
   return {
     ...state,
     actions: {
+      setError,
+      setLoading,
       toNext,
       toPrev,
-      toSlide,
-      setLoading,
-      setMode,
       restart,
-      setError,
     },
   };
 };

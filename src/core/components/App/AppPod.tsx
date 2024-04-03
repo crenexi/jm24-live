@@ -35,10 +35,6 @@ const AppPod = () => {
     const onReady = () => {
       if (!isProd) logLiftoff({ theme });
     };
-
-    // Show splash first
-    const timeout = setTimeout(onReady, appSettings.splashDuration);
-    return () => clearTimeout(timeout);
   }, [theme]);
 
   return (

@@ -1,47 +1,38 @@
 import { FC } from 'react';
-import { Mode } from '@stypes/Slide.types';
+import { Album } from '@stypes/Slide.types';
 import useSlides from '@hooks/use-slides';
 import { ButtonIcon } from '@components/action';
 import sy from './SlideControl.scss';
 
 type SlideControlProps = {
+  album: Album;
   onClose: () => void;
 };
 
-const SlideControl: FC<SlideControlProps> = ({ onClose }) => {
-  const { error, status, deck, actions } = useSlides();
+const SlideControl: FC<SlideControlProps> = ({ album, onClose }) => {
+  const { status, deck, actions } = useSlides();
+  const albumDeck = deck[album];
 
-  const handleToggleMode = () => {
-    actions.setMode(status.isPlaying ? 'pause' : 'play');
-  };
-
-  const modeIcon: Mode = status.isPlaying ? 'pause' : 'play';
-  const errText = error?.message || 'NULL';
+  const errText = status.error?.message || 'NULL';
   const isFetching = String(status.isFetching);
   const isLoading = String(status.isLoading);
-  const isPlaying = String(status.isPlaying);
-  const prevDesc = deck.prev?.description || 'NULL';
-  const currDesc = deck.curr?.description || 'NULL';
-  const nextDesc = deck.next?.description || 'NULL';
+  const prevDesc = albumDeck.prev?.description || 'NULL';
+  const currDesc = albumDeck.curr?.description || 'NULL';
+  const nextDesc = albumDeck.next?.description || 'NULL';
 
   return (
     <div className={sy.edge}>
       <div className={sy.header}>
         <div className={sy.header_nav}>
           <ButtonIcon
-            variant="primary"
-            name={modeIcon}
-            click={handleToggleMode}
-          />
-          <ButtonIcon
             variant="secondary"
             name="backward-step"
-            click={actions.toPrev}
+            click={() => actions.toPrev({ album })}
           />
           <ButtonIcon
             variant="secondary"
             name="forward-step"
-            click={actions.toNext}
+            click={() => actions.toNext({ album })}
           />
           <ButtonIcon
             variant="secondary"
@@ -62,11 +53,10 @@ const SlideControl: FC<SlideControlProps> = ({ onClose }) => {
         <div className={sy.info_status}>
           <div className={sy.info_item}>isFetching: {isFetching}</div>
           <div className={sy.info_item}>isLoading: {isLoading}</div>
-          <div className={sy.info_item}>isPlaying: {isPlaying}</div>
         </div>
         <h6>Deck</h6>
         <div className={sy.info_deck}>
-          <div className={sy.info_item}>currIndex: {deck.currIndex}</div>
+          <div className={sy.info_item}>currIndex: {albumDeck.currIndex}</div>
           <div className={sy.info_item}>prev: {prevDesc}</div>
           <div className={sy.info_item}>curr: {currDesc}</div>
           <div className={sy.info_item}>next: {nextDesc}</div>

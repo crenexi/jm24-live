@@ -1,5 +1,5 @@
 // This is the order of the show
-export enum Views {
+export enum View {
   HELLO = 'hello',
   STANDARDS = 'standards',
   WISHES = 'wishes',
@@ -8,32 +8,24 @@ export enum Views {
   FEATURES = 'features',
 }
 
-// State: error
-export type ViewsError = null | {
-  message: string;
-};
-
 // State: status
-export type ViewsStatus = {
+export type Status = {
+  error: null | { message: string };
   isLoading: boolean;
   isPlaying: boolean;
 };
 
 // Context state
-export type ViewsContextState = {
-  view: Views;
-  error: ViewsError;
-  status: ViewsStatus;
+export type ContextState = {
+  status: Status;
+  view: View;
 };
 
-// Context actions
-export type ViewsContextActions = {
-  toggleMode: () => void;
-  setError: (message: string) => void;
-};
-
-// Context value (state and actions)
-export type ViewsContextValue = {
-  state: ViewsContextState;
-  actions: ViewsContextActions;
+// Context value
+export type ContextValue = {
+  state: ContextState;
+  actions: {
+    toggleMode: () => void;
+    setError: (message: string) => void;
+  };
 };

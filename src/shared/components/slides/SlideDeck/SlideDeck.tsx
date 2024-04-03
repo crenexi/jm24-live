@@ -14,10 +14,11 @@ type SlideDeckProps = {
   currIndex: number;
   isLoading: boolean;
   isPlaying: boolean;
+  interval: number;
 };
 
 const SlideDeck: FC<SlideDeckProps> = (props) => {
-  const { slide, sxImage, countLabel, currIndex } = props;
+  const { slide, sxImage, countLabel, currIndex, interval } = props;
   const { isLoading, isPlaying } = props;
 
   return (
@@ -31,7 +32,9 @@ const SlideDeck: FC<SlideDeckProps> = (props) => {
           </div>
           <div className={sy.main}>
             <div className={sy.image} style={sxImage}>
-              {isPlaying && <SlideProgress currIndex={currIndex} />}
+              {isPlaying && (
+                <SlideProgress currIndex={currIndex} duration={interval} />
+              )}
               <div className={sy.image_gap} />
               <div className={sy.image_date}>{slide.creationTime}</div>
             </div>

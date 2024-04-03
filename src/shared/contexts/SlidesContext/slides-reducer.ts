@@ -1,74 +1,58 @@
 import { ActionTypes } from './actions';
-import { SlidesAction, SlidesContextState, Slide } from '@stypes/Slide.types';
+import { Action, ContextState, Slide, Deck, Album } from '@stypes/Slide.types'; // prettier-ignore
 import { defaultState } from './SlidesContext';
 
-type SlidesReducer = (
-  state: SlidesContextState,
-  action: SlidesAction,
-) => SlidesContextState;
-
-// Helper: update deck state based on index
-const updateDeck = (state: SlidesContextState, i: number) => {
-  const total = state.slides.length;
-  return {
-    ...state.deck,
-    currIndex: i,
-    prev: state.slides[(i - 1 + total) % total],
-    curr: state.slides[i],
-    next: state.slides[(i + 1) % total],
-  };
-};
-
-// Helper: set slides
-const updateSlides = (state: SlidesContextState, slides: Slide[]) => ({
-  ...state,
-  slides,
-  status: {
-    ...state.status,
-    isFetching: false,
-  },
-  deck: {
-    ...state.deck,
-    currIndex: 0,
-    total: slides.length,
-    prev: slides[slides.length - 1] || null,
-    curr: slides[0] || null,
-    next: slides[1] || null,
-  },
-});
+type SlidesReducer = (state: ContextState, action: Action) => ContextState;
 
 // Reducer
 const slidesReducer: SlidesReducer = (state, action) => {
-  const total = state.slides.length;
+  // Helper: update deck state based on index
+  const deckByIndex = (album: Album, i: number): Deck => {
+    const slidesData = state.slides[album];
+    const total = slidesData.length;
+    return {
+      ...state.deck[album],
+      currIndex: i,
+      prev: slidesData[(i - 1 + total) % total],
+      curr: slidesData[i],
+      next: slidesData[(i + 1) % total],
+    };
+  };
 
+  // Helper: set slides
+  const stateWithNewSlides = (album: Album, slides: Slide[]): ContextState => ({
+    ...state,
+    slides: { ...state.slides, [album]: slides },
+    status: { ...state.status, isFetching: false },
+    deck: { ...state.deck, [album]: deckByIndex(album, 0) },
+  });
+
+  // Actions
   switch (action.type) {
-    // To next slide
-    case ActionTypes.TO_NEXT: {
-      const i = (state.deck.currIndex + 1) % total;
-      return { ...state, deck: updateDeck(state, i) };
-    }
-    // To previous slide
-    case ActionTypes.TO_PREV: {
-      const i = (state.deck.currIndex - 1 + total) % total;
-      return { ...state, deck: updateDeck(state, i) };
-    }
-    // To specified slide
-    case ActionTypes.TO_SLIDE:
-      return { ...state, deck: updateDeck(state, action.payload) };
-    case ActionTypes.SET_MODE:
+    // Set error message
+    case ActionTypes.SET_ERROR: {
       return {
         ...state,
         status: {
           ...state.status,
-          isPlaying: action.payload === 'play',
+          error: {
+            message: action.payload,
+          },
         },
       };
-    // Set slides data
-    case ActionTypes.SET_SLIDES:
-      const slides = action.payload;
-      return updateSlides(state, slides);
+    }
+    // Set fetching status
+    case ActionTypes.SET_FETCHING: {
+      return {
+        ...state,
+        status: {
+          ...state.status,
+          isFetching: action.payload,
+        },
+      };
+    }
     // Set loading status
-    case ActionTypes.SET_LOADING:
+    case ActionTypes.SET_LOADING: {
       return {
         ...state,
         status: {
@@ -76,20 +60,45 @@ const slidesReducer: SlidesReducer = (state, action) => {
           isLoading: action.payload,
         },
       };
-    // Set error message
-    case ActionTypes.SET_ERROR:
+    }
+    // Set slides data
+    case ActionTypes.SET_SLIDES: {
+      const { album, slides } = action.payload;
+      return stateWithNewSlides(album, slides);
+    }
+    // To next slide
+    case ActionTypes.TO_NEXT: {
+      const { album } = action.payload;
+      const currIndex = state.deck[album].currIndex;
+      const total = state.slides[album].length;
+      const i = (currIndex + 1) % total;
+
       return {
         ...state,
-        error: {
-          message: action.payload,
+        deck: {
+          ...state.deck,
+          [album]: deckByIndex(album, i),
         },
       };
+    }
+    // To previous slide
+    case ActionTypes.TO_PREV: {
+      const { album } = action.payload;
+      const currIndex = state.deck[album].currIndex;
+      const total = state.slides[album].length;
+      const i = (currIndex - 1 + total) % total;
+
+      return {
+        ...state,
+        deck: {
+          ...state.deck,
+          [album]: deckByIndex(album, i),
+        },
+      };
+    }
     // Restart to defaults
     case ActionTypes.RESTART:
-      return {
-        ...defaultState,
-        slides: state.slides,
-      };
+      return { ...defaultState };
     default:
       return state;
   }

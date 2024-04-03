@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from 'react';
-import { Views } from '@stypes/View.types';
+import { View } from '@stypes/View.types';
 import { viewDurations } from '@contexts/ViewsContext';
 import sy from './ViewProgress.scss';
 
@@ -8,7 +8,7 @@ type ViewProgressProps = {
 };
 
 const ViewProgress: FC<ViewProgressProps> = ({ view }) => {
-  const totalDuration = viewDurations[view as Views] / 1000;
+  const totalDuration = viewDurations[view as View] / 1000;
   const incrementAmount = 100 / (totalDuration / 10);
 
   const [key, setKey] = useState(0);

@@ -2,7 +2,7 @@ import { FC, Fragment } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Button } from '@components/action';
 import { Icon } from '@components/legos';
-import { Views } from '@stypes/View.types';
+import { View } from '@stypes/View.types';
 import useViews from '@hooks/use-views';
 import sy from './ViewManager.scss';
 import ViewProgress from './ViewProgress';
@@ -21,17 +21,17 @@ const ViewManager: FC = () => {
 
   const jsxView = (() => {
     switch (state.view) {
-      case Views.HELLO:
+      case View.HELLO:
         return <HelloView />;
-      case Views.STANDARDS:
+      case View.STANDARDS:
         return <StandardsView />;
-      case Views.WISHES:
+      case View.WISHES:
         return <WishesView />;
-      case Views.VERTICALS:
+      case View.VERTICALS:
         return <VerticalsView />;
-      case Views.CALLOUT:
+      case View.CALLOUT:
         return <CalloutView />;
-      case Views.FEATURES:
+      case View.FEATURES:
         return <FeaturesView />;
       default:
         return <Navigate to="/?view=slides" replace />;

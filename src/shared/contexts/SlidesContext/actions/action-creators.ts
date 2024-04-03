@@ -1,47 +1,43 @@
-import { SlidesAction, Slide, Mode } from '@stypes/Slide.types';
+import { Action, SetSlidesPay, ToNextPay, ToPrevPay } from '@stypes/Slide.types'; // prettier-ignore
 import ActionTypes from './action-types';
 
-// Creator: TO_NEXT
-export const toNextAction = (): SlidesAction => ({
-  type: ActionTypes.TO_NEXT,
+// Creator: SET_ERROR
+export const setErrorAction = (payload: string): Action => ({
+  type: ActionTypes.SET_ERROR,
+  payload,
 });
 
-// Creator: TO_PREV
-export const toPrevAction = (): SlidesAction => ({
-  type: ActionTypes.TO_PREV,
-});
-
-// Creator: TO_SLIDE
-export const toSlideAction = (index: number): SlidesAction => ({
-  type: ActionTypes.TO_SLIDE,
-  payload: index,
-});
-
-// Creator: SET_SLIDES
-export const setSlidesAction = (slides: Slide[]): SlidesAction => ({
-  type: ActionTypes.SET_SLIDES,
-  payload: slides,
+// Creator: SET_FETCHING
+export const setFetchingAction = (payload: boolean): Action => ({
+  type: ActionTypes.SET_FETCHING,
+  payload,
 });
 
 // Creator: SET_LOADING
-export const setLoadingAction = (isLoading: boolean): SlidesAction => ({
+export const setLoadingAction = (payload: boolean): Action => ({
   type: ActionTypes.SET_LOADING,
-  payload: isLoading,
+  payload,
 });
 
-// Creator: SET_MODE
-export const setModeAction = (mode: Mode): SlidesAction => ({
-  type: ActionTypes.SET_MODE,
-  payload: mode,
+// Creator: SET_SLIDES
+export const setSlidesAction = (payload: SetSlidesPay): Action => ({
+  type: ActionTypes.SET_SLIDES,
+  payload,
 });
 
-// Creator: SET_ERROR
-export const setErrorAction = (error: string): SlidesAction => ({
-  type: ActionTypes.SET_ERROR,
-  payload: error,
+// Creator: TO_NEXT
+export const toNextAction = (payload: ToNextPay): Action => ({
+  type: ActionTypes.TO_NEXT,
+  payload,
+});
+
+// Creator: TO_PREV
+export const toPrevAction = (payload: ToPrevPay): Action => ({
+  type: ActionTypes.TO_PREV,
+  payload,
 });
 
 // Creator: RESTART
-export const restartAction = (): SlidesAction => ({
+export const restartAction = (): Action => ({
   type: ActionTypes.RESTART,
 });

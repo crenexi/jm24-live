@@ -1,18 +1,26 @@
 import { Dispatch } from 'react';
 import { ActionTypes } from '@contexts/SlidesContext/actions';
 
-// Enum: slide mode
-export type Mode = 'play' | 'pause';
+// Albums
+export enum Album {
+  STANDARDS = 'STANDARDS',
+  VERTICALS = 'VERTICALS',
+  FEATURES = 'FEATURES',
+}
+
+// Payloads
+export type SetSlidesPay = { album: Album; slides: Slide[] };
+export type ToNextPay = { album: Album };
+export type ToPrevPay = { album: Album };
 
 // Action definition
-export type SlidesAction =
-  | { type: ActionTypes.TO_NEXT }
-  | { type: ActionTypes.TO_PREV }
-  | { type: ActionTypes.TO_SLIDE; payload: number }
-  | { type: ActionTypes.SET_SLIDES; payload: Slide[] }
-  | { type: ActionTypes.SET_LOADING; payload: boolean }
-  | { type: ActionTypes.SET_MODE; payload: Mode }
+export type Action =
   | { type: ActionTypes.SET_ERROR; payload: string }
+  | { type: ActionTypes.SET_FETCHING; payload: boolean }
+  | { type: ActionTypes.SET_LOADING; payload: boolean }
+  | { type: ActionTypes.SET_SLIDES; payload: SetSlidesPay }
+  | { type: ActionTypes.TO_NEXT; payload: ToNextPay }
+  | { type: ActionTypes.TO_PREV; payload: ToPrevPay }
   | { type: ActionTypes.RESTART };
 
 // Slide data
@@ -25,20 +33,15 @@ export type Slide = {
   height: string;
 };
 
-// State: error
-export type SlidesError = null | {
-  message: string;
-};
-
 // State: status
-export type SlidesStatus = {
+export type Status = {
+  error: null | { message: string };
   isFetching: boolean;
   isLoading: boolean;
-  isPlaying: boolean;
 };
 
 // State: deck
-export type SlidesDeck = {
+export type Deck = {
   total: number;
   currIndex: number;
   prev: Slide | null;
@@ -47,27 +50,25 @@ export type SlidesDeck = {
 };
 
 // Context state
-export type SlidesContextState = {
-  slides: Slide[];
-  error: SlidesError;
-  status: SlidesStatus;
-  deck: SlidesDeck;
+export type ContextState = {
+  status: Status;
+  slides: Record<string, Slide[]>;
+  deck: Record<string, Deck>;
 };
 
 // Context value
-export type SlidesContextValue = {
-  state: SlidesContextState;
-  dispatch: Dispatch<SlidesAction>;
+export type ContextValue = {
+  state: ContextState;
+  dispatch: Dispatch<Action>;
 };
 
 // Hook return
-export type UseSlidesReturn = SlidesContextState & {
+export type UseSlidesReturn = ContextState & {
   actions: {
-    toNext: () => void;
-    toPrev: () => void;
-    toSlide: (index: number) => void;
-    setMode: (mode: Mode) => void;
+    setError: (payload: string) => void;
+    setLoading: (payload: boolean) => void;
+    toNext: (payload: ToNextPay) => void;
+    toPrev: (payload: ToPrevPay) => void;
     restart: () => void;
-    setError: (error: string) => void;
   };
 };

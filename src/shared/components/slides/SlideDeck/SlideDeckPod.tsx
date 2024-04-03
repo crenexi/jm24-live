@@ -1,18 +1,25 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import appSettings from '@config/app-settings';
 import logger from '@services/logger';
+import useViews from '@hooks/use-views';
 import useSlides from '@hooks/use-slides';
 import useSliderval from '@hooks/use-sliderval';
+import { Album } from '@stypes/Slide.types';
 import SlideDeck from './SlideDeck';
 
-const SlideDeckPod: FC = () => {
+type SlideDeckPodProps = {
+  album: Album;
+  interval: number;
+};
+
+const SlideDeckPod: FC<SlideDeckPodProps> = ({ album, interval }) => {
+  const { isPlaying } = useViews().state.status;
   const { status, deck, actions } = useSlides();
-  const interval = appSettings.slideDuration;
 
   // Custom interval hook
   useSliderval({
-    callback: actions.toNext,
-    interval: status.isPlaying ? interval : null,
+    callback: () => actions.toNext({ album }),
+    interval: isPlaying ? interval : null,
     onError: (err) => {
       logger.error(err);
       actions.setError('Interval error');
@@ -21,15 +28,16 @@ const SlideDeckPod: FC = () => {
 
   // Advance slide on unmount
   useEffect(() => {
-    return () => actions.toNext();
+    return () => actions.toNext({ album });
   }, []);
 
   // No slide data
-  if (!deck.curr) return <div />;
+  const currIndex = deck[album].currIndex;
+  const currSlide = deck[album].curr;
+  if (!currSlide) return <div />;
 
   // Prepare UI data
-  const currSlide = deck.curr;
-  const countLabel = `${deck.currIndex + 1} / ${deck.total}`;
+  const countLabel = `${deck[album].currIndex + 1} / ${deck.total}`;
   const isVertical = currSlide.height > currSlide.width;
 
   // Image style properties
@@ -43,9 +51,10 @@ const SlideDeckPod: FC = () => {
       slide={currSlide}
       sxImage={sxImage}
       countLabel={countLabel}
-      currIndex={deck.currIndex}
+      currIndex={currIndex}
       isLoading={status.isLoading}
-      isPlaying={status.isPlaying}
+      isPlaying={isPlaying}
+      interval={interval}
     />
   );
 };
