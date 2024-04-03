@@ -1,1 +1,1 @@
-export { default } from './ViewManagerPod';
+export { default } from './ViewManager';

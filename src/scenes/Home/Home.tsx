@@ -1,3 +1,5 @@
+import { ViewsProvider } from '@contexts/ViewsContext';
+import { SlidesProvider } from '@contexts/SlidesContext';
 import { useNavigate } from 'react-router-dom';
 
 import ViewManager from './ViewManager';
@@ -12,7 +14,11 @@ const Home = () => {
 
   return (
     <div className={sy.edge}>
-      <ViewManager />
+      <ViewsProvider>
+        <SlidesProvider>
+          <ViewManager />
+        </SlidesProvider>
+      </ViewsProvider>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from 'react';
-import { viewDurations, Views } from '../ViewManagerPod';
+import { Views } from '@stypes/View.types';
+import { viewDurations } from '@contexts/ViewsContext';
 import sy from './ViewProgress.scss';
 
 type ViewProgressProps = {

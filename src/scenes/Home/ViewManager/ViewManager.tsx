@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
 import { Navigate } from 'react-router-dom';
-import { SlidesProvider } from '@contexts/SlidesContext';
 import { Button } from '@components/action';
 import { Icon } from '@components/legos';
-import { Views } from './ViewManagerPod';
+import { Views } from '@stypes/View.types';
+import useViews from '@hooks/use-views';
 import sy from './ViewManager.scss';
 import ViewProgress from './ViewProgress';
 
@@ -14,18 +14,13 @@ import VerticalsView from '../VerticalsView';
 import CalloutView from '../CalloutView';
 import FeaturesView from '../FeaturesView';
 
-type ViewManagerProps = {
-  view: string | null;
-  isPlaying: boolean;
-  togglePlay: () => void;
-};
+const ViewManager: FC = () => {
+  const { state, actions } = useViews();
 
-const ViewManager: FC<ViewManagerProps> = (props) => {
-  const { view, isPlaying, togglePlay } = props;
-  const modeIcon = isPlaying ? 'pause' : 'play';
+  if (!state.view) return null;
 
   const jsxView = (() => {
-    switch (view) {
+    switch (state.view) {
       case Views.HELLO:
         return <HelloView />;
       case Views.STANDARDS:
@@ -43,10 +38,10 @@ const ViewManager: FC<ViewManagerProps> = (props) => {
     }
   })();
 
-  if (!view) return null;
+  const modeIcon = state.status.isPlaying ? 'pause' : 'play';
 
   return (
-    <SlidesProvider>
+    <Fragment>
       <div className={sy.view}>{jsxView}</div>
       <div className={sy.controls}>
         <div className={sy.controls_status}>
@@ -54,15 +49,15 @@ const ViewManager: FC<ViewManagerProps> = (props) => {
             <Icon name={modeIcon} />
           </div>
           <div className={sy.controls_col}>
-            {isPlaying && <ViewProgress view={view} />}
+            {state.status.isPlaying && <ViewProgress view={state.view} />}
           </div>
           <div className={sy.controls_col}>&nbsp;</div>
         </div>
         <div className={sy.controls_actions}>
-          <Button click={togglePlay}>Play/Pause</Button>
+          <Button click={actions.toggleMode}>Play/Pause</Button>
         </div>
       </div>
-    </SlidesProvider>
+    </Fragment>
   );
 };
 
