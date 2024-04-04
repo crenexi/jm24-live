@@ -19,12 +19,12 @@ const defaultSettings: AppSettings = {
   logLevel: environment.logLevel,
   debug: environment.debug,
   views: {
-    [View.HELLO]: { interval: 30_000 },
-    [View.STANDARDS]: { interval: 60_000 },
-    [View.WISHES]: { interval: 60_000 },
-    [View.VERTICALS]: { interval: 60_000 },
-    [View.CALLOUT]: { interval: 60_000 },
-    [View.FEATURES]: { interval: 60_000 },
+    [View.HELLO]: { interval: 19_500 },
+    [View.STANDARDS]: { interval: 19_500 },
+    [View.WISHES]: { interval: 19_500 },
+    [View.VERTICALS]: { interval: 19_500 },
+    [View.CALLOUT]: { interval: 19_500 },
+    [View.FEATURES]: { interval: 19_500 },
   },
   albums: {
     [Album.STANDARDS]: { interval: 10_000 },

@@ -8,8 +8,9 @@ type ViewProgressProps = {
 };
 
 const ViewProgress: FC<ViewProgressProps> = ({ view }) => {
+  const TEN_SEC = 10_000;
   const totalDuration = appSettings.views[view].interval;
-  const incrementAmount = 100 / (totalDuration / 10);
+  const incrementAmount = 100 / (totalDuration / TEN_SEC);
 
   const [key, setKey] = useState(0);
   const [barPercent, setBarPercent] = useState(0);
@@ -22,10 +23,10 @@ const ViewProgress: FC<ViewProgressProps> = ({ view }) => {
         const newPercent = prevPercent + incrementAmount;
         return newPercent > 100 ? 100 : newPercent;
       });
-    }, 10_000);
+    }, TEN_SEC);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [incrementAmount]);
 
   // Reset on view change
   useEffect(() => {
