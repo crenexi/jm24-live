@@ -3,6 +3,7 @@
 $controlHeight: 6rem;
 $statusHeight: 2rem;
 $transformBy: $controlHeight - $statusHeight;
+$border: 1px solid rgba(255, 255, 255, .07);
 
 .view, .controls {
   width: 100%;
@@ -14,6 +15,8 @@ $transformBy: $controlHeight - $statusHeight;
   height: calc(100vh - #{$statusHeight});
 }
 
+// Bottom control panel
+
 .controls {
   display: flex;
   flex-direction: column;
@@ -23,7 +26,7 @@ $transformBy: $controlHeight - $statusHeight;
   background-color: #000;
   transition-duration: 100ms;
   transform: translateY(0);
-  opacity: .15;
+  opacity: .2;
 
   &:hover {
     transform: translateY(-#{$transformBy});
@@ -33,18 +36,43 @@ $transformBy: $controlHeight - $statusHeight;
 }
 
 .controls_col {
-  @include flexy(column, center, stretch);
-  padding: 0 sp(sm2);
+  @include flexy(row, center, center);
+  height: $statusHeight;
+  padding: 0 sp(sm1);
+  overflow: hidden;
 }
+
+// Control rows
 
 .controls_status {
   @include grid-n(3, sp(md1));
   height: $statusHeight;
+  border-top: $border;
 }
 
 .controls_actions {
   flex: 1 1 0%;
   padding: 0 sp(sm3);
-  border-top: 1px solid rgba(255, 255, 255, .07);
+  border-top: $border;
   @include flexy(row, center, center);
+}
+
+// Control item containers
+
+.controls_item:not(:first-child) {
+  margin-left: sp(sm2);
+  padding-left: sp(sm2);
+  border-left: $border;
+}
+
+// Control elements
+
+.controls_errorHint {
+  @include flexy(row, center, center);
+}
+
+.controls_errorText {
+  max-width: 20rem;
+  @include truncate();
+  font-size: .85rem;
 }

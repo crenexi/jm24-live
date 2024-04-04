@@ -2,6 +2,7 @@ import { FC, Fragment } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Button } from '@components/action';
 import { Icon } from '@components/legos';
+import { Loading } from '@components/feedback';
 import { View } from '@stypes/View.types';
 import useViews from '@hooks/use-views';
 import sy from './ViewManager.scss';
@@ -16,6 +17,7 @@ import FeaturesView from '../FeaturesView';
 
 const ViewManager: FC = () => {
   const { state, actions } = useViews();
+  const { error, isLoading, isPlaying } = state.status;
 
   if (!state.view) return null;
 
@@ -38,23 +40,42 @@ const ViewManager: FC = () => {
     }
   })();
 
-  const modeIcon = state.status.isPlaying ? 'pause' : 'play';
-
   return (
     <Fragment>
       <div className={sy.view}>{jsxView}</div>
       <div className={sy.controls}>
         <div className={sy.controls_status}>
           <div className={sy.controls_col}>
-            <Icon name={modeIcon} />
+            <Icon name={isPlaying ? 'pause' : 'play'} />
           </div>
           <div className={sy.controls_col}>
-            {state.status.isPlaying && <ViewProgress view={state.view} />}
+            {isPlaying && <ViewProgress view={state.view} />}
           </div>
-          <div className={sy.controls_col}>&nbsp;</div>
+          <div className={sy.controls_col}>
+            <div className={sy.controls_item}>
+              {isLoading && <Loading size="sm" />}
+            </div>
+            <div className={sy.controls_item}>
+              {error && (
+                <div className={sy.controls_errorHint}>
+                  <Icon name="triangle-exclamation" />
+                  <span>&nbsp;Error</span>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         <div className={sy.controls_actions}>
-          <Button click={actions.toggleMode}>Play/Pause</Button>
+          <div className={sy.controls_item}>
+            <Button click={actions.toggleMode}>Play/Pause</Button>
+          </div>
+          <div className={sy.controls_item}>
+            {error && (
+              <div className={sy.controls_errorText}>
+                ERROR: {error.message}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </Fragment>
