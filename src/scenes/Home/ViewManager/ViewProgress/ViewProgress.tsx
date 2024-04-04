@@ -1,14 +1,14 @@
 import { FC, useState, useEffect } from 'react';
 import { View } from '@stypes/View.types';
-import { viewDurations } from '@contexts/ViewsContext';
+import appSettings from '@config/app-settings';
 import sy from './ViewProgress.scss';
 
 type ViewProgressProps = {
-  view: string;
+  view: View;
 };
 
 const ViewProgress: FC<ViewProgressProps> = ({ view }) => {
-  const totalDuration = viewDurations[view as View] / 1000;
+  const totalDuration = appSettings.views[view].interval;
   const incrementAmount = 100 / (totalDuration / 10);
 
   const [key, setKey] = useState(0);

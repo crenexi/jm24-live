@@ -1,1 +1,1 @@
-export { default, ViewsProvider, viewDurations } from './ViewsContext';
+export { default, ViewsProvider } from './ViewsContext';

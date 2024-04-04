@@ -1,1 +1,1 @@
-export { default } from './FeaturesView';
+export { default } from './FeaturesViewPod';

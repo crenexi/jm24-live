@@ -1,15 +1,7 @@
 import { ReactNode as Node, FC, useEffect, useState, createContext } from 'react'; // prettier-ignore
 import { View, ContextState, ContextValue } from '@stypes/View.types';
+import appSettings from '@config/app-settings';
 import useQueryParam from '@hooks/use-query-param';
-
-export const viewDurations = {
-  [View.HELLO]: 15_000, // TODO: set to 55 seconds
-  [View.STANDARDS]: 15_000, // TODO: set to 90 seconds (30-sec swaps)
-  [View.WISHES]: 15_000, // TODO: set to 65 seconds
-  [View.VERTICALS]: 15_000, // TODO: set to 90 seconds (30-sec swaps)
-  [View.CALLOUT]: 15_000, // TODO: set to 45 seconds
-  [View.FEATURES]: 15_000, // TODO: set to 75 seconds
-};
 
 // Default state
 export const defaultState: ContextState = {
@@ -28,6 +20,7 @@ const ViewsContext = createContext<ContextValue | undefined>(undefined);
 export const ViewsProvider: FC<{ children: Node }> = ({ children }) => {
   const [state, setState] = useState<ContextState>(defaultState);
   const [viewParam, setViewParam] = useQueryParam('view');
+  const interval = appSettings.views[state.view].interval;
 
   // View param changes
   useEffect(() => {
@@ -51,7 +44,7 @@ export const ViewsProvider: FC<{ children: Node }> = ({ children }) => {
         const nextView = getNextView(state.view);
         setViewParam(nextView);
         setState((prevState) => ({ ...prevState, view: nextView }));
-      }, viewDurations[state.view]);
+      }, interval);
     }
 
     return () => clearTimeout(timeout);

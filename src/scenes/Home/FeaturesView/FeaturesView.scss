@@ -1,16 +1,79 @@
 @use '@sutils' as *;
 
 .edge {
-  @include fade('in', 3, 0, both);
+  @include flexy(column, start, start);
   @include size(100%);
+  padding: 0 sp(sm3);
 }
 
-// Main area
+.header,
+.footer {
+  width: 100%;
+  height: 5vh;
+  @include grid-n(3, sp(md1));
+  place-items: center;
+}
+
+// Header
+
+.header {
+  @include flexy(column, center, stretch);
+}
+
+.header_desc {
+  width: 100%;
+  padding: 0 sp(md1);
+  font-size: 1.1rem;
+  text-align: center;
+  @include truncate();
+}
+
+// Footer
+
+.footer {
+  font-size: 1rem;
+}
+
+.footer_counts {
+  @include flexy(column, center, stretch);
+  padding-right: sp(sm3);
+  text-align: left;
+}
+
+.footer_status {
+  @include flexy(column, center, stretch);
+  padding-left: sp(sm3);
+  text-align: right;
+  font-size: .9rem;
+  color: co(neutral, n500);
+}
+
+// Image
 
 .main {
-  position: relative;
-  z-index: 99;
-  height: 100%;
-  display: grid;
-  grid-template-columns: auto;
+  width: 100%;
+  flex-grow: 1;
+  background-color: co(neutral, n800);
+  border-radius: radius(r2);
+  overflow: hidden;
+}
+
+.image {
+  @include size(100%);
+  @include flexy(column, stretch, center);
+  padding: sp(sm5);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.image_gap {
+  flex: 1 1 0%;
+}
+
+.image_date {
+  font-size: 1rem;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0,0,0,0.8), 1px 1px 5px rgba(0,0,0,0.5), -1px -1px 5px rgba(0,0,0,0.5);
+  text-transform: uppercase;
 }
