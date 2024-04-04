@@ -2,15 +2,15 @@ import { FC, useState, useEffect } from 'react';
 import sy from './SlideProgress.scss';
 
 type SlideProgressProps = {
-  currIndex: number;
+  slideId: string;
   duration: number;
 };
 
-const SlideProgress: FC<SlideProgressProps> = ({ currIndex, duration }) => {
+const SlideProgress: FC<SlideProgressProps> = ({ slideId, duration }) => {
   const [key, setKey] = useState(0);
 
   // Remount to restart animation
-  useEffect(() => setKey((prevKey) => prevKey + 1), [currIndex]);
+  useEffect(() => setKey((prevKey) => prevKey + 1), [slideId]);
 
   const sxBar = {
     animationDuration: `${duration}ms`,

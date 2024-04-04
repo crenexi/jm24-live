@@ -1,11 +1,11 @@
 import { FC, useEffect } from 'react';
-import appSettings from '@config/app-settings';
 import logger from '@services/logger';
 import useViews from '@hooks/use-views';
 import useSlides from '@hooks/use-slides';
 import useSliderval from '@hooks/use-sliderval';
-import { Album } from '@stypes/Slide.types';
-import SlideDeck from './SlideDeck';
+import { LoadingBlock } from '@components/feedback';
+import { Album, Slide } from '@stypes/Slide.types';
+import SlideDeck, { SlideDeckData } from './SlideDeck';
 
 type SlideDeckPodProps = {
   album: Album;
@@ -13,50 +13,41 @@ type SlideDeckPodProps = {
 };
 
 const SlideDeckPod: FC<SlideDeckPodProps> = ({ album, interval }) => {
-  const { isPlaying } = useViews().state.status;
-  const { status, deck, actions } = useSlides();
+  const viewsStatus = useViews().state.status;
+  const { status, decks, actions } = useSlides();
+  const deck = decks[album];
 
-  // Custom interval hook
-  useSliderval({
-    callback: () => actions.toNext({ album }),
-    interval: isPlaying ? interval : null,
-    onError: (err) => {
-      logger.error(err);
-      actions.setError('Interval error');
-    },
-  });
-
-  // Advance slide on unmount
+  // On unmount, advance to the next slide
   useEffect(() => {
     return () => actions.toNext({ album });
   }, []);
 
+  // Loading state
+  if (status.isLoading) return <LoadingBlock />;
+
   // No slide data
-  const currIndex = deck[album].currIndex;
-  const currSlide = deck[album].curr;
-  if (!currSlide) return <div />;
+  if (!deck.curr) return null;
 
-  // Prepare UI data
-  const countLabel = `${deck[album].currIndex + 1} / ${deck.total}`;
-  const isVertical = currSlide.height > currSlide.width;
+  // Custom interval hook
+  // useSliderval({
+  //   callback: () => actions.toNext({ album }),
+  //   interval: isPlaying ? interval : null,
+  //   onError: (err) => {
+  //     logger.error(err);
+  //     actions.setError('Interval error');
+  //   },
+  // });
 
-  // Image style properties
-  const sxImage = {
-    backgroundImage: `url('${currSlide.url}')`,
-    backgroundSize: isVertical ? 'contain' : 'cover',
+  const deckData: SlideDeckData = {
+    interval,
+    slide: deck.curr,
+    index: deck.currIndex + 1,
+    total: deck.total,
+    isPlaying: viewsStatus.isPlaying,
+    isVertical: deck.curr.height > deck.curr.width,
   };
 
-  return (
-    <SlideDeck
-      slide={currSlide}
-      sxImage={sxImage}
-      countLabel={countLabel}
-      currIndex={currIndex}
-      isLoading={status.isLoading}
-      isPlaying={isPlaying}
-      interval={interval}
-    />
-  );
+  return <SlideDeck data={deckData} />;
 };
 
 export default SlideDeckPod;

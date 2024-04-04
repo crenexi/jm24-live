@@ -7,15 +7,14 @@ type SlidesReducer = (state: ContextState, action: Action) => ContextState;
 // Reducer
 const slidesReducer: SlidesReducer = (state, action) => {
   // Helper: update deck state based on index
-  const deckByIndex = (album: Album, i: number): Deck => {
-    const slidesData = state.slides[album];
-    const total = slidesData.length;
+  const deckByIndex = (slides: Slide[], i: number): Deck => {
+    const total = slides.length;
     return {
-      ...state.deck[album],
+      total,
       currIndex: i,
-      prev: slidesData[(i - 1 + total) % total],
-      curr: slidesData[i],
-      next: slidesData[(i + 1) % total],
+      prev: slides[(i - 1 + total) % total],
+      curr: slides[i],
+      next: slides[(i + 1) % total],
     };
   };
 
@@ -24,7 +23,7 @@ const slidesReducer: SlidesReducer = (state, action) => {
     ...state,
     slides: { ...state.slides, [album]: slides },
     status: { ...state.status, isFetching: false },
-    deck: { ...state.deck, [album]: deckByIndex(album, 0) },
+    decks: { ...state.decks, [album]: deckByIndex(slides, 0) },
   });
 
   // Actions
@@ -69,30 +68,30 @@ const slidesReducer: SlidesReducer = (state, action) => {
     // To next slide
     case ActionTypes.TO_NEXT: {
       const { album } = action.payload;
-      const currIndex = state.deck[album].currIndex;
+      const currIndex = state.decks[album].currIndex;
       const total = state.slides[album].length;
       const i = (currIndex + 1) % total;
 
       return {
         ...state,
-        deck: {
-          ...state.deck,
-          [album]: deckByIndex(album, i),
+        decks: {
+          ...state.decks,
+          [album]: deckByIndex(state.slides[album], i),
         },
       };
     }
     // To previous slide
     case ActionTypes.TO_PREV: {
       const { album } = action.payload;
-      const currIndex = state.deck[album].currIndex;
+      const currIndex = state.decks[album].currIndex;
       const total = state.slides[album].length;
       const i = (currIndex - 1 + total) % total;
 
       return {
         ...state,
-        deck: {
-          ...state.deck,
-          [album]: deckByIndex(album, i),
+        decks: {
+          ...state.decks,
+          [album]: deckByIndex(state.slides[album], i),
         },
       };
     }

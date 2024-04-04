@@ -53,7 +53,7 @@ export type Deck = {
 export type ContextState = {
   status: Status;
   slides: Record<string, Slide[]>;
-  deck: Record<string, Deck>;
+  decks: Record<string, Deck>;
 };
 
 // Context value

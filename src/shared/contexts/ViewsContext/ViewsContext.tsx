@@ -15,10 +15,7 @@ export const viewDurations = {
 export const defaultState: ContextState = {
   view: View.HELLO,
   status: {
-    error: {
-      message:
-        'alsjd lkajdslf jasldf jasdjf lkajsdlkfjalksjdlkf alsdlfa;lksjdflkjalksdjf ;lkajsd;lkjaf lkjdslkfja lksjdf lkasjd lkfjaslkd jf;lksajfd',
-    },
+    error: null,
     isLoading: true,
     isPlaying: false,
   },
@@ -40,7 +37,7 @@ export const ViewsProvider: FC<{ children: Node }> = ({ children }) => {
       setState((prevState) => ({
         ...prevState,
         view: newView,
-        status: { ...prevState.status, isLoading: true },
+        status: { ...prevState.status, isLoading: false },
       }));
     }
   }, [viewParam]);

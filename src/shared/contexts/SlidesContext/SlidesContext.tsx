@@ -25,7 +25,7 @@ export const defaultState: ContextState = {
     [Album.VERTICALS]: [],
     [Album.FEATURES]: [],
   },
-  deck: {
+  decks: {
     [Album.STANDARDS]: { ...defaultDeck },
     [Album.VERTICALS]: { ...defaultDeck },
     [Album.FEATURES]: { ...defaultDeck },
@@ -56,7 +56,9 @@ export const SlidesProvider: FC<{ children: Node }> = ({ children }) => {
 
     // Fetch all albums and set loading/error accordingly
     Promise.all(fetchAllSlides)
-      .then(() => dispatch(setLoadingAction(false)))
+      .then(() => {
+        dispatch(setLoadingAction(false));
+      })
       .catch((err) => {
         logger.error(err);
         dispatch(setErrorAction(`Failed to fetch slides.`));

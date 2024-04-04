@@ -1,21 +1,16 @@
 import { FC } from 'react';
-import { LoadingBlock } from '@components/feedback';
-// import SlideDeck from './SlideDeck';
+import { Album } from '@stypes/Slide.types';
+import { SlideDeck } from '@components/slides';
 import sy from './FeaturesView.scss';
 
-type FeaturesViewProps = {
-  isReady: boolean;
-};
+const interval = 5_000;
 
-const FeaturesView: FC<FeaturesViewProps> = (props) => {
-  const { isReady } = props;
-
-  // Loading
-  if (!isReady) return <LoadingBlock />;
-
+const FeaturesView: FC = () => {
   return (
     <div className={sy.edge}>
-      <div className={sy.main}>TODO</div>
+      <div className={sy.main}>
+        <SlideDeck album={Album.FEATURES} interval={interval} />
+      </div>
     </div>
   );
 };

@@ -10,8 +10,8 @@ type SlideControlProps = {
 };
 
 const SlideControl: FC<SlideControlProps> = ({ album, onClose }) => {
-  const { status, deck, actions } = useSlides();
-  const albumDeck = deck[album];
+  const { status, decks, actions } = useSlides();
+  const albumDeck = decks[album];
 
   const errText = status.error?.message || 'NULL';
   const isFetching = String(status.isFetching);
