@@ -1,16 +1,54 @@
-import { FC, useState, useEffect } from 'react';
-// import logger from '@services/logger';
+import { FC, useEffect } from 'react';
+import appSettings from '@config/app-settings';
+import logger from '@services/logger';
+// import { relativeTime } from '@helpers/index';
+import { Album } from '@stypes/Slide.types';
+import useViews from '@hooks/use-views';
+import useSlides from '@hooks/use-slides';
+import useSliderval from '@hooks/use-sliderval';
+import { LoadingBlock } from '@components/feedback';
 import StandardsView from './StandardsView';
 
 const StandardsViewPod: FC = () => {
-  const [isReady, setIsReady] = useState<boolean>(false);
+  const album = Album.STANDARDS;
+  const { interval } = appSettings.albums[album];
 
-  // Loading
+  const viewsStatus = useViews().state.status;
+  const { status, decks, actions } = useSlides();
+  const deck = decks[album];
+
+  // On unmount, advance to the next slide
   useEffect(() => {
-    setIsReady(true);
+    return () => actions.toNext({ album });
   }, []);
 
-  return <StandardsView isReady={isReady} />;
+  // Custom interval hook
+  // useSliderval({
+  //   callback: () => actions.toNext({ album }),
+  //   interval: viewsStatus.isPlaying ? interval : null,
+  //   onError: (err) => {
+  //     logger.error(err);
+  //     actions.setError(`Interval error. ${err?.message}`);
+  //   },
+  // });
+  // No slide data
+
+  if (!deck.groupCurr.length) return null;
+  const currSlides = deck.groupCurr.slice(0, 4);
+
+  // Loading state
+  if (status.isLoading) return <LoadingBlock />;
+
+  return (
+    <StandardsView
+      slides={currSlides}
+      index={deck.groupIndex + 1}
+      total={deck.groupCount}
+      interval={interval}
+      isPlaying={viewsStatus.isPlaying}
+      isFetching={status.isFetching}
+    />
+  );
 };
 
 export default StandardsViewPod;

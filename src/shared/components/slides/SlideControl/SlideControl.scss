@@ -2,6 +2,7 @@
 
 .edge {
   @include position(absolute, null sp(sm5) sp(sm5) null);
+  z-index: 110;
   @include flexy(row, center, center);
   padding: sp(sm5);
   background-color: rgba(0, 0, 0, .65);
