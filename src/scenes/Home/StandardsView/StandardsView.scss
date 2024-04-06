@@ -1,16 +1,17 @@
 @use '@sutils' as *;
 
-.edge {
-  @include fade('in', 3, 0, both);
+.header {
+  @include flexy(column, center, center);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: sp(sm4);
   @include size(100%);
 }
 
-// Main area
-
-.main {
+.grid_item {
   position: relative;
-  z-index: 99;
-  height: 100%;
-  display: grid;
-  grid-template-columns: auto;
 }

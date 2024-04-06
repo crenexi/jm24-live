@@ -1,14 +1,14 @@
 @use '@sutils' as *;
 
 .edge {
-  @include position(absolute, null sp(sm5) sp(sm5) null);
+  @include position(absolute, null sp(sm4) sp(sm4) null);
   z-index: 110;
   @include flexy(row, center, center);
-  padding: sp(sm5);
-  background-color: rgba(0, 0, 0, .65);
+  padding: sp(sm4);
+  background-color: rgba(0, 0, 0, .7);
   border-radius: radius(r3);
 
   > button:not(:first-child) {
-    margin-left: sp(sm5);
+    margin-left: sp(sm4);
   }
 }

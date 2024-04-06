@@ -1,7 +1,6 @@
-import { FC, CSSProperties, useState, useEffect } from 'react';
-import classNames from 'classnames';
+import { FC } from 'react';
 import { Album, Slide } from '@stypes/Slide.types';
-import { SlideProgress, SlideControl, SlideFrame } from '@components/slides';
+import { SlideProgress, SlideFrame, SlideImage } from '@components/slides';
 import sy from './StandardsView.scss';
 
 type StandardsViewProps = {
@@ -25,16 +24,19 @@ const StandardsView: FC<StandardsViewProps> = (props) => {
       counts={counts}
       isFetching={isFetching}
       isPlaying={isPlaying}
-      header={<div>HEADER</div>}
+      header={
+        <div className={sy.header}>
+          {isPlaying && <SlideProgress index={index} duration={interval} />}
+        </div>
+      }
     >
       <div className={sy.grid}>
         {slides.map((slide) => (
           <div key={slide.id} className={sy.grid_item}>
-            {slide.id}
+            <SlideImage slide={slide} />
           </div>
         ))}
       </div>
-      {isPlaying && <SlideProgress index={index} duration={interval} />}
     </SlideFrame>
   );
 };

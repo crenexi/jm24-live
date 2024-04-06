@@ -1,0 +1,30 @@
+@use '@sutils' as *;
+
+.imageBox, .imageBox_canvas {
+  position: relative;
+  @include size(100%);
+}
+
+.imageBox {
+  background-color: co(neutral, n800);
+  border-radius: radius(r2);
+  overflow: hidden;
+}
+
+.imageBox_canvas {
+  z-index: 100;
+  @include flexy(column, stretch, center);
+  padding: sp(sm3);
+}
+
+.img {
+  @include position(absolute, 0 0 0 0);
+  @include size(100%);
+  object-fit: cover;
+  opacity: 0;
+
+  &__loaded {
+    @include fade('in', 2, 1, both);
+    opacity: 1;
+  }
+}
