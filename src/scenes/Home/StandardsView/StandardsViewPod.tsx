@@ -1,7 +1,6 @@
 import { FC, useEffect } from 'react';
 import appSettings from '@config/app-settings';
 import logger from '@services/logger';
-// import { relativeTime } from '@helpers/index';
 import { Album } from '@stypes/Slide.types';
 import useViews from '@hooks/use-views';
 import useSlides from '@hooks/use-slides';
@@ -23,16 +22,16 @@ const StandardsViewPod: FC = () => {
   }, []);
 
   // Custom interval hook
-  // useSliderval({
-  //   callback: () => actions.toNext({ album }),
-  //   interval: viewsStatus.isPlaying ? interval : null,
-  //   onError: (err) => {
-  //     logger.error(err);
-  //     actions.setError(`Interval error. ${err?.message}`);
-  //   },
-  // });
-  // No slide data
+  useSliderval({
+    callback: () => actions.toNext({ album }),
+    interval: viewsStatus.isPlaying ? interval : null,
+    onError: (err) => {
+      logger.error(err);
+      actions.setError(`Interval error. ${err?.message}`);
+    },
+  });
 
+  // No slide data
   if (!deck.groupCurr.length) return null;
   const currSlides = deck.groupCurr.slice(0, 4);
 

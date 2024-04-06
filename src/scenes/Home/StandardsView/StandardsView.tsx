@@ -29,9 +29,12 @@ const StandardsView: FC<StandardsViewProps> = (props) => {
     >
       <div className={sy.grid}>
         {slides.map((slide) => (
-          <div className={sy.grid_item}>{slide.id}</div>
+          <div key={slide.id} className={sy.grid_item}>
+            {slide.id}
+          </div>
         ))}
       </div>
+      {isPlaying && <SlideProgress index={index} duration={interval} />}
     </SlideFrame>
   );
 };

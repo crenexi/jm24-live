@@ -51,9 +51,7 @@ const FeaturesView: FC<FeaturesViewProps> = (props) => {
             onLoad={handleImageLoad}
             style={sxImage}
           />
-          {isPlaying && (
-            <SlideProgress slideId={slide.id} duration={interval} />
-          )}
+          {isPlaying && <SlideProgress index={index} duration={interval} />}
           <div className={sy.image_gap} />
           <div className={sy.image_date}>{timeAgo}</div>
         </div>
