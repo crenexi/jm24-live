@@ -3,7 +3,7 @@
 .edge {
   @include flexy(column, start, start);
   @include size(100%);
-  padding: 0 sp(sm3);
+  padding: 0 sp(sm4);
 }
 
 .header,
@@ -51,6 +51,7 @@
 // Image
 
 .main {
+  position: relative;
   width: 100%;
   flex-grow: 1;
   background-color: co(neutral, n800);
@@ -58,13 +59,24 @@
   overflow: hidden;
 }
 
-.image {
+.main_inner {
+  position: relative;
+  z-index: 99;
   @include size(100%);
   @include flexy(column, stretch, center);
   padding: sp(sm5);
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
+}
+
+.image {
+  @include position(absolute, 0 0 0 0);
+  @include size(100%);
+  object-fit: cover;
+  opacity: 0;
+
+  &__loaded {
+    @include fade('in', 3, 1, both);
+    opacity: 1;
+  }
 }
 
 .image_gap {
@@ -74,6 +86,6 @@
 .image_date {
   font-size: 1rem;
   font-weight: 600;
-  text-shadow: 0 0 5px rgba(0,0,0,0.8), 1px 1px 5px rgba(0,0,0,0.5), -1px -1px 5px rgba(0,0,0,0.5);
+  text-shadow: 0 0 5px rgba(0,0,0,0.7), 1px 1px 10px rgba(0,0,0,0.5), -1px -1px 15px rgba(0,0,0,0.3);
   text-transform: uppercase;
 }

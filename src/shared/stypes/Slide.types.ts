@@ -42,11 +42,11 @@ export type Status = {
 
 // State: deck
 export type Deck = {
-  total: number;
-  currIndex: number;
-  prev: Slide | null;
-  curr: Slide | null;
-  next: Slide | null;
+  groupCount: number;
+  groupIndex: number;
+  groupPrev: Slide[];
+  groupCurr: Slide[];
+  groupNext: Slide[];
 };
 
 // Context state

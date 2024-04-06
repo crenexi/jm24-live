@@ -7,11 +7,11 @@ import slidesReducer from './slides-reducer';
 import fakeSlides from './fake-slides';
 
 const defaultDeck = {
-  total: 0,
-  currIndex: 0,
-  prev: null,
-  curr: null,
-  next: null,
+  groupCount: 0,
+  groupIndex: 0,
+  groupPrev: [],
+  groupCurr: [],
+  groupNext: [],
 };
 
 export const defaultState: ContextState = {

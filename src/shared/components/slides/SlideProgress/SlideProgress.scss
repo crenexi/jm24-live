@@ -7,14 +7,14 @@
 .edge {
   position: relative;
   overflow: hidden;
-  @include size(5rem, 3px);
-  background-color: rgba(255, 255, 255, .3);
+  @include size(4rem, 5px);
+  background-color: rgba(0, 0, 0, .2);
 }
 
 .bar {
   @include position(absolute, 0 null null 0);
   @include size(100%);
-  background-color: rgba(255, 255, 255, .7);
+  background-color: rgba(255, 255, 255, .8);
   transform: scaleX(0);
   transform-origin: left center;
   animation: fillBar linear forwards;

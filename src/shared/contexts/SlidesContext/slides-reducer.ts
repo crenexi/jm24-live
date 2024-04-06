@@ -1,32 +1,13 @@
 import { ActionTypes } from './actions';
-import { Action, ContextState, Slide, Deck, Album } from '@stypes/Slide.types'; // prettier-ignore
+import { Album } from '@stypes/Slide.types';
+import { Action, ContextState } from '@stypes/Slide.types';
+import { deckByIndex, albumGroupSize } from './helpers';
 import { defaultState } from './SlidesContext';
 
 type SlidesReducer = (state: ContextState, action: Action) => ContextState;
 
 // Reducer
 const slidesReducer: SlidesReducer = (state, action) => {
-  // Helper: update deck state based on index
-  const deckByIndex = (slides: Slide[], i: number): Deck => {
-    const total = slides.length;
-    return {
-      total,
-      currIndex: i,
-      prev: slides[(i - 1 + total) % total],
-      curr: slides[i],
-      next: slides[(i + 1) % total],
-    };
-  };
-
-  // Helper: set slides
-  const stateWithNewSlides = (album: Album, slides: Slide[]): ContextState => ({
-    ...state,
-    slides: { ...state.slides, [album]: slides },
-    status: { ...state.status, isFetching: false },
-    decks: { ...state.decks, [album]: deckByIndex(slides, 0) },
-  });
-
-  // Actions
   switch (action.type) {
     // Set error message
     case ActionTypes.SET_ERROR: {
@@ -63,41 +44,77 @@ const slidesReducer: SlidesReducer = (state, action) => {
     // Set slides data
     case ActionTypes.SET_SLIDES: {
       const { album, slides } = action.payload;
-      return stateWithNewSlides(album, slides);
+      const groupSize = albumGroupSize(album);
+      const deck = deckByIndex({ slides, groupSize, groupIndex: 0 });
+
+      return {
+        ...state,
+        slides: { ...state.slides, [album]: slides },
+        status: { ...state.status, isFetching: false },
+        decks: { ...state.decks, [album]: deck },
+      };
     }
     // To next slide
     case ActionTypes.TO_NEXT: {
       const { album } = action.payload;
-      const currIndex = state.decks[album].currIndex;
-      const total = state.slides[album].length;
-      const i = (currIndex + 1) % total;
+      const slides = state.slides[album];
+      const groupCount = state.decks[album].groupCount;
+      const groupIndex = state.decks[album].groupIndex;
+      const i = (groupIndex + 1) % groupCount;
+
+      const groupSize = albumGroupSize(album);
+      const deck = deckByIndex({ slides, groupSize, groupIndex: i });
 
       return {
         ...state,
-        decks: {
-          ...state.decks,
-          [album]: deckByIndex(state.slides[album], i),
-        },
+        decks: { ...state.decks, [album]: deck },
       };
     }
     // To previous slide
     case ActionTypes.TO_PREV: {
       const { album } = action.payload;
-      const currIndex = state.decks[album].currIndex;
-      const total = state.slides[album].length;
-      const i = (currIndex - 1 + total) % total;
+      const slides = state.slides[album];
+      const groupCount = state.decks[album].groupCount;
+      const groupIndex = state.decks[album].groupIndex;
+      const i = (groupIndex - 1 + groupCount) % groupCount;
+
+      const groupSize = albumGroupSize(album);
+      const deck = deckByIndex({ slides, groupSize, groupIndex: i });
 
       return {
         ...state,
-        decks: {
-          ...state.decks,
-          [album]: deckByIndex(state.slides[album], i),
-        },
+        decks: { ...state.decks, [album]: deck },
       };
     }
     // Restart to defaults
     case ActionTypes.RESTART:
-      return { ...defaultState };
+      const { STANDARDS, VERTICALS, FEATURES } = Album;
+
+      return {
+        ...defaultState,
+        status: {
+          ...defaultState.status,
+          isLoading: false,
+        },
+        slides: { ...state.slides },
+        decks: {
+          [STANDARDS]: deckByIndex({
+            slides: state.slides[STANDARDS],
+            groupSize: albumGroupSize(STANDARDS),
+            groupIndex: 0,
+          }),
+          [VERTICALS]: deckByIndex({
+            slides: state.slides[VERTICALS],
+            groupSize: albumGroupSize(VERTICALS),
+            groupIndex: 0,
+          }),
+          [FEATURES]: deckByIndex({
+            slides: state.slides[FEATURES],
+            groupSize: albumGroupSize(FEATURES),
+            groupIndex: 0,
+          }),
+        },
+      };
     default:
       return state;
   }

@@ -32,6 +32,11 @@ export const ViewsProvider: FC<{ children: Node }> = ({ children }) => {
         view: newView,
         status: { ...prevState.status, isLoading: false },
       }));
+    } else {
+      setState((prevState) => ({
+        ...prevState,
+        status: { ...prevState.status, isLoading: false },
+      }));
     }
   }, [viewParam]);
 

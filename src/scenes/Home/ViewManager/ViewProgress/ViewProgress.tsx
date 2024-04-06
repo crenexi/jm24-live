@@ -26,7 +26,7 @@ const ViewProgress: FC<ViewProgressProps> = ({ view }) => {
     }, TEN_SEC);
 
     return () => clearInterval(interval);
-  }, [incrementAmount]);
+  }, [view, incrementAmount]);
 
   // Reset on view change
   useEffect(() => {

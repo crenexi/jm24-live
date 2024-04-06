@@ -28,7 +28,7 @@ const FeaturesViewPod: FC = () => {
     interval: viewsStatus.isPlaying ? interval : null,
     onError: (err) => {
       logger.error(err);
-      actions.setError('Interval error');
+      actions.setError(`Interval error. ${err?.message}`);
     },
   });
 
@@ -36,18 +36,19 @@ const FeaturesViewPod: FC = () => {
   if (status.isLoading) return <LoadingBlock />;
 
   // No slide data
-  if (!deck.curr) return null;
+  if (!deck.groupCurr.length) return null;
+  const currSlide = deck.groupCurr[0];
 
   return (
     <FeaturesView
-      slide={deck.curr}
-      timeAgo={relativeTime(deck.curr.creationTime)}
-      index={deck.currIndex + 1}
-      total={deck.total}
+      slide={currSlide}
+      timeAgo={relativeTime(currSlide.creationTime)}
+      index={deck.groupIndex + 1}
+      total={deck.groupCount}
       interval={interval}
       isPlaying={viewsStatus.isPlaying}
       isFetching={status.isFetching}
-      isVertical={deck.curr.height > deck.curr.width}
+      isVertical={currSlide.height > currSlide.width}
     />
   );
 };

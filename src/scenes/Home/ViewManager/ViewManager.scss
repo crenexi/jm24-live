@@ -27,6 +27,7 @@ $border: 1px solid rgba(255, 255, 255, .07);
   transition-duration: 100ms;
   transform: translateY(0);
   opacity: .2;
+  padding: 0 sp(sm4);
 
   &:hover {
     transform: translateY(-#{$transformBy});

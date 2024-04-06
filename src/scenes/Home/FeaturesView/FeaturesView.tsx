@@ -1,6 +1,7 @@
-import { FC } from 'react';
-import { Slide } from '@stypes/Slide.types';
-import { SlideProgress } from '@components/slides';
+import { FC, CSSProperties, useState, useEffect } from 'react';
+import classNames from 'classnames';
+import { Album, Slide } from '@stypes/Slide.types';
+import { SlideProgress, SlideControl } from '@components/slides';
 import sy from './FeaturesView.scss';
 
 export type FeaturesViewProps = {
@@ -15,13 +16,21 @@ export type FeaturesViewProps = {
 };
 
 const FeaturesView: FC<FeaturesViewProps> = (props) => {
+  const album = Album.FEATURES;
+
   const { slide, timeAgo, index, total, interval } = props;
   const { isPlaying, isVertical, isFetching } = props;
   const counts = `${index} / ${total}`;
 
-  const sxImage = {
-    backgroundImage: `url('${slide.url}')`,
-    backgroundSize: isVertical ? 'contain' : 'cover',
+  const sxImage: CSSProperties = {
+    objectFit: isVertical ? 'contain' : 'cover',
+  };
+
+  const [cnImg, setCnImage] = useState<string>(sy.image);
+  useEffect(() => setCnImage(sy.image), [slide.id]);
+
+  const handleImageLoad = () => {
+    setCnImage(classNames(sy.image, sy.image__loaded));
   };
 
   return (
@@ -30,12 +39,22 @@ const FeaturesView: FC<FeaturesViewProps> = (props) => {
         <div className={sy.header_desc}>{slide.description}</div>
       </div>
       <div className={sy.main}>
-        <div className={sy.image} style={sxImage}>
-          {isPlaying && (
-            <SlideProgress slideId={slide.id} duration={interval} />
-          )}
+        <img
+          key={slide.id}
+          className={cnImg}
+          src={slide.url}
+          alt={slide.description}
+          onLoad={handleImageLoad}
+          style={sxImage}
+        />
+        <div className={sy.main_inner}>
           <div className={sy.image_gap} />
           <div className={sy.image_date}>{timeAgo}</div>
+          {isPlaying ? (
+            <SlideProgress slideId={slide.id} duration={interval} />
+          ) : (
+            <SlideControl album={album} />
+          )}
         </div>
       </div>
       <div className={sy.footer}>
