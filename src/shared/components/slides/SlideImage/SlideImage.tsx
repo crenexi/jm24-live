@@ -12,14 +12,15 @@ type SlideImageProps = {
 const SlideImage: FC<SlideImageProps> = (props) => {
   const { slide, fadeOnLoad = false, sx = {} } = props;
 
-  const [cnImg, setCnImage] = useState<string>(sy.img);
+  const cn = !fadeOnLoad ? sy.img : classNames(sy.img, sy.img__loading);
+  const [cnImg, setCnImage] = useState<string>(cn);
 
   useEffect(() => {
-    if (fadeOnLoad) setCnImage(sy.img);
+    if (fadeOnLoad) setCnImage(classNames(sy.img, sy.img__loading));
   }, [slide.id]);
 
   const handleImageLoad = () => {
-    setCnImage(classNames(sy.img, sy.img__loaded));
+    if (fadeOnLoad) setCnImage(sy.img);
   };
 
   return (

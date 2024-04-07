@@ -10,23 +10,23 @@ const NewsReelPod: FC = () => {
   const { data, isLoading, error } = useContentful<Story>('jm24/news');
   const [story, setStory] = useState<Story | null>(null);
 
-  // Set the initial story
   useEffect(() => {
+    // If data is loaded and exists
     if (data && data.length > 0) {
-      setStory(data[index]);
-    }
-  }, [index]);
+      // Ensure index is within bounds
+      const safeIndex = index % data.length;
+      if (safeIndex !== index) setIndex(safeIndex);
 
-  // Update index after component mounts or updates
-  useEffect(() => {
-    if (data && data.length > 0) {
-      // Calculate the next index only when data changes
-      const nextIndex = (index + 1) % data.length;
+      // Set the current callout
+      setStory(data[safeIndex]);
+
+      // Prepare the index for the next callout
+      const nextIndex = (safeIndex + 1) % data.length;
       setIndex(nextIndex);
     }
-  }, [data]);
+  }, [data, index, setIndex]);
 
-  if (error) return <div>error.message</div>;
+  if (error) return <div>{error.message}k</div>;
   if (isLoading) return <Loading />;
   if (!data || data.length < 1) return <div>No story</div>;
 

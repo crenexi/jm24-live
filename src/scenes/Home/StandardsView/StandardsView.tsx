@@ -33,7 +33,7 @@ const StandardsView: FC<StandardsViewProps> = (props) => {
       <div className={sy.grid}>
         {slides.map((slide) => (
           <div key={slide.id} className={sy.grid_item}>
-            <SlideImage slide={slide} />
+            <SlideImage slide={slide} fadeOnLoad />
           </div>
         ))}
       </div>

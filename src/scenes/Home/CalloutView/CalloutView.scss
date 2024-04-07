@@ -8,9 +8,54 @@
 // Main area
 
 .main {
-  position: relative;
-  z-index: 99;
-  height: 100%;
-  display: grid;
-  grid-template-columns: auto;
+  visibility: visible;
+}
+
+// Layout
+
+// Header
+
+.header {
+  visibility: visible;
+}
+
+.header_name {
+  visibility: visible;
+}
+
+.header_subtext {
+  visibility: visible;
+}
+
+// Images
+
+.images {
+  visibility: visible;
+
+  &__loaded {
+    visibility: visible;
+  }
+}
+
+.images_img {
+  visibility: visible;
+  @include size(5rem);
+  object-fit: cover;
+}
+
+.images_main {
+  visibility: visible;
+}
+
+.images_left,
+.images_right {
+  visibility: visible;
+}
+
+.images_left {
+  visibility: visible;
+}
+
+.images_right {
+  visibility: visible;
 }
