@@ -9,22 +9,21 @@ const CalloutViewPod: FC = () => {
   const [index, setIndex] = useLocalStorage<number>('jm24_calloutIndex', 0);
   const { data, isLoading, error } = useContentful<Callout>('jm24/callouts');
   const [callout, setCallout] = useState<Callout | null>(null);
+  const [isSetup, setIsSetup] = useState(false);
 
   useEffect(() => {
-    // If data is loaded and exists
-    if (data && data.length > 0) {
-      // Ensure index is within bounds
+    if (data && data.length > 0 && !isSetup) {
       const safeIndex = index % data.length;
-      if (safeIndex !== index) setIndex(safeIndex);
 
-      // Set the current callout
+      // Set story and setup
       setCallout(data[safeIndex]);
+      setIsSetup(true);
 
-      // Prepare the index for the next callout
+      // Prepare index for next story immediately
       const nextIndex = (safeIndex + 1) % data.length;
       setIndex(nextIndex);
     }
-  }, [data, index, setIndex]);
+  }, [data, index, isSetup, setIndex]);
 
   if (error) return <div>{error.message}</div>;
   if (isLoading) return <LoadingBlock />;

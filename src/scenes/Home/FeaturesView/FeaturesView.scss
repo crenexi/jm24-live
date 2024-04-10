@@ -34,8 +34,8 @@
   object-fit: cover;
   opacity: 0;
 
-  &__loaded {
-    @include fade('in', 3, 1, both);
+  &:not(.img__loading) {
+    @include fade('in', 2, 1, both);
     opacity: 1;
   }
 }

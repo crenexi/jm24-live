@@ -26,12 +26,20 @@ const FeaturesView: FC<FeaturesViewProps> = (props) => {
     objectFit: isVertical ? 'contain' : 'cover',
   };
 
-  const [cnImg, setCnImage] = useState<string>(sy.img);
-  useEffect(() => setCnImage(sy.img), [slide.id]);
+  const [cnImg, setCnImage] = useState<string>(
+    classNames(sy.img, sy.img__loading),
+  );
+  const handleImageLoad = () => setCnImage(sy.img);
 
-  const handleImageLoad = () => {
-    setCnImage(classNames(sy.img, sy.img__loaded));
-  };
+  useEffect(() => {
+    // Additional safeguard for cached images
+    const imgElement = document.querySelector(
+      `img[src="${slide.url}"]`,
+    ) as HTMLImageElement;
+    if (imgElement && imgElement.complete) {
+      handleImageLoad();
+    }
+  }, [slide.url]);
 
   return (
     <SlideFrame

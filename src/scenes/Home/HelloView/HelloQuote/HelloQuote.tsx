@@ -12,22 +12,21 @@ type Quote = {
 const HelloQuote: FC = () => {
   const [index, setIndex] = useLocalStorage<number>('jm24_helloQuote', 0);
   const [quote, setQuote] = useState<Quote>(null);
+  const [isSetup, setIsSetup] = useState(false);
 
-  // Set the initial quote
   useEffect(() => {
-    if (dataQuotes && dataQuotes.length > 0) {
-      setQuote(dataQuotes[index]);
-    }
-  }, [index]);
+    if (dataQuotes && dataQuotes.length > 0 && !isSetup) {
+      const safeIndex = index % dataQuotes.length;
 
-  // Update index after component mounts or updates
-  useEffect(() => {
-    if (dataQuotes && dataQuotes.length > 0) {
-      // Calculate the next index only when dataQuotes changes
-      const nextIndex = (index + 1) % dataQuotes.length;
+      // Set story and setup
+      setQuote(dataQuotes[safeIndex]);
+      setIsSetup(true);
+
+      // Prepare index for next story immediately
+      const nextIndex = (safeIndex + 1) % dataQuotes.length;
       setIndex(nextIndex);
     }
-  }, [dataQuotes]);
+  }, [dataQuotes, index, isSetup, setIndex]);
 
   if (!quote) return null;
 

@@ -12,16 +12,23 @@ type SlideImageProps = {
 const SlideImage: FC<SlideImageProps> = (props) => {
   const { slide, fadeOnLoad = false, sx = {} } = props;
 
-  const cn = !fadeOnLoad ? sy.img : classNames(sy.img, sy.img__loading);
-  const [cnImg, setCnImage] = useState<string>(cn);
-
-  useEffect(() => {
-    if (fadeOnLoad) setCnImage(classNames(sy.img, sy.img__loading));
-  }, [slide.id]);
+  const [cnImg, setCnImage] = useState<string>(() =>
+    fadeOnLoad ? classNames(sy.img, sy.img__loading) : sy.img,
+  );
 
   const handleImageLoad = () => {
-    if (fadeOnLoad) setCnImage(sy.img);
+    setCnImage(sy.img);
   };
+
+  useEffect(() => {
+    // Additional safeguard for cached images
+    const imgElement = document.querySelector(
+      `img[src="${slide.url}"]`,
+    ) as HTMLImageElement;
+    if (imgElement && imgElement.complete) {
+      handleImageLoad();
+    }
+  }, [slide.url]);
 
   return (
     <div className={sy.imageBox}>
