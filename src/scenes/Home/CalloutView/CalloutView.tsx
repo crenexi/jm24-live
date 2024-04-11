@@ -30,23 +30,17 @@ const CalloutView: FC<CalloutViewProps> = ({ callout }) => {
         </div>
         <div className={cnImages}>
           <div className={sy.images_left}>
-            <div className={sy.images_imgBox}>
-              <img className={sy.images_img} src={imgLeft.url} />
-            </div>
+            <img className={sy.images_img} src={imgLeft.url} />
           </div>
           <div className={sy.images_main}>
-            <div className={sy.images_imgBox}>
-              <img
-                className={sy.images_img}
-                src={imgMain.url}
-                onLoad={handleImgMainLoad}
-              />
-            </div>
+            <img
+              className={sy.images_img}
+              src={imgMain.url}
+              onLoad={handleImgMainLoad}
+            />
           </div>
           <div className={sy.images_right}>
-            <div className={sy.images_imgBox}>
-              <img className={sy.images_img} src={imgRight.url} />
-            </div>
+            <img className={sy.images_img} src={imgRight.url} />
           </div>
         </div>
       </div>

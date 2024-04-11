@@ -3,7 +3,8 @@
 .headerDesc {
   width: 100%;
   padding: 0 sp(md1);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
   text-align: center;
   @include truncate();
 }
@@ -18,7 +19,7 @@
 
 .imageBox {
   background-color: co(neutral, n800);
-  border-radius: radius(r2);
+  border-radius: radius(r4);
   overflow: hidden;
 }
 

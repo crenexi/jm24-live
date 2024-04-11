@@ -11,13 +11,18 @@
 }
 
 .header, .footer {
-  height: 5vh;
+  height: 6vh;
 }
 
 // Header
 
 .header {
   @include flexy(column, center, stretch);
+  padding: 0 sp(md1);
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  @include truncate();
 }
 
 // Main
@@ -37,7 +42,6 @@
 
 .footer_counts {
   @include flexy(column, center, stretch);
-  padding-right: sp(sm3);
   text-align: left;
 }
 

@@ -24,12 +24,10 @@ const VerticalsView: FC<VerticalsViewProps> = (props) => {
       counts={counts}
       isFetching={isFetching}
       isPlaying={isPlaying}
-      header={
-        <div className={sy.header}>
-          {isPlaying && <SlideProgress index={index} duration={interval} />}
-        </div>
-      }
     >
+      <div className={sy.progress}>
+        {isPlaying && <SlideProgress index={index} duration={interval} />}
+      </div>
       <div className={sy.grid}>
         {slides.map((slide) => (
           <div key={slide.id} className={sy.grid_item}>

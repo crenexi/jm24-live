@@ -1,5 +1,6 @@
 import DataStatic from '@stypes/data-static.types';
 import dataQuotes from './data-quotes.json';
+import dataHeaders from './data-headers.json';
 import { assetsUrl } from '../constants';
 
 // prettier-ignore
@@ -12,6 +13,6 @@ const dataStatic: DataStatic = {
   urlCoverSunrays: `${assetsUrl}/covers/sunrays.jpg`,
 };
 
-export { dataQuotes };
+export { dataQuotes, dataHeaders };
 
 export default dataStatic;
