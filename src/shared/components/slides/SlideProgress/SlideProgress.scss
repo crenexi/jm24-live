@@ -7,9 +7,9 @@
 .edge {
   position: relative;
   overflow: hidden;
-  @include size(4rem, 3px);
-  background-color: rgba(75, 75, 75, .33);
-  border-right: 1px solid rgba(75, 75, 75, .66);
+  @include size(4rem, 4px);
+  background-color: rgba(0, 0, 0, .7);
+  border-right: 1px solid rgba(255, 255, 255, .4);
 }
 
 .bar {

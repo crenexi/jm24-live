@@ -1,10 +1,10 @@
 import { ReactNode as Node, FC, Reducer, useEffect } from 'react';
 import { createContext, useReducer } from 'react';
-import { setLoadingAction, setSlidesAction, setErrorAction } from './actions';
 import { ContextState, ContextValue, Action, Album } from '@stypes/Slide.types'; // prettier-ignore
 import logger from '@services/logger';
+import useAlbumQueries from '@hooks/use-album-queries';
+import { setLoadingAction, setSlidesAction, setErrorAction } from './actions';
 import slidesReducer from './slides-reducer';
-import fakeSlides from './fake-slides';
 
 const defaultDeck = {
   groupCount: 0,
@@ -37,34 +37,36 @@ const SlidesContext = createContext<ContextValue | undefined>(undefined);
 
 // Slides Provider
 export const SlidesProvider: FC<{ children: Node }> = ({ children }) => {
+  const albums = [Album.STANDARDS, Album.VERTICALS, Album.FEATURES];
+
   const [state, dispatch] = useReducer<Reducer<ContextState, Action>>(
     slidesReducer,
     defaultState,
   );
 
+  // prettier-ignore
+  const { queries, isLoading, isSuccess, isError, errMessage } = useAlbumQueries(albums);
+
   useEffect(() => {
-    const albums = [Album.STANDARDS, Album.VERTICALS, Album.FEATURES];
-    dispatch(setLoadingAction(true));
+    // Indicate data is being fetched
+    dispatch(setLoadingAction(isLoading));
 
-    const fetchSlides = async (album: Album) => {
-      // Simulate fetching slides asynchronously
-      const slides = await fakeSlides.get();
-      dispatch(setSlidesAction({ album, slides }));
-    };
-
-    const fetchAllSlides = albums.map((album) => fetchSlides(album));
-
-    // Fetch all albums and set loading/error accordingly
-    Promise.all(fetchAllSlides)
-      .then(() => {
-        dispatch(setLoadingAction(false));
-      })
-      .catch((err) => {
-        logger.error(err);
-        dispatch(setErrorAction(`Failed to fetch slides.`));
-        dispatch(setLoadingAction(false));
+    if (isSuccess) {
+      // Set slides data for each album
+      albums.forEach((album, index) => {
+        const slides = queries[index].data || [];
+        dispatch(setSlidesAction({ album, slides }));
       });
-  }, []);
+
+      // Stop loading after success
+      dispatch(setLoadingAction(false));
+    }
+
+    if (isError) {
+      dispatch(setErrorAction(errMessage));
+      dispatch(setLoadingAction(false));
+    }
+  }, [isLoading, isSuccess, isError, errMessage]);
 
   return (
     <SlidesContext.Provider value={{ state, dispatch }}>

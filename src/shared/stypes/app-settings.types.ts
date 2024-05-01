@@ -6,7 +6,7 @@ export type LogLevel = 'warn' | 'info' | 'debug';
 type ViewConfig = { interval: number };
 type ViewsConfig = Record<View, ViewConfig>;
 
-type AlbumConfig = { interval: number };
+type AlbumConfig = { albumId: string; interval: number };
 type AlbumsConfig = Record<Album, AlbumConfig>;
 
 type AppSettings = {

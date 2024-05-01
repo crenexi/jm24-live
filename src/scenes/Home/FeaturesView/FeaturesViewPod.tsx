@@ -39,16 +39,19 @@ const FeaturesViewPod: FC = () => {
   if (!deck.groupCurr.length) return null;
   const currSlide = deck.groupCurr[0];
 
+  // If taller than wider
+  const isVertical = Number(currSlide.height) > Number(currSlide.width);
+
   return (
     <FeaturesView
       slide={currSlide}
-      timeAgo={relativeTime(currSlide.creationTime)}
+      timeAgo={relativeTime(currSlide.createdAt)}
       index={deck.groupIndex + 1}
       total={deck.groupCount}
       interval={interval}
       isPlaying={viewsStatus.isPlaying}
       isFetching={status.isFetching}
-      isVertical={currSlide.height > currSlide.width}
+      isVertical={isVertical}
     />
   );
 };

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import logger from '@services/logger';
 
 // Define a type for the setter function, which can take a new value directly or a function to update based on the previous value.
 type SetValue<T> = T | ((prevValue: T) => T);
@@ -11,7 +12,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
-      console.error(error);
+      logger.error(error);
       return initialValue;
     }
   });
@@ -25,7 +26,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
         setStoredValue(valueToStore);
         window.localStorage.setItem(key, JSON.stringify(valueToStore));
       } catch (error) {
-        console.error(error);
+        logger.error(error);
       }
     },
     [key, storedValue],
@@ -37,7 +38,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
       setStoredValue(initialValue);
       window.localStorage.removeItem(key);
     } catch (error) {
-      console.error(error);
+      logger.error(error);
     }
   }, [key, initialValue]);
 

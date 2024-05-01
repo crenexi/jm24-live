@@ -28,7 +28,7 @@ export type Slide = {
   id: string;
   url: string;
   description: string;
-  creationTime: string;
+  createdAt: string;
   width: string;
   height: string;
 };

@@ -31,12 +31,12 @@ const StandardsViewPod: FC = () => {
     },
   });
 
+  // Loading state
+  if (status.isLoading) return <LoadingBlock />;
+
   // No slide data
   if (!deck.groupCurr.length) return null;
   const currSlides = deck.groupCurr.slice(0, 4);
-
-  // Loading state
-  if (status.isLoading) return <LoadingBlock />;
 
   return (
     <StandardsView
