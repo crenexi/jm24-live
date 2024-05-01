@@ -1,0 +1,96 @@
+@use '@sutils' as *;
+
+.edge, .main {
+  @include size(100%);
+}
+
+.edge {
+  @include fade('in', 3, 0, both);
+}
+
+.main {
+  @include flexy(column, center, center);
+  padding: sp(md3) 10vw sp(md6);
+  flex-wrap: nowrap;
+  text-align: center;
+
+  > .header {
+    flex: 1 1 30%;
+  }
+
+  > .images {
+    flex: 1 1 70%;
+  }
+}
+
+// Header
+
+.header {
+  @include flexy(column, center, center);
+}
+
+.header_name {
+  @include text-preset('headline-lg');
+}
+
+.header_subtext {
+  margin-top: sp(sm2);
+  @include text-preset('title-md');
+  font-weight: 600;
+
+  > span:not(:first-child) {
+    margin-left: sp(sm2);
+  }
+}
+
+// Images
+
+.images {
+  width: 100%;
+  @include grid(1fr auto 1fr);
+  justify-content: stretch;
+  justify-items: stretch;
+  align-content: center;
+  align-items: center;
+
+  &__loaded {
+    visibility: visible;
+  }
+}
+
+.images_img {
+  @include size(100%, 30vh);
+  overflow: hidden;
+  border-radius: radius(r5);
+  object-fit: cover;
+}
+
+.images_main {
+  position: relative;
+  z-index: 99;
+
+  .images_img {
+    @include size(50vh);
+    border-radius: radius(full);
+    @include bounce('in', 2, 2, both);
+    border: 15px solid co(neutral, n900);
+  }
+}
+
+.images_left {
+  margin-left: -4.5rem;
+  transform: translateX(4.5rem);
+
+  .images_img {
+    @include slide('backward-in', 2, 4, both);
+  }
+}
+
+.images_right {
+  margin-right: -4.5rem;
+  transform: translateX(-4.5rem);
+
+  .images_img {
+    @include slide('forward-in', 2, 4, both);
+  }
+}

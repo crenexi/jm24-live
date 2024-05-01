@@ -1,48 +1,31 @@
 @use '@sutils' as *;
 
 .edge {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 0 sp(md3);
-  color: #fff;
+  @include grid(100%, sp(md2));
+  grid-template-rows: 80% auto;
+  @include size(100%);
+  padding: sp(md1);
+  background-color: #1f1c21;
 }
 
-// Row layout
+.brand {
+  @include flexy(column, center, center);
 
-.row1 {
-  flex: 0 0 75%;
-  padding-top: sp(md3);
-
-  .col {
-    flex: 1;
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 }
 
-.row2 {
-  flex: 0 0 25%;
-  width: 100%;
-  padding: sp(md1) 0 sp(md3);
+// Quotes
+
+.quotes {
+  place-self: center;
+  padding-bottom: sp(md1);
 }
 
-// Main area
+// Fade in sequence
 
-.main {
-  display: grid;
-  grid-template-columns: 25% 40% 25%;
-  grid-gap: 5%;
-  width: 100%;
-}
-
-// Timeline and site
-
-.events, .prompt {
-  width: 100%;
-}
-
-// Temp
-
-.welcome, .brand, .clock, .events, .prompt {
-  background-color: co(background, lightest);
-  text-align: center;
-}
+.brand { @include fade('in', 7, 1, both); }
+.quotes { @include fade('in', 7, 5, both); }

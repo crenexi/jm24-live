@@ -1,3 +1,4 @@
+import getApiUrl from './misc/get-api-url';
 import sourceAttributes from './misc/source-attributes';
 import relativeTime from './misc/relative-time';
 
@@ -14,4 +15,4 @@ export {
   userAgent,
 } from './helpers';
 
-export { sourceAttributes, relativeTime };
+export { getApiUrl, sourceAttributes, relativeTime };

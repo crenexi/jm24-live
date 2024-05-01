@@ -1,0 +1,17 @@
+@use '@sutils' as *;
+
+.progress {
+  @include position(absolute, sp(sm4) null null sp(sm4));
+  z-index: 9999;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: sp(sm4);
+  @include size(100%);
+}
+
+.grid_item {
+  position: relative;
+}

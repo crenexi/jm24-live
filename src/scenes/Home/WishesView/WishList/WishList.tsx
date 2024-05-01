@@ -38,12 +38,8 @@ const WishList: FC = () => {
 
   return (
     <div className={sy.edge}>
-      <div className={sy.header}>
-        <h6 className={sy.header_title}>Wishes</h6>
-        <div className={sy.header_count}>{countText}</div>
-      </div>
       <div className={sy.list}>
-        {feed.map((wish) => (
+        {feed.slice(0, 10).map((wish) => (
           <div key={wish.id} className={sy.wish}>
             <div className={sy.wish_aside}>
               <div className={sy.wish_avatar}>{wish.nameKey}</div>
@@ -57,6 +53,9 @@ const WishList: FC = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className={sy.footer}>
+        <div className={sy.footer_count}>{countText}</div>
       </div>
     </div>
   );

@@ -1,0 +1,60 @@
+@use '@sutils' as *;
+
+.headerDesc {
+  width: 100%;
+  padding: 0 sp(md1);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  @include truncate();
+}
+
+
+// Image
+
+.imageBox, .imageBox_canvas {
+  position: relative;
+  @include size(100%);
+}
+
+.imageBox {
+  background-color: co(neutral, n800);
+  border-radius: radius(r4);
+  overflow: hidden;
+}
+
+.imageBox_canvas {
+  z-index: 100;
+  @include flexy(column, stretch, center);
+  padding: sp(sm5);
+}
+
+.img {
+  @include position(absolute, 0 0 0 0);
+  @include size(100%);
+  object-fit: cover;
+  opacity: 0;
+
+  &:not(.img__loading) {
+    @include fade('in', 2, 1, both);
+    opacity: 1;
+  }
+}
+
+// Image overlays
+
+.image_gap, .image_date {
+  position: relative;
+  z-index: 110;
+}
+
+.image_gap {
+  flex: 1 1 0%;
+}
+
+.image_date {
+  font-size: 1rem;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0,0,0,0.7), 1px 1px 10px rgba(0,0,0,0.5), -1px -1px 15px rgba(0,0,0,0.3);
+  text-transform: uppercase;
+}

@@ -1,0 +1,54 @@
+@use '@sutils' as *;
+
+.edge {
+  @include flexy(column, start, start);
+  @include size(100%);
+  padding: 0 sp(sm4);
+}
+
+.header, .footer, .main {
+  width: 100%;
+}
+
+.header, .footer {
+  height: 6vh;
+}
+
+// Header
+
+.header {
+  @include flexy(column, center, stretch);
+  padding: 0 sp(md1);
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  @include truncate();
+}
+
+// Main
+
+.main {
+  position: relative;
+  flex-grow: 1;
+}
+
+// Footer
+
+.footer {
+  @include grid-n(3, sp(md1));
+  place-items: center;
+  font-size: 1rem;
+}
+
+.footer_counts {
+  @include flexy(column, center, stretch);
+  text-align: left;
+}
+
+.footer_status {
+  @include flexy(column, center, stretch);
+  padding-left: sp(sm3);
+  text-align: right;
+  font-size: .9rem;
+  color: co(neutral, n500);
+}

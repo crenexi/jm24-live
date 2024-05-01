@@ -1,6 +1,6 @@
 @use '@sutils' as *;
 
-@mixin truncate-comment($line-height: 1.4em, $lines: 3) {
+@mixin truncate-comment($line-height: 1.4em, $lines: 4) {
   // Fallback styling
   display: block;
   overflow: hidden;
@@ -43,37 +43,33 @@
 }
 
 .edge {
-  margin-top: sp(md1);
   color: co(neutral, n100);
 };
 
-// Header
+// Footer
 
-.header {
-  @include flexy(row, start, center);
+.footer {
+  z-index: 99;
+  @include position(absolute, null 0 7px 0);
+  @include flexy(row, center, center);
   flex-wrap: nowrap;
 }
 
-.header_title {
-  flex: 1 1 0%;
-}
-
-.header_count {
-  text-align: right;
-  font-size: 1rem;
+.footer_count {
+  margin-top: sp(sm3);
+  text-align: center;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   color: co(bright, lightest);
 }
 
 // Wish layout
 
-.list {
-  margin-top: sp(sm3);
-}
-
 .wish {
   @include flexy(row, start, start);
   flex-wrap: nowrap;
-  padding: sp(sm3);
+  padding: sp(sm4);
   background-color: co(background, lighter);
   @include gradient-x(co(background, lighter), co(primary, darker));
   border-radius: radius(r4);
@@ -82,14 +78,14 @@
   @include fade('in', 1, 2, both);
 
   &:not(:first-child) {
-    margin-top: sp(sm2);
+    margin-top: sp(sm3);
   }
 }
 
 // Wish aside
 
 .wish_aside {
-  margin-right: sp(sm2);
+  margin-right: sp(sm3);
 }
 
 .wish_avatar {
@@ -114,7 +110,7 @@
   width: 100%;
   @include flexy(row, start, center);
   flex-wrap: nowrap;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .wish_sender {
@@ -137,5 +133,5 @@
   margin-top: sp(sm1);
   @include truncate-comment();
   margin-bottom: 1px;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
