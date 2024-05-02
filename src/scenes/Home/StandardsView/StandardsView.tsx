@@ -10,12 +10,14 @@ type StandardsViewProps = {
   interval: number;
   isPlaying: boolean;
   isFetching: boolean;
+  srcQuery: string;
 };
 
 const StandardsView: FC<StandardsViewProps> = (props) => {
   const album = Album.STANDARDS;
 
-  const { slides, index, total, interval, isPlaying, isFetching } = props;
+  const { slides, index, total, interval, srcQuery } = props;
+  const { isPlaying, isFetching } = props;
   const counts = `${index} / ${total}`;
 
   return (
@@ -31,7 +33,7 @@ const StandardsView: FC<StandardsViewProps> = (props) => {
       <div className={sy.grid}>
         {slides.map((slide) => (
           <div key={slide.id} className={sy.grid_item}>
-            <SlideImage slide={slide} fadeOnLoad />
+            <SlideImage slide={slide} srcQuery={srcQuery} fadeOnLoad />
           </div>
         ))}
       </div>

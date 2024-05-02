@@ -1,0 +1,21 @@
+@use '@sutils' as *;
+
+.edge {
+  display: inline-flex;
+  align-items: center;
+  margin: sp(sm2);
+  padding: sp(sm1) sp(sm2);
+  background-color: rgba(0, 0, 0, .5);
+  border: 1px solid co(danger, base);
+  font-size: .9rem;
+}
+
+.icon {
+  margin-right: sp(sm1);
+  font-size: 1.2rem;
+  color: co(danger, base);
+}
+
+.text {
+  padding: sp(sm1);
+}

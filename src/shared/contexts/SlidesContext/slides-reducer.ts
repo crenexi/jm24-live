@@ -9,8 +9,19 @@ type SlidesReducer = (state: ContextState, action: Action) => ContextState;
 // Reducer
 const slidesReducer: SlidesReducer = (state, action) => {
   switch (action.type) {
+    // Set whole status
+    case ActionTypes.SET_STATUS: {
+      return {
+        ...state,
+        status: action.payload,
+      };
+    }
     // Set error message
     case ActionTypes.SET_ERROR: {
+      if (state.status.error?.message === action.payload) {
+        return state;
+      } // No changes
+
       return {
         ...state,
         status: {
@@ -23,6 +34,9 @@ const slidesReducer: SlidesReducer = (state, action) => {
     }
     // Set fetching status
     case ActionTypes.SET_FETCHING: {
+      // No changes
+      if (state.status.isFetching === action.payload) return state;
+
       return {
         ...state,
         status: {
@@ -33,6 +47,9 @@ const slidesReducer: SlidesReducer = (state, action) => {
     }
     // Set loading status
     case ActionTypes.SET_LOADING: {
+      // No changes
+      if (state.status.isLoading === action.payload) return state;
+
       return {
         ...state,
         status: {
@@ -50,7 +67,6 @@ const slidesReducer: SlidesReducer = (state, action) => {
       return {
         ...state,
         slides: { ...state.slides, [album]: slides },
-        status: { ...state.status, isFetching: false },
         decks: { ...state.decks, [album]: deck },
       };
     }

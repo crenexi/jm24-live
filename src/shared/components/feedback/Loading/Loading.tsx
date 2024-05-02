@@ -13,7 +13,7 @@ type LoadingProps = {
 };
 
 const Loading: FC<LoadingProps> = ({
-  iconName = 'yin-yang',
+  iconName = 'spinner-third',
   size = 'md',
   color,
   center,

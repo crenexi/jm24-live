@@ -102,3 +102,11 @@ export const nextIndex = <T>(arr: T[], i: number) => {
   const isLast = i + 1 === arr.length;
   return isLast ? 0 : i + 1;
 };
+
+/* Preload images */
+export const preloadImages = (urls: string[]) => {
+  urls.forEach((url) => {
+    const img = new Image();
+    img.src = url;
+  });
+};

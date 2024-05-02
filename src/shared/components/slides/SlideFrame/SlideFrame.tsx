@@ -1,7 +1,8 @@
 import { FC, ReactNode, useState, useEffect } from 'react';
-import SlideControl from '../SlideControl';
 import { dataHeaders } from '@config/data-static';
 import { Album } from '@stypes/Slide.types';
+import { Loading } from '@components/feedback';
+import SlideControl from '../SlideControl';
 import sy from './SlideFrame.scss';
 
 type SlideFrameProps = {
@@ -26,7 +27,9 @@ const SlideFrame: FC<SlideFrameProps> = (props) => {
 
   return (
     <div className={sy.edge}>
-      <div className={sy.header}>{header || headerBit}</div>
+      <div className={sy.header}>
+        <div className={sy.header_center}>{header || headerBit}</div>
+      </div>
       <div className={sy.main}>
         {children}
         {!isPlaying && <SlideControl album={album} />}
@@ -34,7 +37,14 @@ const SlideFrame: FC<SlideFrameProps> = (props) => {
       <div className={sy.footer}>
         <div className={sy.footer_counts}>{counts}</div>
         <div className={sy.footer_center} />
-        <div className={sy.footer_status}>{isFetching && 'UPDATING..'}</div>
+        <div className={sy.footer_status}>
+          {isFetching && (
+            <div className={sy.footer_loading}>
+              <Loading size="sm" />
+              <span>UPDATING..</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { FC, useState, useEffect } from 'react';
 import { Callout } from '@stypes/Callout.types';
 import { LoadingBlock } from '@components/feedback';
+import { ErrorText } from '@components/display';
 import useContentful from '@hooks/use-contentful';
 import useLocalStorage from '@hooks/use-local-storage';
 import CalloutView from './CalloutView';
@@ -25,8 +26,11 @@ const CalloutViewPod: FC = () => {
     }
   }, [data, index, isSetup, setIndex]);
 
-  if (error) return <div>{error.message}</div>;
+  // Error and loading state
+  if (error) return <ErrorText>{error.message}</ErrorText>;
   if (isLoading) return <LoadingBlock />;
+
+  // No data
   if (!data || data.length < 1) return <div>No callout</div>;
 
   return <CalloutView callout={callout} />;

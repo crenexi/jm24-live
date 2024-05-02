@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { Story } from '@stypes/News.types';
+import { ErrorText } from '@components/display';
 import { Loading } from '@components/feedback';
 import useContentful from '@hooks/use-contentful';
 import useLocalStorage from '@hooks/use-local-storage';
@@ -25,7 +26,7 @@ const NewsReelPod: FC = () => {
     }
   }, [data, index, isSetup, setIndex]);
 
-  if (error) return <div>{error.message}</div>;
+  if (error) return <ErrorText>{error.message}</ErrorText>;
   if (isLoading) return <Loading />;
   if (!data || data.length < 1) return <div>No story available</div>;
 

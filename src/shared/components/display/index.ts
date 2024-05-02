@@ -1,4 +1,3 @@
-import Title from './Title';
-import Overline from './Overline';
-
-export { Title, Overline };
+export { default as Title } from './Title';
+export { default as Overline } from './Overline';
+export { default as ErrorText } from './ErrorText';

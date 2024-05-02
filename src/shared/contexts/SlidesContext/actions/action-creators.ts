@@ -1,5 +1,11 @@
-import { Action, SetSlidesPay, ToNextPay, ToPrevPay } from '@stypes/Slide.types'; // prettier-ignore
+import { Action, SetSlidesPay, ToNextPay, ToPrevPay, Status } from '@stypes/Slide.types'; // prettier-ignore
 import ActionTypes from './action-types';
+
+// Creator SET_STATUS
+export const setStatusAction = (payload: Status): Action => ({
+  type: ActionTypes.SET_STATUS,
+  payload,
+});
 
 // Creator: SET_ERROR
 export const setErrorAction = (payload: string): Action => ({

@@ -25,6 +25,10 @@
   @include truncate();
 }
 
+.header_center {
+  @include slide('upward-in', 3, 3, both);
+}
+
 // Main
 
 .main {
@@ -51,4 +55,8 @@
   text-align: right;
   font-size: .9rem;
   color: co(neutral, n500);
+}
+
+.footer_loading {
+  @include flexy(row, center, center);
 }

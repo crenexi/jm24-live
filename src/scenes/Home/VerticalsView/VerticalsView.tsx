@@ -10,12 +10,14 @@ type VerticalsViewProps = {
   interval: number;
   isPlaying: boolean;
   isFetching: boolean;
+  srcQuery: string;
 };
 
 const VerticalsView: FC<VerticalsViewProps> = (props) => {
   const album = Album.VERTICALS;
 
-  const { slides, index, total, interval, isPlaying, isFetching } = props;
+  const { slides, index, total, interval, srcQuery } = props;
+  const { isPlaying, isFetching } = props;
   const counts = `${index} / ${total}`;
 
   return (
@@ -31,7 +33,7 @@ const VerticalsView: FC<VerticalsViewProps> = (props) => {
       <div className={sy.grid}>
         {slides.map((slide) => (
           <div key={slide.id} className={sy.grid_item}>
-            <SlideImage slide={slide} fadeOnLoad />
+            <SlideImage slide={slide} srcQuery={srcQuery} fadeOnLoad />
           </div>
         ))}
       </div>

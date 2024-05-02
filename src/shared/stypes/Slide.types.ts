@@ -15,6 +15,7 @@ export type ToPrevPay = { album: Album };
 
 // Action definition
 export type Action =
+  | { type: ActionTypes.SET_STATUS; payload: Status }
   | { type: ActionTypes.SET_ERROR; payload: string }
   | { type: ActionTypes.SET_FETCHING; payload: boolean }
   | { type: ActionTypes.SET_LOADING; payload: boolean }

@@ -1,6 +1,6 @@
-import getApiUrl from './misc/get-api-url';
-import sourceAttributes from './misc/source-attributes';
-import relativeTime from './misc/relative-time';
+export { default as getApiUrl } from './misc/get-api-url';
+export { default as sourceAttributes } from './misc/source-attributes';
+export { default as relativeTime } from './misc/relative-time';
 
 export {
   alphaNumeric,
@@ -9,10 +9,9 @@ export {
   hexToRGB,
   nextIndex,
   onlyAlpha,
+  preloadImages,
   svar,
   toCamelCase,
   toKebabCase,
   userAgent,
 } from './helpers';
-
-export { getApiUrl, sourceAttributes, relativeTime };

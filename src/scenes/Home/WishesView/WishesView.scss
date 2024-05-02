@@ -19,7 +19,7 @@ $statusHeight: 2rem;
 
 .edge {
   display: grid;
-  grid-template-columns: calc(100vw - 35rem) 35rem;
+  grid-template-columns: 70rem calc(100vw - 70rem);
   @include fade('in', 3, 0, both);
   @include bg-cover();
 }
@@ -47,4 +47,14 @@ $statusHeight: 2rem;
 
 .main_bottom {
   padding: sp(md1);
+  @include flexy(column, center, center);
+  text-align: center;
+  font-weight: 700;
+  text-shadow: shadow(s3);
+
+  img {
+    width: 8rem;
+    margin-bottom: 1rem;
+    box-shadow: shadow(s3);
+  }
 }

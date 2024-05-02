@@ -13,12 +13,13 @@ export type FeaturesViewProps = {
   isPlaying: boolean;
   isFetching: boolean;
   isVertical: boolean;
+  srcQuery: string;
 };
 
 const FeaturesView: FC<FeaturesViewProps> = (props) => {
   const album = Album.FEATURES;
 
-  const { slide, timeAgo, index, total, interval } = props;
+  const { slide, timeAgo, index, total, interval, srcQuery } = props;
   const { isPlaying, isVertical, isFetching } = props;
   const counts = `${index} / ${total}`;
 
@@ -54,7 +55,7 @@ const FeaturesView: FC<FeaturesViewProps> = (props) => {
           <img
             key={slide.id}
             className={cnImg}
-            src={slide.url}
+            src={`${slide.url}=${srcQuery}`}
             alt={slide.description}
             onLoad={handleImageLoad}
             style={sxImage}

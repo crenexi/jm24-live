@@ -2,6 +2,7 @@ import { FC } from 'react';
 import logger from '@services/logger';
 import { relativeTime } from '@helpers/index';
 import useContentful from '@hooks/use-contentful';
+import { ErrorText } from '@components/display';
 import { LoadingBlock } from '@components/feedback';
 import { Wish, FeedWish } from '@stypes/Wish.types';
 import sy from './WishList.scss';
@@ -11,7 +12,7 @@ const WishList: FC = () => {
 
   if (error) {
     logger.error(error.message);
-    return <div>Error loading wishes.</div>;
+    return <ErrorText>Error loading wishes</ErrorText>;
   }
 
   if (isLoading) return <LoadingBlock />;
