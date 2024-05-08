@@ -9,7 +9,7 @@ export const defaultState: ContextState = {
   status: {
     error: null,
     isLoading: true,
-    isPlaying: false,
+    isPlaying: true,
   },
 };
 

@@ -20,7 +20,7 @@ const usePhotos = (albums: Album[]) => {
   const queryFn = useCallback(
     (album: Album) => async () => {
       const albumId = appSettings.albums[album].albumId;
-      return photoService().read(albumId);
+      return await photoService().read(albumId);
     },
     [],
   );
