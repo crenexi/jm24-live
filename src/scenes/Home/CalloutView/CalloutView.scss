@@ -53,8 +53,8 @@
   align-content: center;
   align-items: center;
 
-  &__loaded {
-    visibility: visible;
+  &__loading {
+    display: none;
   }
 }
 

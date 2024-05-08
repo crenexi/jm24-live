@@ -16,7 +16,17 @@ const CalloutView: FC<CalloutViewProps> = ({ callout }) => {
 
   const cn = classNames(sy.images, sy.images__loading);
   const [cnImages, setCnImages] = useState<string>(cn);
-  const handleImgMainLoad = () => setCnImages(sy.images);
+  const [imgsLoaded, setImgsLoaded] = useState<number>(0);
+
+  const signalImgLoad = () => {
+    setImgsLoaded((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    if (imgsLoaded === 3) {
+      setCnImages(sy.images);
+    }
+  }, [imgsLoaded]);
 
   return (
     <div key={id} className={sy.edge}>
@@ -30,17 +40,28 @@ const CalloutView: FC<CalloutViewProps> = ({ callout }) => {
         </div>
         <div className={cnImages}>
           <div className={sy.images_left}>
-            <img className={sy.images_img} src={imgLeft.url} />
+            <img
+              key="leftImage"
+              className={sy.images_img}
+              src={imgLeft.url}
+              onLoad={signalImgLoad}
+            />
           </div>
           <div className={sy.images_main}>
             <img
+              key="mainImage"
               className={sy.images_img}
               src={imgMain.url}
-              onLoad={handleImgMainLoad}
+              onLoad={signalImgLoad}
             />
           </div>
           <div className={sy.images_right}>
-            <img className={sy.images_img} src={imgRight.url} />
+            <img
+              key="rightImage"
+              className={sy.images_img}
+              src={imgRight.url}
+              onLoad={signalImgLoad}
+            />
           </div>
         </div>
       </div>
