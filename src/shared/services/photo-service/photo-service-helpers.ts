@@ -7,7 +7,7 @@ import {
   Err,
 } from './photo-service.types';
 
-const TIMEOUT = 5000;
+const TIMEOUT = 10_000;
 
 export const config: PhotoServiceConfig = (() => {
   const apiBaseUrl = process.env.CX_API_BASE_URL;

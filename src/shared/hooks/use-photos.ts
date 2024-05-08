@@ -5,19 +5,16 @@ import appSettings from '@config/app-settings';
 import photoService from '@services/photo-service';
 import logger from '@services/logger';
 
+const MIN45 = 45 * 60 * 1000;
+
 const queryOpts = {
-  staleTime: Infinity,
-  cacheTime: 45 * 60 * 1000,
+  staleTime: MIN45,
+  cacheTime: MIN45,
+  refetchInterval: MIN45,
   refetchOnWindowFocus: false,
   refetchOnReconnect: false,
   keepPreviousData: true,
 };
-
-/* const testQueryOpts = {
-  ...queryOpts,
-  staleTime: 30_000,
-  refetchInterval: 30_000,
-}; */
 
 const usePhotos = (albums: Album[]) => {
   const queryFn = useCallback(

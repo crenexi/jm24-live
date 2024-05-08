@@ -7,7 +7,7 @@ import {
   Err,
 } from './contentful.types';
 
-const TIMEOUT = 5000;
+const TIMEOUT = 10_000;
 
 export const config: ContentfulConfig = (() => {
   const apiBaseUrl = process.env.CX_API_BASE_URL;
